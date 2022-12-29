@@ -17,6 +17,12 @@
 		821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933CE295DFFBC00B47BFB /* Pixel.swift */; };
 		821933D1295DFFD200B47BFB /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D0295DFFD200B47BFB /* Bucket.swift */; };
 		821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */; };
+		821933D6295E0E8B00B47BFB /* SlickDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D5295E0E8B00B47BFB /* SlickDebugView.swift */; };
+		821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D7295E0F9600B47BFB /* DebugInfo.swift */; };
+		821933DA295E101C00B47BFB /* SlickDebugContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */; };
+		821933DC295E136900B47BFB /* DebugInfoHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DB295E136900B47BFB /* DebugInfoHolder.swift */; };
+		821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DD295E1DD800B47BFB /* DebugCornerView.swift */; };
+		821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		821933CE295DFFBC00B47BFB /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		821933D0295DFFD200B47BFB /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AverageColor.swift"; sourceTree = "<group>"; };
+		821933D5295E0E8B00B47BFB /* SlickDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugView.swift; sourceTree = "<group>"; };
+		821933D7295E0F9600B47BFB /* DebugInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfo.swift; sourceTree = "<group>"; };
+		821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugContainerView.swift; sourceTree = "<group>"; };
+		821933DB295E136900B47BFB /* DebugInfoHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfoHolder.swift; sourceTree = "<group>"; };
+		821933DD295E1DD800B47BFB /* DebugCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerView.swift; sourceTree = "<group>"; };
+		821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerColorsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +98,7 @@
 		821933A8295DF89C00B47BFB /* Slick */ = {
 			isa = PBXGroup;
 			children = (
+				821933D4295E0E6F00B47BFB /* debug */,
 				821933CB295DFF5600B47BFB /* image */,
 				821933C8295DFE1500B47BFB /* extension */,
 				821933C7295DFDE900B47BFB /* view */,
@@ -138,6 +151,19 @@
 				821933CE295DFFBC00B47BFB /* Pixel.swift */,
 			);
 			path = image;
+			sourceTree = "<group>";
+		};
+		821933D4295E0E6F00B47BFB /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */,
+				821933D5295E0E8B00B47BFB /* SlickDebugView.swift */,
+				821933D7295E0F9600B47BFB /* DebugInfo.swift */,
+				821933DB295E136900B47BFB /* DebugInfoHolder.swift */,
+				821933DD295E1DD800B47BFB /* DebugCornerView.swift */,
+				821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */,
+			);
+			path = debug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821933D6295E0E8B00B47BFB /* SlickDebugView.swift in Sources */,
+				821933DA295E101C00B47BFB /* SlickDebugContainerView.swift in Sources */,
+				821933DC295E136900B47BFB /* DebugInfoHolder.swift in Sources */,
+				821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */,
+				821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */,
+				821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */,
 				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
 				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
 				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,

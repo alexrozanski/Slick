@@ -35,6 +35,11 @@ public struct SlickView<Image>: View where Image: View {
 
   @State private var backgroundColors: [NSColor]?
 
+  // Use key path to use default `debugInfoHolder` if we're not wrapped in a SlickDebugContainerView
+  @Environment(\.debugInfoHolder) private var debugInfoHolder
+
+  private var debugInfo: DebugInfo? = nil
+
   public init(_ image: NSImage?, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
     self.appearance = .default
@@ -51,10 +56,14 @@ public struct SlickView<Image>: View where Image: View {
     if let image = image {
       imageView(image)
         .onAppear {
-          recalculateColors(from: image)
+          var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
+          recalculateColors(from: image, debugInfo: &debugInfo)
+          debugInfoHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
         }
         .onChange(of: image) { newImage in
-          recalculateColors(from: newImage)
+          var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
+          recalculateColors(from: newImage, debugInfo: &debugInfo)
+          debugInfoHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
         }
         .padding(.horizontal, appearance.horizontalInsets)
         .padding(.vertical, appearance.verticalInsets)
@@ -74,10 +83,25 @@ public struct SlickView<Image>: View where Image: View {
     }
   }
 
-  private func recalculateColors(from image: NSImage) {
-    let colors = imageColorExtractor.extractColors(from: image)
+  private func recalculateColors(from image: NSImage, debugInfo: inout ImageColorExtractor.ExtractionDebugInfo?) {
+    let colors = imageColorExtractor.extractColors(from: image, debugInfo: &debugInfo)
     var wrappedColors = colors
     colors.first.map { wrappedColors.append($0) }
     backgroundColors = wrappedColors
+  }
+}
+
+fileprivate extension DebugInfo {
+  convenience init(colorExtractionDebugInfo debugInfo: ImageColorExtractor.ExtractionDebugInfo) {
+    self.init(
+      topLeftSampledImage: debugInfo.sampledImages[.topLeft],
+      topLeftColors: debugInfo.colors[.topLeft],
+      topRightSampledImage: debugInfo.sampledImages[.topRight],
+      topRightColors: debugInfo.colors[.topRight],
+      bottomLeftSampledImage: debugInfo.sampledImages[.bottomLeft],
+      bottomLeftColors: debugInfo.colors[.bottomLeft],
+      bottomRightSampledImage: debugInfo.sampledImages[.bottomRight],
+      bottomRightColors: debugInfo.colors[.bottomRight]
+    )
   }
 }
