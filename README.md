@@ -31,6 +31,25 @@ Which will render:
 
 <img src="https://github.com/alexrozanski/Slick/blob/main/docs/astronaut_example.png?raw=true" width="630" height="553">
 
+### Debug View
+
+Slick allows you to render a debug view to show which parts of your image are being sampled and the colours which are being sampled from each section. To render the debug view, simply add a `SlickDebugView` and wrap both in a `SlickDebugContainerView`, for example:
+
+```swift
+SlickDebugContainerView {
+  HStack(alignment: .top) {
+    SlickView(NSImage(named: "astronaut")) { nsImage in
+      Image(nsImage: nsImage)
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+    }
+    SlickDebugView()
+  }
+}
+```
+
+`SlickDebugContainerView` is required to connect the `SlickView` and `SlickDebugView` together.
+
 ## Setup
 
 ### [Preferred] Swift Package Manager
