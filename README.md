@@ -1,5 +1,9 @@
 # Slick
 
+[![Swift](https://img.shields.io/badge/Swift-5.x-orange?style=flat)](https://img.shields.io/badge/Swift-5.x-Orange?style=flat)
+[![Platforms](https://img.shields.io/badge/Platforms-macOS-lightgrey?style=flat)](https://img.shields.io/badge/Platforms-macOS-lightgrey?style=flat)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat)
+
 A SwiftUI View for displaying a soft, backlit background around images (like an oil *slick*).
 
 ## Usage
