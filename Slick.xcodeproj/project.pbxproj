@@ -13,6 +13,10 @@
 		821933B9295DF94E00B47BFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933B8295DF94E00B47BFB /* Assets.xcassets */; };
 		821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933BB295DF94E00B47BFB /* Preview Assets.xcassets */; };
 		821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */; };
+		821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933CC295DFF6200B47BFB /* ImageColorExtractor.swift */; };
+		821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933CE295DFFBC00B47BFB /* Pixel.swift */; };
+		821933D1295DFFD200B47BFB /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D0295DFFD200B47BFB /* Bucket.swift */; };
+		821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		821933BB295DF94E00B47BFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		821933BD295DF94E00B47BFB /* SlickExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlickExample.entitlements; sourceTree = "<group>"; };
 		821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Bitmap.swift"; sourceTree = "<group>"; };
+		821933CC295DFF6200B47BFB /* ImageColorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorExtractor.swift; sourceTree = "<group>"; };
+		821933CE295DFFBC00B47BFB /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		821933D0295DFFD200B47BFB /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
+		821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AverageColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 		821933A8295DF89C00B47BFB /* Slick */ = {
 			isa = PBXGroup;
 			children = (
+				821933CB295DFF5600B47BFB /* image */,
 				821933C8295DFE1500B47BFB /* extension */,
 				821933C7295DFDE900B47BFB /* view */,
 			);
@@ -116,8 +125,19 @@
 			isa = PBXGroup;
 			children = (
 				821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */,
+				821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		821933CB295DFF5600B47BFB /* image */ = {
+			isa = PBXGroup;
+			children = (
+				821933D0295DFFD200B47BFB /* Bucket.swift */,
+				821933CC295DFF6200B47BFB /* ImageColorExtractor.swift */,
+				821933CE295DFFBC00B47BFB /* Pixel.swift */,
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
+				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
+				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,
 				821933AC295DF8B500B47BFB /* SlickView.swift in Sources */,
+				821933D1295DFFD200B47BFB /* Bucket.swift in Sources */,
 				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
