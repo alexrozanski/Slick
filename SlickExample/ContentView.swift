@@ -32,7 +32,7 @@ struct ContentView: View {
               .aspectRatio(contentMode: .fit)
               .cornerRadius(4)
           }
-          .padding()
+          .padding(32)
         }
         Divider()
         SlickDebugView()
