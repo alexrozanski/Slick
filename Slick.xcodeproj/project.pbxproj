@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		8219339D295DF86900B47BFB /* Slick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		821933A7295DF89500B47BFB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		821933A7295DF89500B47BFB /* Package.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		821933AB295DF8B500B47BFB /* SlickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlickView.swift; sourceTree = "<group>"; };
 		821933B2295DF94D00B47BFB /* SlickExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlickExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933B4295DF94D00B47BFB /* SlickExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickExampleApp.swift; sourceTree = "<group>"; };
@@ -56,6 +56,8 @@
 		821933DB295E136900B47BFB /* DebugInfoHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfoHolder.swift; sourceTree = "<group>"; };
 		821933DD295E1DD800B47BFB /* DebugCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerView.swift; sourceTree = "<group>"; };
 		821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerColorsView.swift; sourceTree = "<group>"; };
+		821933E1295E207600B47BFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		821933E2295E237200B47BFB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,8 @@
 		82193393295DF86900B47BFB = {
 			isa = PBXGroup;
 			children = (
+				821933E1295E207600B47BFB /* README.md */,
+				821933E2295E237200B47BFB /* LICENSE */,
 				821933B3295DF94D00B47BFB /* SlickExample */,
 				821933A8295DF89C00B47BFB /* Slick */,
 				821933A7295DF89500B47BFB /* Package.swift */,
@@ -370,6 +374,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -426,6 +431,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
