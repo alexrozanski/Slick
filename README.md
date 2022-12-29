@@ -40,6 +40,8 @@ dependencies: [
 ]
 ```
 
+Or add it as a dependency by specifying `https://github.com/alexrozanski/Slick.git` through Xcode's Package Dependencies UI.
+
 ### Manual
 
 - Clone the Slick repository:
@@ -52,8 +54,6 @@ git clone https://github.com/alexrozanski/Slick.git # or git@github.com:alexroza
 - Open the products folder from Xcode using Product > Show Build Folder in Finder from the Xcode menu.
 - Find `Slick.framework` in either the `Debug` or `Release` folder (depending on how you built the framework).
 - Drag `Slick.framework` to the Project Navigator (sidebar) of your Xcode project, checking 'Copy items if needed' and checking the correct target that you want the framework to be added to.
-
-Or add it as a dependency by specifying `https://github.com/alexrozanski/Slick.git` through Xcode's Package Dependencies UI.
 
 ## Sample App
 
