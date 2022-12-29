@@ -25,7 +25,7 @@ SlickView(NSImage(named: "astronaut")) { nsImage in
 
 Which will render:
 
-![Example of SlickView with a sample image](docs/astronaut_example.png)
+<img src="https://github.com/alexrozanski/Slick/blob/main/docs/astronaut_example.png?raw=true" width="630" height="553">
 
 ## Setup
 
