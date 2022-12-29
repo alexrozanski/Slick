@@ -15,7 +15,8 @@ let package = Package(
   targets: [
     .target(
       name: "Slick",
-      dependencies: []),
+      dependencies: [],
+      path: "Slick"),
   ],
   swiftLanguageVersions: [.v5]
 )
