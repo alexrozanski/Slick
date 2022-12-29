@@ -55,6 +55,12 @@ git clone https://github.com/alexrozanski/Slick.git # or git@github.com:alexroza
 
 Or add it as a dependency by specifying `https://github.com/alexrozanski/Slick.git` through Xcode's Package Dependencies UI.
 
+## Sample App
+
+The `SlickExample` app shows an example of Slick in action, with some sample images and info showing which sections of the image and which colours were sampled.
+
+![SlickExample app](docs/example_app.png)
+
 ## Credits
 
 - Atomic Object's [blog post](https://spin.atomicobject.com/2016/12/07/pixels-and-palettes-extracting-color-palettes-from-images/) on extracting colours from images was very helpful in implementing the image colour extraction logic in Slick.
