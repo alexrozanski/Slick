@@ -25,6 +25,7 @@ struct ContentView: View {
           Image(nsImage: nsImage)
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .cornerRadius(4)
         }
       }
     }
