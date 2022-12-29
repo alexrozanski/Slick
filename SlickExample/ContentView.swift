@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Slick
 
 struct ContentView: View {
   var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundColor(.accentColor)
-      Text("Hello, world!")
+    HStack {
+      SlickView(NSImage(named: "astronaut")) { nsImage in
+        Image(nsImage: nsImage)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+      }
     }
     .padding()
   }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		821933AA295DF8B100B47BFB /* slick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933A9295DF8B100B47BFB /* slick.swift */; };
 		821933AC295DF8B500B47BFB /* SlickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933AB295DF8B500B47BFB /* SlickView.swift */; };
 		821933B5295DF94D00B47BFB /* SlickExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B4295DF94D00B47BFB /* SlickExampleApp.swift */; };
 		821933B7295DF94D00B47BFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B6295DF94D00B47BFB /* ContentView.swift */; };
@@ -15,10 +14,19 @@
 		821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933BB295DF94E00B47BFB /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		821933C5295DFCC800B47BFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82193394295DF86900B47BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8219339C295DF86900B47BFB;
+			remoteInfo = Slick;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8219339D295DF86900B47BFB /* Slick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933A7295DF89500B47BFB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		821933A9295DF8B100B47BFB /* slick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slick.swift; sourceTree = "<group>"; };
 		821933AB295DF8B500B47BFB /* SlickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlickView.swift; sourceTree = "<group>"; };
 		821933B2295DF94D00B47BFB /* SlickExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlickExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933B4295DF94D00B47BFB /* SlickExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickExampleApp.swift; sourceTree = "<group>"; };
@@ -68,7 +76,6 @@
 		821933A8295DF89C00B47BFB /* Slick */ = {
 			isa = PBXGroup;
 			children = (
-				821933A9295DF8B100B47BFB /* slick.swift */,
 				821933AB295DF8B500B47BFB /* SlickView.swift */,
 			);
 			path = Slick;
@@ -136,6 +143,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				821933C6295DFCC800B47BFB /* PBXTargetDependency */,
 			);
 			name = SlickExample;
 			productName = SlickExample;
@@ -204,7 +212,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				821933AA295DF8B100B47BFB /* slick.swift in Sources */,
 				821933AC295DF8B500B47BFB /* SlickView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +226,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		821933C6295DFCC800B47BFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8219339C295DF86900B47BFB /* Slick */;
+			targetProxy = 821933C5295DFCC800B47BFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		821933A2295DF86900B47BFB /* Debug */ = {
