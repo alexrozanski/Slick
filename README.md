@@ -46,7 +46,7 @@ Or add it as a dependency by specifying `https://github.com/alexrozanski/Slick.g
 
 - Clone the Slick repository:
 
-```
+```bash
 git clone https://github.com/alexrozanski/Slick.git # or git@github.com:alexrozanski/Slick.git with SSH
 ```
 
