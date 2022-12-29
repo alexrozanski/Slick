@@ -12,6 +12,7 @@
 		821933B7295DF94D00B47BFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B6295DF94D00B47BFB /* ContentView.swift */; };
 		821933B9295DF94E00B47BFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933B8295DF94E00B47BFB /* Assets.xcassets */; };
 		821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933BB295DF94E00B47BFB /* Preview Assets.xcassets */; };
+		821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		821933B8295DF94E00B47BFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		821933BB295DF94E00B47BFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		821933BD295DF94E00B47BFB /* SlickExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlickExample.entitlements; sourceTree = "<group>"; };
+		821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Bitmap.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +78,8 @@
 		821933A8295DF89C00B47BFB /* Slick */ = {
 			isa = PBXGroup;
 			children = (
-				821933AB295DF8B500B47BFB /* SlickView.swift */,
+				821933C8295DFE1500B47BFB /* extension */,
+				821933C7295DFDE900B47BFB /* view */,
 			);
 			path = Slick;
 			sourceTree = "<group>";
@@ -99,6 +102,22 @@
 				821933BB295DF94E00B47BFB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		821933C7295DFDE900B47BFB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				821933AB295DF8B500B47BFB /* SlickView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		821933C8295DFE1500B47BFB /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				821933AC295DF8B500B47BFB /* SlickView.swift in Sources */,
+				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
