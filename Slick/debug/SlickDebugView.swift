@@ -9,23 +9,21 @@ import SwiftUI
 
 public struct SlickDebugView: View {
   @Environment(\.debugInfo) var debugInfo: DebugInfo?
-
+  
   public init() {}
-
+  
   public var body: some View {
     if let debugInfo = debugInfo {
       VStack {
         ScrollView {
-          Grid {
-            GridRow {
-              ForEach(Array(debugInfo.info.keys.sorted(by: { p1, p2 in p1.angle < p2.angle })), id: \.self) { position in
-                if let info = debugInfo.info[position] {
-                  DebugCornerView(
-                    label: position.label,
-                    sampledImage: info.image,
-                    colors: info.colors
-                  )
-                }
+          VStack {
+            ForEach(Array(debugInfo.info.keys.sorted(by: { p1, p2 in p1.angle < p2.angle })), id: \.self) { position in
+              if let info = debugInfo.info[position] {
+                DebugCornerView(
+                  label: position.label,
+                  sampledImage: info.image,
+                  colors: info.colors
+                )
               }
             }
           }
