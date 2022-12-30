@@ -111,14 +111,14 @@ internal class ImageColorExtractor {
     }
 
     let edgeCoordinates = edgeCoordinates(for: angle, in: image)
-    let sourceRect = Corner.topLeft.sampleRect(in: image, sampleSideLength: config.sampleImageSideLength)
+    let sampleRect = sampleRect(for: edgeCoordinates, in: image, sampleSideLength: config.sampleImageSideLength)
     let hottestCornerCoordinates = CGPoint(
-      x: CGFloat(hottestCorner.normalizedCoordinates.x) * sourceRect.size.width,
-      y: CGFloat(hottestCorner.normalizedCoordinates.y) * sourceRect.size.height
+      x: CGFloat(hottestCorner.normalizedCoordinates.x) * sampleRect.size.width,
+      y: CGFloat(hottestCorner.normalizedCoordinates.y) * sampleRect.size.height
     )
 
     let bucketWidth = Int(ceil(256.0 / Double(gridSize)))
-    image.withImageData(sourceRect: sourceRect, outImage: &outImage) { width, height, pixel in
+    image.withImageData(sourceRect: sampleRect, outImage: &outImage) { width, height, pixel in
       for y in (0..<height) {
         for x in (0..<width) {
           let (r, g, b) = pixel(x, y)
@@ -296,5 +296,17 @@ private func edgeCoordinates(for angle: Double, in image: NSImage) -> CGPoint {
   return CGPoint(
     x: round(min(max(x, 0.0), width)),
     y: round(min(max(y, 0.0), height))
+  )
+}
+
+private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int) -> NSRect {
+  return NSIntersectionRect(
+    NSRect(origin: .zero, size: image.size),
+    NSRect(
+      x: centerPoint.x - Double(sampleSideLength),
+      y: centerPoint.y - Double(sampleSideLength),
+      width: Double(sampleSideLength) * 2,
+      height: Double(sampleSideLength) * 2
+    )
   )
 }
