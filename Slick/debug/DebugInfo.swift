@@ -8,33 +8,47 @@
 import SwiftUI
 
 internal class DebugInfo: ObservableObject {
-  let topLeftSampledImage: NSImage?
-  let topLeftColors: [NSColor]?
-  let topRightSampledImage: NSImage?
-  let topRightColors: [NSColor]?
-  let bottomLeftSampledImage: NSImage?
-  let bottomLeftColors: [NSColor]?
-  let bottomRightSampledImage: NSImage?
-  let bottomRightColors: [NSColor]?
+  enum Position: Hashable {
+    case topLeft
+    case topRight
+    case bottomLeft
+    case bottomRight
+    case angle(Double)
 
-  init(
-    topLeftSampledImage: NSImage?,
-    topLeftColors: [NSColor]?,
-    topRightSampledImage: NSImage?,
-    topRightColors: [NSColor]?,
-    bottomLeftSampledImage: NSImage?,
-    bottomLeftColors: [NSColor]?,
-    bottomRightSampledImage: NSImage?,
-    bottomRightColors: [NSColor]?
-  ) {
-    self.topLeftSampledImage = topLeftSampledImage
-    self.topLeftColors = topLeftColors
-    self.topRightSampledImage = topRightSampledImage
-    self.topRightColors = topRightColors
-    self.bottomLeftSampledImage = bottomLeftSampledImage
-    self.bottomLeftColors = bottomLeftColors
-    self.bottomRightSampledImage = bottomRightSampledImage
-    self.bottomRightColors = bottomRightColors
+    init(angle: Double) {
+      switch angle {
+      case 0: self = .topLeft
+      case 90: self = .topRight
+      case 180: self = .bottomRight
+      case 270: self = .bottomLeft
+      default: self = .angle(angle)
+      }
+    }
+
+    var angle: Double {
+      switch self {
+      case .topLeft: return 0
+      case .topRight: return 90
+      case .bottomRight: return 180
+      case .bottomLeft: return 270
+      case .angle(let angle): return angle
+      }
+    }
+
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(angle)
+    }
+  }
+
+  struct PositionInfo {
+    let image: NSImage
+    let colors: [NSColor]
+  }
+
+  let info: [Position: PositionInfo]
+
+  init(info: [Position: PositionInfo]) {
+    self.info = info
   }
 }
 

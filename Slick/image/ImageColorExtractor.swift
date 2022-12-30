@@ -20,7 +20,12 @@ internal class ImageColorExtractor {
   }
 
   struct ExtractionConfig {
-    static var `default` = ExtractionConfig(gridSize: 5, sampleImageSideLength: 141, colorPrioritization: [])
+    static var `default` = ExtractionConfig(
+      samplePoints: 4,
+      gridSize: 5,
+      sampleImageSideLength: 141,
+      colorPrioritization: []
+    )
 
     struct ColorPrioritization: OptionSet {
       let rawValue: Int
@@ -29,6 +34,9 @@ internal class ImageColorExtractor {
       static let bright = ColorPrioritization(rawValue: 1 << 1)
     }
 
+    // The number of areas around the image to sample to determine colors. More sample points will give background colors that are more
+    // true to the edges of the image.
+    let samplePoints: Int
     // The size of the grid to split the RGB color space into when clustering colors.
     let gridSize: Int
     // The side length of the square images to sample from each corner of the input image to determine a representative color value.
@@ -38,8 +46,8 @@ internal class ImageColorExtractor {
   }
 
   struct ExtractionDebugInfo {
-    let sampledImages: [Corner: NSImage]
-    let colors: [Corner: [NSColor]]
+    // Angle -> (NSImage?, [NSColor])
+    let info: [Double: (NSImage?, [NSColor])]
   }
 
   func extractColors(
@@ -54,42 +62,41 @@ internal class ImageColorExtractor {
   func extractColors(
     from image: NSImage,
     config: ExtractionConfig = .default,
-    debugInfo: inout ExtractionDebugInfo?
+    debugInfo outDebugInfo: inout ExtractionDebugInfo?
   ) -> [NSColor] {
     var averageColors = [NSColor]()
+    var debugInfo = [Double: (NSImage?, [NSColor])]()
 
-    var debugSampledImages = [Corner: NSImage]()
-    var debugColors = [Corner: [NSColor]]()
-
-    // Cycle colors from top left clockwise
-    [Corner.topLeft, Corner.topRight, Corner.bottomRight, Corner.bottomLeft].forEach { corner in
+    [0.0, 90.0, 180.0, 270.0].forEach { angle in
       var clippedImage: NSImage?
       let buckets = bucket(
         from: image,
-        corner: corner,
+        angle: angle,
         outImage: &clippedImage,
-        hottestCorner: corner,
+        hottestCorner: .topLeft,
         config: config
       )
       let topColors = buckets.topColors(with: config)
       averageColors.append(topColors.first ?? .black)
 
-      debugSampledImages[corner] = clippedImage
-      debugColors[corner] = Array(topColors[0...min(topColors.count - 1, 4)])
+      debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)]))
     }
 
-    debugInfo = ExtractionDebugInfo(sampledImages: debugSampledImages, colors: debugColors)
+    outDebugInfo = ExtractionDebugInfo(info: debugInfo)
 
     return averageColors
   }
 
+  // Angle is in degrees -- 0/360 is the top left corner of the image.
   private func bucket(
     from image: NSImage,
-    corner: Corner,
+    angle: Double,
     outImage: inout NSImage?,
     hottestCorner: Corner,
     config: ExtractionConfig
   ) -> [Bucket] {
+    let angle = angle.truncatingRemainder(dividingBy: 360.0)
+
     let gridSize = config.gridSize
     var buckets = [[[Bucket]]](repeating: [[Bucket]](), count: gridSize)
 
@@ -103,7 +110,7 @@ internal class ImageColorExtractor {
       }
     }
 
-    let sourceRect = corner.sampleRect(in: image, sampleSideLength: config.sampleImageSideLength)
+    let sourceRect = Corner.topLeft.sampleRect(in: image, sampleSideLength: config.sampleImageSideLength)
     let hottestCornerCoordinates = CGPoint(
       x: CGFloat(hottestCorner.normalizedCoordinates.x) * sourceRect.size.width,
       y: CGFloat(hottestCorner.normalizedCoordinates.y) * sourceRect.size.height

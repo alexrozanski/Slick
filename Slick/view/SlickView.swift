@@ -93,15 +93,16 @@ public struct SlickView<Image>: View where Image: View {
 
 fileprivate extension DebugInfo {
   convenience init(colorExtractionDebugInfo debugInfo: ImageColorExtractor.ExtractionDebugInfo) {
-    self.init(
-      topLeftSampledImage: debugInfo.sampledImages[.topLeft],
-      topLeftColors: debugInfo.colors[.topLeft],
-      topRightSampledImage: debugInfo.sampledImages[.topRight],
-      topRightColors: debugInfo.colors[.topRight],
-      bottomLeftSampledImage: debugInfo.sampledImages[.bottomLeft],
-      bottomLeftColors: debugInfo.colors[.bottomLeft],
-      bottomRightSampledImage: debugInfo.sampledImages[.bottomRight],
-      bottomRightColors: debugInfo.colors[.bottomRight]
-    )
+    var info = [Position: PositionInfo]()
+    debugInfo.info.keys.forEach { angle in
+      guard
+        let (image, colors) = debugInfo.info[angle],
+        let image = image
+      else { return }
+
+      info[Position(angle: angle)] = PositionInfo(image: image, colors: colors)
+    }
+
+    self.init(info: info)
   }
 }
