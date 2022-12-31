@@ -9,9 +9,9 @@ import SwiftUI
 
 public struct SlickDebugView: View {
   @Environment(\.debugInfo) var debugInfo: DebugInfo?
-  
+
   public init() {}
-  
+
   public var body: some View {
     if let debugInfo = debugInfo {
       VStack {
@@ -24,6 +24,7 @@ public struct SlickDebugView: View {
                   sampledImage: info.image,
                   colors: info.colors
                 )
+                .padding(.bottom, 24)
               }
             }
           }
