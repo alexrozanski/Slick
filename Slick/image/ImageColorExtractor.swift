@@ -8,17 +8,6 @@
 import Cocoa
 
 internal class ImageColorExtractor {
-  enum Corner {
-    case topLeft
-    case topRight
-    case bottomLeft
-    case bottomRight
-
-    static var all: [Corner] {
-      return [.topLeft, .topRight, .bottomLeft, .bottomRight]
-    }
-  }
-
   struct ExtractionConfig {
     static var `default` = ExtractionConfig(
       samplePoints: 4,
@@ -39,7 +28,7 @@ internal class ImageColorExtractor {
     let samplePoints: Int
     // The size of the grid to split the RGB color space into when clustering colors.
     let gridSize: Int
-    // The side length of the square images to sample from each corner of the input image to determine a representative color value.
+    // The side length of the square images to sample from each point of the input image to determine a representative color value.
     let sampleImageSideLength: Int
     // Color prioritization options to preference certain attributes when generating representative color values.
     let colorPrioritization: ColorPrioritization
