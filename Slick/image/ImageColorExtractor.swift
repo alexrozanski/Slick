@@ -111,10 +111,13 @@ internal class ImageColorExtractor {
     }
 
     let edgeCoordinates = edgeCoordinates(for: angle, in: image)
-    let sampleRect = sampleRect(for: edgeCoordinates, in: image, sampleSideLength: config.sampleImageSideLength)
-    let hottestCornerCoordinates = CGPoint(
-      x: CGFloat(hottestCorner.normalizedCoordinates.x) * sampleRect.size.width,
-      y: CGFloat(hottestCorner.normalizedCoordinates.y) * sampleRect.size.height
+
+    var focusPoint: CGPoint = .zero
+    let sampleRect = sampleRect(
+      for: edgeCoordinates,
+      in: image,
+      sampleSideLength: config.sampleImageSideLength,
+      outFocusPoint: &focusPoint
     )
 
     var sampleImage: NSImage?
@@ -127,44 +130,15 @@ internal class ImageColorExtractor {
           let gIndex = Int(floor(Double(g) / Double(bucketWidth)))
           let bIndex = Int(floor(Double(b) / Double(bucketWidth)))
 
-          let cornerDistance = sqrt(pow(hottestCornerCoordinates.x - CGFloat(x), 2) + pow(hottestCornerCoordinates.y - CGFloat(y), 2))
-          buckets[rIndex][gIndex][bIndex].append(pixel: Pixel(r: r, g: g, b: b), distance: cornerDistance)
+          let focusPointDistance = sqrt(pow(focusPoint.x - CGFloat(x), 2) + pow(focusPoint.y - CGFloat(y), 2))
+          buckets[rIndex][gIndex][bIndex].append(pixel: Pixel(r: r, g: g, b: b), distance: focusPointDistance)
         }
       }
     }
 
-    outImage = sampleImage.flatMap { annotatedSampleImage($0, markerPoint: hottestCornerCoordinates) }
+    outImage = sampleImage.flatMap { annotatedSampleImage($0, markerPoint: focusPoint) }
 
     return buckets.flatMap { $0 }.flatMap { $0 }
-  }
-}
-
-fileprivate extension ImageColorExtractor.Corner {
-  var normalizedCoordinates: (x: Int, y: Int) {
-    switch self {
-    case .topLeft: return (0,0)
-    case .topRight: return (1, 0)
-    case .bottomLeft: return (0, 1)
-    case .bottomRight: return (1, 1)
-    }
-  }
-
-  func sampleRect(in image: NSImage, sampleSideLength: Int) -> NSRect {
-    let sampleImageSize = CGSize(
-      width: min(Double(sampleSideLength), floor(image.size.width)),
-      height: min(Double(sampleSideLength), floor(image.size.height))
-    )
-
-    switch self {
-    case .topLeft:
-      return NSRect(origin: .zero, size: sampleImageSize)
-    case .topRight:
-      return NSRect(origin: CGPoint(x: image.size.width - sampleImageSize.width, y: 0), size: sampleImageSize)
-    case .bottomLeft:
-      return NSRect(origin: CGPoint(x: 0, y: image.size.height - sampleImageSize.height), size: sampleImageSize)
-    case .bottomRight:
-      return NSRect(origin: CGPoint(x: image.size.width - sampleImageSize.width, y: image.size.height - sampleImageSize.height), size: sampleImageSize)
-    }
   }
 }
 
@@ -302,9 +276,10 @@ private func edgeCoordinates(for angle: Double, in image: NSImage) -> CGPoint {
   )
 }
 
-private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int) -> NSRect {
-  return NSIntersectionRect(
-    NSRect(origin: .zero, size: image.size),
+private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int, outFocusPoint: inout CGPoint) -> NSRect {
+  let imageRect = NSRect(origin: .zero, size: image.size)
+  let sampleRect = NSIntersectionRect(
+    imageRect,
     NSRect(
       x: centerPoint.x - Double(sampleSideLength),
       y: centerPoint.y - Double(sampleSideLength),
@@ -312,6 +287,8 @@ private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideL
       height: Double(sampleSideLength) * 2
     )
   )
+  outFocusPoint = CGPoint(x: centerPoint.x - sampleRect.minX, y: centerPoint.y - sampleRect.minY)
+  return sampleRect
 }
 
 let annotationMarkerRadius = Double(5)
