@@ -67,7 +67,9 @@ internal class ImageColorExtractor {
     var averageColors = [NSColor]()
     var debugInfo = [Double: (NSImage?, [NSColor])]()
 
-    [0.0, 45.0, 90.0, 135.0, 180.0, 225.0, 270.0, 315.0].forEach { angle in
+    let interval = 360.0 / Double(config.samplePoints)
+    let points = (0..<config.samplePoints).map { i in Double(i) * interval }
+    points.forEach { angle in
       var clippedImage: NSImage?
       let buckets = bucket(
         from: image,
