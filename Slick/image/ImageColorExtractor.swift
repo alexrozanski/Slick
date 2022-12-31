@@ -110,12 +110,13 @@ internal class ImageColorExtractor {
 
     let edgeCoordinates = edgeCoordinates(for: angle, in: image)
 
+    // Focus point is the point in `sampleRect` at which the colour influence should be the strongest.
     var focusPoint: CGPoint = .zero
     let sampleRect = sampleRect(
       for: edgeCoordinates,
       in: image,
       sampleSideLength: config.sampleImageSideLength,
-      outFocusPoint: &focusPoint
+      outCenterPoint: &focusPoint
     )
 
     var sampleImage: NSImage?
@@ -274,7 +275,9 @@ private func edgeCoordinates(for angle: Double, in image: NSImage) -> CGPoint {
   )
 }
 
-private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int, outFocusPoint: inout CGPoint) -> NSRect {
+// Get a sample rect from the source image from the centerPoint (of the sample rect) which should be on the edge of the image bounds.
+// `centerPoint` is returned in the sampleRect's coordinate system as `outCenterPoint` is
+private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int, outCenterPoint: inout CGPoint) -> NSRect {
   let imageRect = NSRect(origin: .zero, size: image.size)
   let sampleRect = NSIntersectionRect(
     imageRect,
@@ -285,7 +288,7 @@ private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideL
       height: Double(sampleSideLength) * 2
     )
   )
-  outFocusPoint = CGPoint(x: centerPoint.x - sampleRect.minX, y: centerPoint.y - sampleRect.minY)
+  outCenterPoint = CGPoint(x: centerPoint.x - sampleRect.minX, y: centerPoint.y - sampleRect.minY)
   return sampleRect
 }
 
