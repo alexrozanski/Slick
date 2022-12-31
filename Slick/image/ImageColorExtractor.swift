@@ -117,8 +117,9 @@ internal class ImageColorExtractor {
       y: CGFloat(hottestCorner.normalizedCoordinates.y) * sampleRect.size.height
     )
 
+    var sampleImage: NSImage?
     let bucketWidth = Int(ceil(256.0 / Double(gridSize)))
-    image.withImageData(sourceRect: sampleRect, outImage: &outImage) { width, height, pixel in
+    image.withImageData(sourceRect: sampleRect, outImage: &sampleImage) { width, height, pixel in
       for y in (0..<height) {
         for x in (0..<width) {
           let (r, g, b) = pixel(x, y)
@@ -131,6 +132,8 @@ internal class ImageColorExtractor {
         }
       }
     }
+
+    outImage = sampleImage.flatMap { annotatedSampleImage($0, markerPoint: hottestCornerCoordinates) }
 
     return buckets.flatMap { $0 }.flatMap { $0 }
   }
@@ -309,4 +312,37 @@ private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideL
       height: Double(sampleSideLength) * 2
     )
   )
+}
+
+let annotationMarkerRadius = Double(5)
+private func annotatedSampleImage(_ sampleImage: NSImage, markerPoint: CGPoint) -> NSImage? {
+  let sampleImageSize = sampleImage.size
+  return NSImage(
+    size: CGSize(width: sampleImageSize.width + 2 * annotationMarkerRadius, height: sampleImageSize.height + 2 * annotationMarkerRadius),
+    flipped: false
+  ) { rect in
+    guard let context = NSGraphicsContext.current?.cgContext else { return false }
+    context.saveGState()
+    defer {
+      context.restoreGState()
+    }
+
+    sampleImage.draw(at: CGPoint(x: annotationMarkerRadius, y: annotationMarkerRadius), from: .zero, operation: .sourceOver, fraction: 1.0)
+
+    // Flip y coordinates.
+    let circleRect = NSRect(
+      x: markerPoint.x,
+      y: sampleImageSize.height - markerPoint.y,
+      width: annotationMarkerRadius * 2,
+      height: annotationMarkerRadius * 2
+    )
+    NSColor.white.setFill()
+    NSColor.black.withAlphaComponent(0.2).setStroke()
+    // Inset by (0.5, 0.5) so that stroke falls on the edge of the bounding rect
+    let path = NSBezierPath(ovalIn: circleRect.insetBy(dx: 0.5, dy: 0.5))
+    path.fill()
+    path.stroke()
+
+    return true
+  }
 }
