@@ -73,7 +73,6 @@ internal class ImageColorExtractor {
         from: image,
         angle: angle,
         outImage: &clippedImage,
-        hottestCorner: .topLeft,
         config: config
       )
       let topColors = buckets.topColors(with: config)
@@ -92,7 +91,6 @@ internal class ImageColorExtractor {
     from image: NSImage,
     angle: Double,
     outImage: inout NSImage?,
-    hottestCorner: Corner,
     config: ExtractionConfig
   ) -> [Bucket] {
     let angle = angle.truncatingRemainder(dividingBy: 360.0)
