@@ -10,7 +10,7 @@ import Cocoa
 internal class ImageColorExtractor {
   struct ExtractionConfig {
     static var `default` = ExtractionConfig(
-      samplePoints: 4,
+      samplePoints: 8,
       gridSize: 5,
       sampleImageSideLength: 141,
       colorPrioritization: []
@@ -25,13 +25,22 @@ internal class ImageColorExtractor {
 
     // The number of areas around the image to sample to determine colors. More sample points will give background colors that are more
     // true to the edges of the image.
-    let samplePoints: Int
+    var samplePoints: Int
     // The size of the grid to split the RGB color space into when clustering colors.
-    let gridSize: Int
+    var gridSize: Int
     // The side length of the square images to sample from each point of the input image to determine a representative color value.
     let sampleImageSideLength: Int
     // Color prioritization options to preference certain attributes when generating representative color values.
     let colorPrioritization: ColorPrioritization
+
+    // Mutations
+    func withSamplePoints(_ newSamplePoints: Int) -> ExtractionConfig {
+      return ExtractionConfig(samplePoints: newSamplePoints, gridSize: gridSize, sampleImageSideLength: sampleImageSideLength, colorPrioritization: colorPrioritization)
+    }
+
+    func withGridSize(_ newGridSize: Int) -> ExtractionConfig {
+      return ExtractionConfig(samplePoints: samplePoints, gridSize: newGridSize, sampleImageSideLength: sampleImageSideLength, colorPrioritization: colorPrioritization)
+    }
   }
 
   struct ExtractionDebugInfo {

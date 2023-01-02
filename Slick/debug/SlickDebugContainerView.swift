@@ -10,15 +10,18 @@ import SwiftUI
 public struct SlickDebugContainerView<Content>: View where Content: View {
   private let content: () -> Content
 
-  @StateObject private var debugInfoHolder: DebugInfoHolder = DebugInfoHolder()
+  @StateObject private var internalDataHolder: InternalDataHolder = InternalDataHolder()
 
   public init(@ViewBuilder _ content: @escaping () -> Content) {
     self.content = content
   }
 
   public var body: some View {
+    // For some reason exposing properties of internalDataHolder on the environment makes these reactive
+    // to reads. This needs some more investigation.
     content()
-      .environment(\.debugInfoHolder, debugInfoHolder)
-      .environment(\.debugInfo, debugInfoHolder.debugInfo)
+      .environment(\.internalDataHolder, internalDataHolder)
+      .environment(\.debugInfo, internalDataHolder.debugInfo)
+      .environment(\.extractionConfig, internalDataHolder.extractionConfig)
   }
 }

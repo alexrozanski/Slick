@@ -35,8 +35,10 @@ public struct SlickView<Image>: View where Image: View {
 
   @State private var backgroundColors: [NSColor]?
 
-  // Use key path to use default `debugInfoHolder` if we're not wrapped in a SlickDebugContainerView
-  @Environment(\.debugInfoHolder) private var debugInfoHolder
+  // Use this for writes to properties of objects on internalDataHolder.
+  @Environment(\.internalDataHolder) private var internalDataHolder
+  // Use this for reads of extractionConfig values as this will be reactive.
+  @Environment(\.extractionConfig) private var extractionConfig
 
   private var debugInfo: DebugInfo? = nil
 
@@ -56,15 +58,14 @@ public struct SlickView<Image>: View where Image: View {
     if let image = image {
       imageView(image)
         .onAppear {
-          var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
-          recalculateColors(from: image, debugInfo: &debugInfo)
-          debugInfoHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
+          recalculateColors(from: image, with: extractionConfig)
         }
         .onChange(of: image) { newImage in
-          var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
-          recalculateColors(from: newImage, debugInfo: &debugInfo)
-          debugInfoHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
+          recalculateColors(from: newImage, with: extractionConfig)
         }
+        .onReceive(internalDataHolder.$extractionConfig, perform: { newConfig in
+          recalculateColors(from: image, with: newConfig)
+        })
         .padding(.horizontal, appearance.horizontalInsets)
         .padding(.vertical, appearance.verticalInsets)
         .background(backgroundGradient)
@@ -79,15 +80,18 @@ public struct SlickView<Image>: View where Image: View {
         ), center: .center, angle: .degrees(225)))
         .opacity(appearance.blurColors ? appearance.opacity : 1)
         .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-        .blendMode(appearance.blurColors ? .multiply : .normal)
+        .blendMode(appearance.blurColors ? .normal : .normal)
     }
   }
 
-  private func recalculateColors(from image: NSImage, debugInfo: inout ImageColorExtractor.ExtractionDebugInfo?) {
-    let colors = imageColorExtractor.extractColors(from: image, debugInfo: &debugInfo)
+  private func recalculateColors(from image: NSImage, with config: ImageColorExtractor.ExtractionConfig) {
+    var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
+    let colors = imageColorExtractor.extractColors(from: image, config: config, debugInfo: &debugInfo)
     var wrappedColors = colors
+    // Wrap the first colour around as backgroundColors is applied to an angular gradient.
     colors.first.map { wrappedColors.append($0) }
     backgroundColors = wrappedColors
+    internalDataHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
   }
 }
 

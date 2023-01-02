@@ -51,14 +51,3 @@ internal class DebugInfo: ObservableObject {
     self.info = info
   }
 }
-
-internal struct DebugInfoKey: EnvironmentKey {
-  static var defaultValue: DebugInfo? = nil
-}
-
-internal extension EnvironmentValues {
-  var debugInfo: DebugInfo? {
-    get { self[DebugInfoKey.self] }
-    set { self[DebugInfoKey.self] = newValue }
-  }
-}
