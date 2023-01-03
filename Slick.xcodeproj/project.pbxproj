@@ -25,6 +25,9 @@
 		821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */; };
 		821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* InternalDataHolder.swift */; };
 		821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F02964BAE900B47BFB /* NSColor+Hex.swift */; };
+		821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F22964C55B00B47BFB /* BackgroundView.swift */; };
+		821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* SlickViewModel.swift */; };
+		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugSettingsView.swift; sourceTree = "<group>"; };
 		821933EC295FD9F400B47BFB /* InternalDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDataHolder.swift; sourceTree = "<group>"; };
 		821933F02964BAE900B47BFB /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
+		821933F22964C55B00B47BFB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		821933F42964C57B00B47BFB /* SlickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickViewModel.swift; sourceTree = "<group>"; };
+		821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCoordinates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				821933D4295E0E6F00B47BFB /* debug */,
+				821933F62964CB7B00B47BFB /* geometry */,
 				821933CB295DFF5600B47BFB /* image */,
 				821933EB295FD9E500B47BFB /* internal */,
 				821933C8295DFE1500B47BFB /* extension */,
@@ -139,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				821933AB295DF8B500B47BFB /* SlickView.swift */,
+				821933F42964C57B00B47BFB /* SlickViewModel.swift */,
+				821933F22964C55B00B47BFB /* BackgroundView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -182,6 +191,14 @@
 				821933EC295FD9F400B47BFB /* InternalDataHolder.swift */,
 			);
 			path = internal;
+			sourceTree = "<group>";
+		};
+		821933F62964CB7B00B47BFB /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */,
+			);
+			path = geometry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */,
+				821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */,
 				821933D6295E0E8B00B47BFB /* SlickDebugView.swift in Sources */,
 				821933DA295E101C00B47BFB /* SlickDebugContainerView.swift in Sources */,
 				821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */,
@@ -303,6 +322,7 @@
 				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
 				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
 				821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */,
+				821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */,
 				821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */,
 				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,
 				821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */,
