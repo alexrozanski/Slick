@@ -138,6 +138,7 @@ public struct SlickView<Image>: View where Image: View {
         .opacity(appearance.blurColors ? appearance.opacity : 1)
         .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
         .blendMode(appearance.blurColors ? .normal : .normal)
+        .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
     }
   }
 }
