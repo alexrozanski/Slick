@@ -34,7 +34,7 @@ struct ContentView: View {
           .aspectRatio(contentMode: .fit)
           .cornerRadius(4)
       }
-      .padding(64)
+      .padding(96)
     }
   }
 
