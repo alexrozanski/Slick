@@ -50,40 +50,46 @@ internal class ImageColorExtractor {
 
   func extractColors(
     from image: NSImage,
-    config: ExtractionConfig = .default
-  ) -> [NSColor] {
-    var debugInfo: ExtractionDebugInfo?
-    return extractColors(from: image, config: config, debugInfo: &debugInfo)
+    config: ExtractionConfig = .default,
+    completion: @escaping ([NSColor]) -> Void,
+    completionQueue: DispatchQueue = .main
+  ) {
+    extractColors(from: image, config: config, completion: { colors, _ in
+      completion(colors)
+    }, completionQueue: completionQueue)
   }
 
   // Top left color is first, then works its way around 360 degrees.
   func extractColors(
     from image: NSImage,
     config: ExtractionConfig = .default,
-    debugInfo outDebugInfo: inout ExtractionDebugInfo?
-  ) -> [NSColor] {
-    var averageColors = [NSColor]()
-    var debugInfo = [Double: (NSImage?, [NSColor])]()
+    completion: @escaping ([NSColor], ExtractionDebugInfo) -> Void,
+    completionQueue: DispatchQueue = .main
+  ) {
+    DispatchQueue.global(qos: .userInitiated).async {
+      var averageColors = [NSColor]()
+      var debugInfo = [Double: (NSImage?, [NSColor])]()
 
-    let interval = 360.0 / Double(config.samplePoints)
-    let points = (0..<config.samplePoints).map { i in Double(i) * interval }
-    points.forEach { angle in
-      var clippedImage: NSImage?
-      let buckets = bucket(
-        from: image,
-        angle: angle,
-        outImage: &clippedImage,
-        config: config
-      )
-      let topColors = buckets.topColors(with: config)
-      averageColors.append(topColors.first ?? .black)
+      let interval = 360.0 / Double(config.samplePoints)
+      let points = (0..<config.samplePoints).map { i in Double(i) * interval }
+      points.forEach { angle in
+        var clippedImage: NSImage?
+        let buckets = self.bucket(
+          from: image,
+          angle: angle,
+          outImage: &clippedImage,
+          config: config
+        )
+        let topColors = buckets.topColors(with: config)
+        averageColors.append(topColors.first ?? .black)
 
-      debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)]))
+        debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)]))
+      }
+
+      completionQueue.async {
+        completion(averageColors, ExtractionDebugInfo(info: debugInfo))
+      }
     }
-
-    outDebugInfo = ExtractionDebugInfo(info: debugInfo)
-
-    return averageColors
   }
 
   // Angle is in degrees -- 0/360 is the top left corner of the image.

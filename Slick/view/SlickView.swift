@@ -85,13 +85,13 @@ public struct SlickView<Image>: View where Image: View {
   }
 
   private func recalculateColors(from image: NSImage, with config: ImageColorExtractor.ExtractionConfig) {
-    var debugInfo: ImageColorExtractor.ExtractionDebugInfo?
-    let colors = imageColorExtractor.extractColors(from: image, config: config, debugInfo: &debugInfo)
-    var wrappedColors = colors
-    // Wrap the first colour around as backgroundColors is applied to an angular gradient.
-    colors.first.map { wrappedColors.append($0) }
-    backgroundColors = wrappedColors
-    internalDataHolder.debugInfo = debugInfo.map { DebugInfo(colorExtractionDebugInfo: $0) }
+    imageColorExtractor.extractColors(from: image, config: config, completion: { colors, debugInfo in
+      var wrappedColors = colors
+      // Wrap the first colour around as backgroundColors is applied to an angular gradient.
+      colors.first.map { wrappedColors.append($0) }
+      backgroundColors = wrappedColors
+      internalDataHolder.debugInfo = DebugInfo(colorExtractionDebugInfo: debugInfo)
+    }, completionQueue: .main)
   }
 }
 
