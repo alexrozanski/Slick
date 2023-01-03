@@ -24,6 +24,7 @@
 		821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */; };
 		821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */; };
 		821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* InternalDataHolder.swift */; };
+		821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F02964BAE900B47BFB /* NSColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		821933E2295E237200B47BFB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugSettingsView.swift; sourceTree = "<group>"; };
 		821933EC295FD9F400B47BFB /* InternalDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDataHolder.swift; sourceTree = "<group>"; };
+		821933F02964BAE900B47BFB /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */,
 				821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */,
+				821933F02964BAE900B47BFB /* NSColor+Hex.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
 				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
 				821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */,
+				821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */,
 				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,
 				821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */,
 				821933AC295DF8B500B47BFB /* SlickView.swift in Sources */,
