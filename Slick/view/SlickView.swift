@@ -28,23 +28,26 @@ internal struct Appearance {
 private class SlickViewModel: ObservableObject {
   private let imageColorExtractor = ImageColorExtractor()
 
-  private let imageSubject = CurrentValueSubject<NSImage?, Never>(nil)
-  private let configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig?, Never>(nil)
+  private let imageSubject: CurrentValueSubject<NSImage?, Never>
+  private let configSubject: CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>
 
   private var subscriptions = Set<AnyCancellable>()
 
   @Published var backgroundColors: [NSColor]?
   @Published var debugInfo: DebugInfo?
 
-  init() {
+  init(initialImage: NSImage?) {
+    imageSubject = CurrentValueSubject<NSImage?, Never>(initialImage)
+    configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>(.default)
+
     let colorsAndDebugInfo = imageSubject
       .combineLatest(configSubject)
-      .compactMap({ (image, config) in
-        guard let image = image, let config = config else { return nil }
+      .compactMap { (image, config) in
+        guard let image = image else { return nil }
         return (image, config)
-      })
-      .flatMap { (image, config) in
-        Future<([NSColor], DebugInfo), Never> { promise in
+      }
+      .map { (image, config) in
+        Future<([NSColor], DebugInfo?), Never> { promise in
           self.imageColorExtractor.extractColors(from: image, config: config, completion: { colors, debugInfo in
             var wrappedColors = colors
             // Wrap the first colour around as backgroundColors is applied to an angular gradient.
@@ -53,6 +56,7 @@ private class SlickViewModel: ObservableObject {
           }, completionQueue: .main)
         }
       }
+      .switchToLatest()
       .share()
 
     colorsAndDebugInfo
@@ -82,7 +86,7 @@ public struct SlickView<Image>: View where Image: View {
   private let appearance: Appearance
   private let imageView: ImageViewBuilder
 
-  @StateObject private var viewModel = SlickViewModel()
+  @StateObject private var viewModel: SlickViewModel
 
   // Use this for writes to properties of objects on internalDataHolder.
   @Environment(\.internalDataHolder) private var internalDataHolder
@@ -95,21 +99,21 @@ public struct SlickView<Image>: View where Image: View {
     self.image = image
     self.appearance = .default
     self.imageView = imageView
+
+    _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
   }
 
   init(_ image: NSImage?, appearance: Appearance, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
     self.appearance = appearance
     self.imageView = imageView
+
+    _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
   }
 
   @MainActor public var body: some View {
     if let image = image {
       imageView(image)
-        .onAppear {
-          viewModel.setImage(image)
-          viewModel.setConfig(.default)
-        }
         .onChange(of: image) { newImage in
           viewModel.setImage(newImage)
         }
