@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 // Keep this struct internal -- expose a higher-level appearance API if configuratiojn is desired.
 internal struct Appearance {
@@ -24,16 +25,64 @@ internal struct Appearance {
   let verticalInsets: Double
 }
 
+private class SlickViewModel: ObservableObject {
+  private let imageColorExtractor = ImageColorExtractor()
+
+  private let imageSubject = CurrentValueSubject<NSImage?, Never>(nil)
+  private let configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig?, Never>(nil)
+
+  private var subscriptions = Set<AnyCancellable>()
+
+  @Published var backgroundColors: [NSColor]?
+  @Published var debugInfo: DebugInfo?
+
+  init() {
+    let colorsAndDebugInfo = imageSubject
+      .combineLatest(configSubject)
+      .compactMap({ (image, config) in
+        guard let image = image, let config = config else { return nil }
+        return (image, config)
+      })
+      .flatMap { (image, config) in
+        Future<([NSColor], DebugInfo), Never> { promise in
+          self.imageColorExtractor.extractColors(from: image, config: config, completion: { colors, debugInfo in
+            var wrappedColors = colors
+            // Wrap the first colour around as backgroundColors is applied to an angular gradient.
+            colors.first.map { wrappedColors.append($0) }
+            promise(.success((colors, DebugInfo(colorExtractionDebugInfo: debugInfo))))
+          }, completionQueue: .main)
+        }
+      }
+      .share()
+
+    colorsAndDebugInfo
+      .map { (colors, _) in colors }
+      .assign(to: \.backgroundColors, on: self)
+      .store(in: &subscriptions)
+
+    colorsAndDebugInfo
+      .map { (_, debugInfo) in debugInfo }
+      .assign(to: \.debugInfo, on: self)
+      .store(in: &subscriptions)
+  }
+
+  func setImage(_ image: NSImage) {
+    imageSubject.send(image)
+  }
+
+  func setConfig(_ config: ImageColorExtractor.ExtractionConfig) {
+    configSubject.send(config)
+  }
+}
+
 public struct SlickView<Image>: View where Image: View {
   public typealias ImageViewBuilder = (_ nsImage: NSImage) -> Image
-
-  private let imageColorExtractor = ImageColorExtractor()
 
   private let image: NSImage?
   private let appearance: Appearance
   private let imageView: ImageViewBuilder
 
-  @State private var backgroundColors: [NSColor]?
+  @StateObject private var viewModel = SlickViewModel()
 
   // Use this for writes to properties of objects on internalDataHolder.
   @Environment(\.internalDataHolder) private var internalDataHolder
@@ -58,13 +107,17 @@ public struct SlickView<Image>: View where Image: View {
     if let image = image {
       imageView(image)
         .onAppear {
-          recalculateColors(from: image, with: extractionConfig)
+          viewModel.setImage(image)
+          viewModel.setConfig(.default)
         }
         .onChange(of: image) { newImage in
-          recalculateColors(from: newImage, with: extractionConfig)
+          viewModel.setImage(newImage)
         }
         .onReceive(internalDataHolder.$extractionConfig, perform: { newConfig in
-          recalculateColors(from: image, with: newConfig)
+          viewModel.setConfig(newConfig)
+        })
+        .onReceive(viewModel.$debugInfo, perform: { debugInfo in
+          internalDataHolder.debugInfo = debugInfo
         })
         .padding(.horizontal, appearance.horizontalInsets)
         .padding(.vertical, appearance.verticalInsets)
@@ -73,7 +126,7 @@ public struct SlickView<Image>: View where Image: View {
   }
 
   @ViewBuilder private var backgroundGradient: some View {
-    if let backgroundColors = backgroundColors {
+    if let backgroundColors = viewModel.backgroundColors {
       Rectangle()
         .fill(AngularGradient(gradient: Gradient(
           colors: backgroundColors.map { Color(cgColor: $0.cgColor)}
@@ -82,16 +135,6 @@ public struct SlickView<Image>: View where Image: View {
         .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
         .blendMode(appearance.blurColors ? .normal : .normal)
     }
-  }
-
-  private func recalculateColors(from image: NSImage, with config: ImageColorExtractor.ExtractionConfig) {
-    imageColorExtractor.extractColors(from: image, config: config, completion: { colors, debugInfo in
-      var wrappedColors = colors
-      // Wrap the first colour around as backgroundColors is applied to an angular gradient.
-      colors.first.map { wrappedColors.append($0) }
-      backgroundColors = wrappedColors
-      internalDataHolder.debugInfo = DebugInfo(colorExtractionDebugInfo: debugInfo)
-    }, completionQueue: .main)
   }
 }
 
