@@ -25,7 +25,7 @@ extension Array where Element == Pixel {
       sqrt(Double(bSum/UInt64(count)))
     )
 
-    return NSColor(calibratedRed: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
+    return NSColor(srgbRed: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
 
   }
 }
