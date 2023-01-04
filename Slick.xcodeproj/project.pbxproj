@@ -28,6 +28,7 @@
 		821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F22964C55B00B47BFB /* BackgroundView.swift */; };
 		821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* SlickViewModel.swift */; };
 		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
+		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,9 @@
 			dependencies = (
 			);
 			name = Slick;
+			packageProductDependencies = (
+				82BCD4112965241A001D01B5 /* ExceptionCatcher */,
+			);
 			productName = Slick;
 			productReference = 8219339D295DF86900B47BFB /* Slick.framework */;
 			productType = "com.apple.product-type.framework";
@@ -278,6 +283,9 @@
 				Base,
 			);
 			mainGroup = 82193393295DF86900B47BFB;
+			packageReferences = (
+				82BCD4102965241A001D01B5 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
+			);
 			productRefGroup = 8219339E295DF86900B47BFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -617,6 +625,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		82BCD4102965241A001D01B5 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/ExceptionCatcher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82BCD4112965241A001D01B5 /* ExceptionCatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82BCD4102965241A001D01B5 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
+			productName = ExceptionCatcher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82193394295DF86900B47BFB /* Project object */;
 }

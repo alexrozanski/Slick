@@ -11,7 +11,9 @@ let package = Package(
       name: "Slick",
       targets: ["Slick"]),
   ],
-  dependencies: [],
+  dependencies: [
+    .package(url: "https://github.com/sindresorhus/ExceptionCatcher", from: "2.0.0")
+  ],
   targets: [
     .target(
       name: "Slick",
