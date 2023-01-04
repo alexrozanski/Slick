@@ -29,6 +29,7 @@
 		821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* SlickViewModel.swift */; };
 		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
+		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82BCD4182965281B001D01B5 /* Algorithms in Frameworks */,
 				82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +234,7 @@
 			name = Slick;
 			packageProductDependencies = (
 				82BCD4112965241A001D01B5 /* ExceptionCatcher */,
+				82BCD4172965281B001D01B5 /* Algorithms */,
 			);
 			productName = Slick;
 			productReference = 8219339D295DF86900B47BFB /* Slick.framework */;
@@ -251,6 +254,8 @@
 				821933C6295DFCC800B47BFB /* PBXTargetDependency */,
 			);
 			name = SlickExample;
+			packageProductDependencies = (
+			);
 			productName = SlickExample;
 			productReference = 821933B2295DF94D00B47BFB /* SlickExample.app */;
 			productType = "com.apple.product-type.application";
@@ -285,6 +290,7 @@
 			mainGroup = 82193393295DF86900B47BFB;
 			packageReferences = (
 				82BCD4102965241A001D01B5 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
+				82BCD4162965281B001D01B5 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 8219339E295DF86900B47BFB /* Products */;
 			projectDirPath = "";
@@ -635,6 +641,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		82BCD4162965281B001D01B5 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -642,6 +656,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 82BCD4102965241A001D01B5 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
 			productName = ExceptionCatcher;
+		};
+		82BCD4172965281B001D01B5 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82BCD4162965281B001D01B5 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

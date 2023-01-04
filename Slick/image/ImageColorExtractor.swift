@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Algorithms
 
 internal class ImageColorExtractor {
   struct ExtractionConfig {
@@ -96,7 +97,7 @@ internal class ImageColorExtractor {
         let topColors = buckets.topColors(with: config)
         backgroundColors.append(BackgroundColor(angle: angle, color: topColors.first ?? .black))
 
-        debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)]))
+        debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)].uniqued()))
       }
 
       completionQueue.async {
