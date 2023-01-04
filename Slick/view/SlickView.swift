@@ -8,28 +8,11 @@
 import SwiftUI
 import Combine
 
-// Keep this struct internal -- expose a higher-level appearance API if configuratiojn is desired.
-internal struct Appearance {
-  static var `default` = Appearance(
-    blurColors: true,
-    opacity: 0.55,
-    blurRadius: 29.4,
-    horizontalInsets: 22.93,
-    verticalInsets: 5.8
-  )
-
-  let blurColors: Bool
-  let opacity: Double
-  let blurRadius: Double
-  let horizontalInsets: Double
-  let verticalInsets: Double
-}
-
 public struct SlickView<Image>: View where Image: View {
   public typealias ImageViewBuilder = (_ nsImage: NSImage) -> Image
 
   private let image: NSImage?
-  private let appearance: Appearance
+  private let backgroundAppearance: BackgroundView.Appearance
   private let imageView: ImageViewBuilder
 
   @StateObject private var viewModel: SlickViewModel
@@ -43,15 +26,15 @@ public struct SlickView<Image>: View where Image: View {
 
   public init(_ image: NSImage?, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
-    self.appearance = .default
+    self.backgroundAppearance = .default
     self.imageView = imageView
 
     _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
   }
 
-  init(_ image: NSImage?, appearance: Appearance, @ViewBuilder imageView: @escaping ImageViewBuilder) {
+  init(_ image: NSImage?, backgroundAppearance: BackgroundView.Appearance, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
-    self.appearance = appearance
+    self.backgroundAppearance = backgroundAppearance
     self.imageView = imageView
 
     _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
@@ -70,7 +53,7 @@ public struct SlickView<Image>: View where Image: View {
           internalDataHolder.debugInfo = debugInfo
         })
         .background(
-          BackgroundView(viewModel: viewModel)
+          BackgroundView(viewModel: viewModel, appearance: backgroundAppearance)
         )
     }
   }

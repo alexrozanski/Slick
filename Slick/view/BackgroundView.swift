@@ -8,7 +8,21 @@
 import SwiftUI
 
 internal struct BackgroundView: View {
+  // Keep this struct internal -- expose a higher-level appearance API if configuratiojn is desired.
+  internal struct Appearance {
+    static var `default` = Appearance(
+      blurColors: true,
+      opacity: 0.5,
+      blurRadius: 100
+    )
+
+    let blurColors: Bool
+    let opacity: Double
+    let blurRadius: Double
+  }
+
   @ObservedObject var viewModel: SlickViewModel
+  let appearance: Appearance
 
   @State var showColors = false
 
@@ -30,8 +44,8 @@ internal struct BackgroundView: View {
               .fill(Color(cgColor: backgroundColor.color.cgColor))
               .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
               .offset(orbCenterOffset(for: geometry.size, angle: backgroundColor.angle))
-              .opacity(0.5)
-              .blur(radius: 100)
+              .opacity(appearance.opacity)
+              .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
               .transition(.opacity.animation(.easeIn(duration: 0.25)))
           }
         }
