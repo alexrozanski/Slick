@@ -1,5 +1,5 @@
 //
-//  SlickView.swift
+//  AuroraView.swift
 //  
 //
 //  Created by Alex Rozanski on 29/12/2022.
@@ -8,13 +8,13 @@
 import SwiftUI
 import Combine
 
-public struct SlickView<Image>: View where Image: View {
+public struct AuroraView<Image>: View where Image: View {
   public typealias ImageViewBuilder = (_ nsImage: NSImage) -> Image
 
   private let image: NSImage?
   private let imageView: ImageViewBuilder
 
-  @StateObject private var viewModel: SlickViewModel
+  @StateObject private var viewModel: AuroraViewModel
 
   // Use this for writes to properties of objects on internalDataHolder.
   @Environment(\.internalDataHolder) private var internalDataHolder
@@ -29,7 +29,7 @@ public struct SlickView<Image>: View where Image: View {
     self.image = image
     self.imageView = imageView
 
-    _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
+    _viewModel = StateObject(wrappedValue: AuroraViewModel(initialImage: image))
   }
 
   @MainActor public var body: some View {

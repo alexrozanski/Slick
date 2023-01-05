@@ -1,6 +1,6 @@
 //
-//  SlickViewModel.swift
-//  Slick
+//  AuroraViewModel.swift
+//  Aurora
 //
 //  Created by Alex Rozanski on 03/01/2023.
 //
@@ -8,7 +8,7 @@
 import Combine
 import Cocoa
 
-internal class SlickViewModel: ObservableObject {
+internal class AuroraViewModel: ObservableObject {
   private let imageColorExtractor = ImageColorExtractor()
 
   private let imageSubject: CurrentValueSubject<NSImage?, Never>

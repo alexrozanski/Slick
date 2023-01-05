@@ -1,12 +1,12 @@
 //
 //  ContentView.swift
-//  SlickExample
+//  AuroraDesigner
 //
 //  Created by Alex Rozanski on 29/12/2022.
 //
 
 import SwiftUI
-import Slick
+import Aurora
 
 let images = ["astronaut", "frog"]
 
@@ -28,7 +28,7 @@ struct ContentView: View {
       imageSelection
         .padding()
       Divider()
-      SlickView(NSImage(named: selectedImage)) { nsImage in
+      AuroraView(NSImage(named: selectedImage)) { nsImage in
         Image(nsImage: nsImage)
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -40,14 +40,14 @@ struct ContentView: View {
 
   @ViewBuilder var right: some View {
     VStack(spacing: 0) {
-      SlickDebugSettingsView()
+      AuroraDebugSettingsView()
       Divider()
-      SlickDebugView()
+      AuroraDebugView()
     }
   }
 
   var body: some View {
-    SlickDebugContainerView {
+    AuroraDebugContainerView {
       HStack(alignment: .top, spacing: 0) {
         left
         Divider()

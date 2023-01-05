@@ -1,6 +1,6 @@
 //
 //  BackgroundView.swift
-//  Slick
+//  Aurora
 //
 //  Created by Alex Rozanski on 03/01/2023.
 //
@@ -21,7 +21,7 @@ internal struct BackgroundView: View {
     let blurRadius: Double
   }
 
-  @ObservedObject var viewModel: SlickViewModel
+  @ObservedObject var viewModel: AuroraViewModel
   let appearance: Appearance
 
   @State var showColors = false

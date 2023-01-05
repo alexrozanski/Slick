@@ -1,6 +1,6 @@
 //
 //  InternalDataHolder.swift
-//  Slick
+//  Aurora
 //
 //  Created by Alex Rozanski on 30/12/2022.
 //

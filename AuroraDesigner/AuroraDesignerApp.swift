@@ -1,6 +1,6 @@
 //
-//  SlickExampleApp.swift
-//  SlickExample
+//  AuroraDesignerApp.swift
+//  AuroraDesigner
 //
 //  Created by Alex Rozanski on 29/12/2022.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct SlickExampleApp: App {
+struct AuroraDesignerApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView()

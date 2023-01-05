@@ -1,13 +1,13 @@
 //
-//  SlickDebugSettingsView.swift
-//  Slick
+//  AuroraDebugSettingsView.swift
+//  Aurora
 //
 //  Created by Alex Rozanski on 30/12/2022.
 //
 
 import SwiftUI
 
-public struct SlickDebugSettingsView: View {
+public struct AuroraDebugSettingsView: View {
   @Environment(\.internalDataHolder) var internalDataHolder
   @Environment(\.extractionConfig) var extractionConfig
   @Environment(\.backgroundViewAppearance) var backgroundViewAppearance

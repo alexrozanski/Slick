@@ -1,13 +1,13 @@
 //
-//  SlickDebugContainerView.swift
-//  Slick
+//  AuroraDebugContainerView.swift
+//  Aurora
 //
 //  Created by Alex Rozanski on 29/12/2022.
 //
 
 import SwiftUI
 
-public struct SlickDebugContainerView<Content>: View where Content: View {
+public struct AuroraDebugContainerView<Content>: View where Content: View {
   private let content: () -> Content
 
   @StateObject private var internalDataHolder: InternalDataHolder = InternalDataHolder()

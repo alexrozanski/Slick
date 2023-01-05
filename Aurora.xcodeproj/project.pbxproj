@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		821933AC295DF8B500B47BFB /* SlickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933AB295DF8B500B47BFB /* SlickView.swift */; };
-		821933B5295DF94D00B47BFB /* SlickExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B4295DF94D00B47BFB /* SlickExampleApp.swift */; };
+		821933AC295DF8B500B47BFB /* AuroraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933AB295DF8B500B47BFB /* AuroraView.swift */; };
+		821933B5295DF94D00B47BFB /* AuroraDesignerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B4295DF94D00B47BFB /* AuroraDesignerApp.swift */; };
 		821933B7295DF94D00B47BFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933B6295DF94D00B47BFB /* ContentView.swift */; };
 		821933B9295DF94E00B47BFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933B8295DF94E00B47BFB /* Assets.xcassets */; };
 		821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821933BB295DF94E00B47BFB /* Preview Assets.xcassets */; };
@@ -17,16 +17,16 @@
 		821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933CE295DFFBC00B47BFB /* Pixel.swift */; };
 		821933D1295DFFD200B47BFB /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D0295DFFD200B47BFB /* Bucket.swift */; };
 		821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */; };
-		821933D6295E0E8B00B47BFB /* SlickDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D5295E0E8B00B47BFB /* SlickDebugView.swift */; };
+		821933D6295E0E8B00B47BFB /* AuroraDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */; };
 		821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D7295E0F9600B47BFB /* DebugInfo.swift */; };
-		821933DA295E101C00B47BFB /* SlickDebugContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */; };
+		821933DA295E101C00B47BFB /* AuroraDebugContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D9295E101C00B47BFB /* AuroraDebugContainerView.swift */; };
 		821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DD295E1DD800B47BFB /* DebugCornerView.swift */; };
 		821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */; };
-		821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */; };
+		821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */; };
 		821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* InternalDataHolder.swift */; };
 		821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F02964BAE900B47BFB /* NSColor+Hex.swift */; };
 		821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F22964C55B00B47BFB /* BackgroundView.swift */; };
-		821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* SlickViewModel.swift */; };
+		821933F52964C57B00B47BFB /* AuroraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* AuroraViewModel.swift */; };
 		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
@@ -43,32 +43,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8219339D295DF86900B47BFB /* Slick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8219339D295DF86900B47BFB /* Aurora.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aurora.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933A7295DF89500B47BFB /* Package.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
-		821933AB295DF8B500B47BFB /* SlickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlickView.swift; sourceTree = "<group>"; };
-		821933B2295DF94D00B47BFB /* SlickExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlickExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		821933B4295DF94D00B47BFB /* SlickExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickExampleApp.swift; sourceTree = "<group>"; };
+		821933AB295DF8B500B47BFB /* AuroraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraView.swift; sourceTree = "<group>"; };
+		821933B2295DF94D00B47BFB /* AuroraDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		821933B4295DF94D00B47BFB /* AuroraDesignerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDesignerApp.swift; sourceTree = "<group>"; };
 		821933B6295DF94D00B47BFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		821933B8295DF94E00B47BFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		821933BB295DF94E00B47BFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		821933BD295DF94E00B47BFB /* SlickExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlickExample.entitlements; sourceTree = "<group>"; };
+		821933BD295DF94E00B47BFB /* AuroraDesigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuroraDesigner.entitlements; sourceTree = "<group>"; };
 		821933C9295DFE2100B47BFB /* NSImage+Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Bitmap.swift"; sourceTree = "<group>"; };
 		821933CC295DFF6200B47BFB /* ImageColorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorExtractor.swift; sourceTree = "<group>"; };
 		821933CE295DFFBC00B47BFB /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		821933D0295DFFD200B47BFB /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		821933D2295DFFEF00B47BFB /* Array+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AverageColor.swift"; sourceTree = "<group>"; };
-		821933D5295E0E8B00B47BFB /* SlickDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugView.swift; sourceTree = "<group>"; };
+		821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugView.swift; sourceTree = "<group>"; };
 		821933D7295E0F9600B47BFB /* DebugInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfo.swift; sourceTree = "<group>"; };
-		821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugContainerView.swift; sourceTree = "<group>"; };
+		821933D9295E101C00B47BFB /* AuroraDebugContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugContainerView.swift; sourceTree = "<group>"; };
 		821933DD295E1DD800B47BFB /* DebugCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerView.swift; sourceTree = "<group>"; };
 		821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerColorsView.swift; sourceTree = "<group>"; };
 		821933E1295E207600B47BFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		821933E2295E237200B47BFB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickDebugSettingsView.swift; sourceTree = "<group>"; };
+		821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugSettingsView.swift; sourceTree = "<group>"; };
 		821933EC295FD9F400B47BFB /* InternalDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDataHolder.swift; sourceTree = "<group>"; };
 		821933F02964BAE900B47BFB /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
 		821933F22964C55B00B47BFB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		821933F42964C57B00B47BFB /* SlickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickViewModel.swift; sourceTree = "<group>"; };
+		821933F42964C57B00B47BFB /* AuroraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraViewModel.swift; sourceTree = "<group>"; };
 		821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCoordinates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,8 +97,8 @@
 			children = (
 				821933E1295E207600B47BFB /* README.md */,
 				821933E2295E237200B47BFB /* LICENSE */,
-				821933B3295DF94D00B47BFB /* SlickExample */,
-				821933A8295DF89C00B47BFB /* Slick */,
+				821933B3295DF94D00B47BFB /* AuroraDesigner */,
+				821933A8295DF89C00B47BFB /* Aurora */,
 				821933A7295DF89500B47BFB /* Package.swift */,
 				8219339E295DF86900B47BFB /* Products */,
 			);
@@ -107,13 +107,13 @@
 		8219339E295DF86900B47BFB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8219339D295DF86900B47BFB /* Slick.framework */,
-				821933B2295DF94D00B47BFB /* SlickExample.app */,
+				8219339D295DF86900B47BFB /* Aurora.framework */,
+				821933B2295DF94D00B47BFB /* AuroraDesigner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		821933A8295DF89C00B47BFB /* Slick */ = {
+		821933A8295DF89C00B47BFB /* Aurora */ = {
 			isa = PBXGroup;
 			children = (
 				821933D4295E0E6F00B47BFB /* debug */,
@@ -123,19 +123,19 @@
 				821933EB295FD9E500B47BFB /* internal */,
 				821933C7295DFDE900B47BFB /* view */,
 			);
-			path = Slick;
+			path = Aurora;
 			sourceTree = "<group>";
 		};
-		821933B3295DF94D00B47BFB /* SlickExample */ = {
+		821933B3295DF94D00B47BFB /* AuroraDesigner */ = {
 			isa = PBXGroup;
 			children = (
-				821933B4295DF94D00B47BFB /* SlickExampleApp.swift */,
+				821933B4295DF94D00B47BFB /* AuroraDesignerApp.swift */,
 				821933B6295DF94D00B47BFB /* ContentView.swift */,
 				821933B8295DF94E00B47BFB /* Assets.xcassets */,
-				821933BD295DF94E00B47BFB /* SlickExample.entitlements */,
+				821933BD295DF94E00B47BFB /* AuroraDesigner.entitlements */,
 				821933BA295DF94E00B47BFB /* Preview Content */,
 			);
-			path = SlickExample;
+			path = AuroraDesigner;
 			sourceTree = "<group>";
 		};
 		821933BA295DF94E00B47BFB /* Preview Content */ = {
@@ -149,8 +149,8 @@
 		821933C7295DFDE900B47BFB /* view */ = {
 			isa = PBXGroup;
 			children = (
-				821933AB295DF8B500B47BFB /* SlickView.swift */,
-				821933F42964C57B00B47BFB /* SlickViewModel.swift */,
+				821933AB295DF8B500B47BFB /* AuroraView.swift */,
+				821933F42964C57B00B47BFB /* AuroraViewModel.swift */,
 				821933F22964C55B00B47BFB /* BackgroundView.swift */,
 			);
 			path = view;
@@ -179,9 +179,9 @@
 		821933D4295E0E6F00B47BFB /* debug */ = {
 			isa = PBXGroup;
 			children = (
-				821933D9295E101C00B47BFB /* SlickDebugContainerView.swift */,
-				821933E9295FD64A00B47BFB /* SlickDebugSettingsView.swift */,
-				821933D5295E0E8B00B47BFB /* SlickDebugView.swift */,
+				821933D9295E101C00B47BFB /* AuroraDebugContainerView.swift */,
+				821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */,
+				821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */,
 				821933D7295E0F9600B47BFB /* DebugInfo.swift */,
 				821933DD295E1DD800B47BFB /* DebugCornerView.swift */,
 				821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */,
@@ -218,9 +218,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8219339C295DF86900B47BFB /* Slick */ = {
+		8219339C295DF86900B47BFB /* Aurora */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821933A4295DF86900B47BFB /* Build configuration list for PBXNativeTarget "Slick" */;
+			buildConfigurationList = 821933A4295DF86900B47BFB /* Build configuration list for PBXNativeTarget "Aurora" */;
 			buildPhases = (
 				82193398295DF86900B47BFB /* Headers */,
 				82193399295DF86900B47BFB /* Sources */,
@@ -231,18 +231,18 @@
 			);
 			dependencies = (
 			);
-			name = Slick;
+			name = Aurora;
 			packageProductDependencies = (
 				82BCD4112965241A001D01B5 /* ExceptionCatcher */,
 				82BCD4172965281B001D01B5 /* Algorithms */,
 			);
 			productName = Slick;
-			productReference = 8219339D295DF86900B47BFB /* Slick.framework */;
+			productReference = 8219339D295DF86900B47BFB /* Aurora.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		821933B1295DF94D00B47BFB /* SlickExample */ = {
+		821933B1295DF94D00B47BFB /* AuroraDesigner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "SlickExample" */;
+			buildConfigurationList = 821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "AuroraDesigner" */;
 			buildPhases = (
 				821933AE295DF94D00B47BFB /* Sources */,
 				821933AF295DF94D00B47BFB /* Frameworks */,
@@ -253,11 +253,11 @@
 			dependencies = (
 				821933C6295DFCC800B47BFB /* PBXTargetDependency */,
 			);
-			name = SlickExample;
+			name = AuroraDesigner;
 			packageProductDependencies = (
 			);
 			productName = SlickExample;
-			productReference = 821933B2295DF94D00B47BFB /* SlickExample.app */;
+			productReference = 821933B2295DF94D00B47BFB /* AuroraDesigner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -279,7 +279,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 82193397295DF86900B47BFB /* Build configuration list for PBXProject "Slick" */;
+			buildConfigurationList = 82193397295DF86900B47BFB /* Build configuration list for PBXProject "Aurora" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -296,8 +296,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8219339C295DF86900B47BFB /* Slick */,
-				821933B1295DF94D00B47BFB /* SlickExample */,
+				8219339C295DF86900B47BFB /* Aurora */,
+				821933B1295DF94D00B47BFB /* AuroraDesigner */,
 			);
 		};
 /* End PBXProject section */
@@ -327,9 +327,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */,
-				821933F52964C57B00B47BFB /* SlickViewModel.swift in Sources */,
-				821933D6295E0E8B00B47BFB /* SlickDebugView.swift in Sources */,
-				821933DA295E101C00B47BFB /* SlickDebugContainerView.swift in Sources */,
+				821933F52964C57B00B47BFB /* AuroraViewModel.swift in Sources */,
+				821933D6295E0E8B00B47BFB /* AuroraDebugView.swift in Sources */,
+				821933DA295E101C00B47BFB /* AuroraDebugContainerView.swift in Sources */,
 				821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */,
 				821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */,
 				821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */,
@@ -339,8 +339,8 @@
 				821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */,
 				821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */,
 				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,
-				821933EA295FD64A00B47BFB /* SlickDebugSettingsView.swift in Sources */,
-				821933AC295DF8B500B47BFB /* SlickView.swift in Sources */,
+				821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */,
+				821933AC295DF8B500B47BFB /* AuroraView.swift in Sources */,
 				821933D1295DFFD200B47BFB /* Bucket.swift in Sources */,
 				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
 			);
@@ -351,7 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				821933B7295DF94D00B47BFB /* ContentView.swift in Sources */,
-				821933B5295DF94D00B47BFB /* SlickExampleApp.swift in Sources */,
+				821933B5295DF94D00B47BFB /* AuroraDesignerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +360,7 @@
 /* Begin PBXTargetDependency section */
 		821933C6295DFCC800B47BFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8219339C295DF86900B47BFB /* Slick */;
+			target = 8219339C295DF86900B47BFB /* Aurora */;
 			targetProxy = 821933C5295DFCC800B47BFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -508,7 +508,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.Slick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.Aurora;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -538,7 +538,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.Slick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.Aurora;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -551,11 +551,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SlickExample/SlickExample.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AuroraDesigner/AuroraDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SlickExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AuroraDesigner/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -566,7 +566,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.SlickExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.AuroraDesigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -578,11 +578,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SlickExample/SlickExample.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AuroraDesigner/AuroraDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SlickExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AuroraDesigner/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -593,7 +593,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.SlickExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.AuroraDesigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -603,7 +603,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82193397295DF86900B47BFB /* Build configuration list for PBXProject "Slick" */ = {
+		82193397295DF86900B47BFB /* Build configuration list for PBXProject "Aurora" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821933A2295DF86900B47BFB /* Debug */,
@@ -612,7 +612,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821933A4295DF86900B47BFB /* Build configuration list for PBXNativeTarget "Slick" */ = {
+		821933A4295DF86900B47BFB /* Build configuration list for PBXNativeTarget "Aurora" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821933A5295DF86900B47BFB /* Debug */,
@@ -621,7 +621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "SlickExample" */ = {
+		821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "AuroraDesigner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821933BF295DF94E00B47BFB /* Debug */,

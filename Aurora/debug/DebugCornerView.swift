@@ -1,6 +1,6 @@
 //
 //  DebugCornerView.swift
-//  Slick
+//  Aurora
 //
 //  Created by Alex Rozanski on 29/12/2022.
 //

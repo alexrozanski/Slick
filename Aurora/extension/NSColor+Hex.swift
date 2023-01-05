@@ -1,6 +1,6 @@
 //
 //  NSColor+Hex.swift
-//  Slick
+//  Aurora
 //
 //  Created by Alex Rozanski on 03/01/2023.
 //
