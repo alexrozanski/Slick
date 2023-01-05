@@ -12,29 +12,21 @@ public struct SlickView<Image>: View where Image: View {
   public typealias ImageViewBuilder = (_ nsImage: NSImage) -> Image
 
   private let image: NSImage?
-  private let backgroundAppearance: BackgroundView.Appearance
   private let imageView: ImageViewBuilder
 
   @StateObject private var viewModel: SlickViewModel
 
   // Use this for writes to properties of objects on internalDataHolder.
   @Environment(\.internalDataHolder) private var internalDataHolder
-  // Use this for reads of extractionConfig values as this will be reactive.
+
+  // Use these for reads as they will be reactive.
   @Environment(\.extractionConfig) private var extractionConfig
+  @Environment(\.backgroundViewAppearance) private var backgroundAppearance
 
   private var debugInfo: DebugInfo? = nil
 
   public init(_ image: NSImage?, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
-    self.backgroundAppearance = .default
-    self.imageView = imageView
-
-    _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))
-  }
-
-  init(_ image: NSImage?, backgroundAppearance: BackgroundView.Appearance, @ViewBuilder imageView: @escaping ImageViewBuilder) {
-    self.image = image
-    self.backgroundAppearance = backgroundAppearance
     self.imageView = imageView
 
     _viewModel = StateObject(wrappedValue: SlickViewModel(initialImage: image))

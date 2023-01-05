@@ -117,10 +117,10 @@
 			isa = PBXGroup;
 			children = (
 				821933D4295E0E6F00B47BFB /* debug */,
+				821933C8295DFE1500B47BFB /* extension */,
 				821933F62964CB7B00B47BFB /* geometry */,
 				821933CB295DFF5600B47BFB /* image */,
 				821933EB295FD9E500B47BFB /* internal */,
-				821933C8295DFE1500B47BFB /* extension */,
 				821933C7295DFDE900B47BFB /* view */,
 			);
 			path = Slick;

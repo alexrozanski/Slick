@@ -13,6 +13,7 @@ import Combine
 internal class InternalDataHolder: ObservableObject {
   @Published var debugInfo: DebugInfo?
   @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default
+  @Published var backgroundViewAppearance: BackgroundView.Appearance = .default
 }
 
 internal struct InternalDataHolderKey: EnvironmentKey {
@@ -25,6 +26,10 @@ internal struct DebugInfoKey: EnvironmentKey {
 
 internal struct ExtractionConfigKey: EnvironmentKey {
   static var defaultValue: ImageColorExtractor.ExtractionConfig = .default
+}
+
+internal struct BackgroundViewAppearanceKey: EnvironmentKey {
+  static var defaultValue: BackgroundView.Appearance = .default
 }
 
 internal extension EnvironmentValues {
@@ -41,5 +46,10 @@ internal extension EnvironmentValues {
   var extractionConfig: ImageColorExtractor.ExtractionConfig {
     get { self[ExtractionConfigKey.self] }
     set { self[ExtractionConfigKey.self] = newValue }
+  }
+
+  var backgroundViewAppearance: BackgroundView.Appearance {
+    get { self[BackgroundViewAppearanceKey.self] }
+    set { self[BackgroundViewAppearanceKey.self] = newValue }
   }
 }

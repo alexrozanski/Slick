@@ -23,5 +23,6 @@ public struct SlickDebugContainerView<Content>: View where Content: View {
       .environment(\.internalDataHolder, internalDataHolder)
       .environment(\.debugInfo, internalDataHolder.debugInfo)
       .environment(\.extractionConfig, internalDataHolder.extractionConfig)
+      .environment(\.backgroundViewAppearance, internalDataHolder.backgroundViewAppearance)
   }
 }

@@ -26,22 +26,13 @@ internal class ImageColorExtractor {
 
     // The number of areas around the image to sample to determine colors. More sample points will give background colors that are more
     // true to the edges of the image.
-    var samplePoints: Int
+    let samplePoints: Int
     // The size of the grid to split the RGB color space into when clustering colors.
-    var gridSize: Int
+    let gridSize: Int
     // The side length of the square images to sample from each point of the input image to determine a representative color value.
     let sampleImageSideLength: Int
     // Color prioritization options to preference certain attributes when generating representative color values.
     let colorPrioritization: ColorPrioritization
-
-    // Mutations
-    func withSamplePoints(_ newSamplePoints: Int) -> ExtractionConfig {
-      return ExtractionConfig(samplePoints: newSamplePoints, gridSize: gridSize, sampleImageSideLength: sampleImageSideLength, colorPrioritization: colorPrioritization)
-    }
-
-    func withGridSize(_ newGridSize: Int) -> ExtractionConfig {
-      return ExtractionConfig(samplePoints: samplePoints, gridSize: newGridSize, sampleImageSideLength: sampleImageSideLength, colorPrioritization: colorPrioritization)
-    }
   }
 
   struct BackgroundColor: Hashable {
