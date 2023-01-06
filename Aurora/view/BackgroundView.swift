@@ -12,8 +12,8 @@ internal struct BackgroundView: View {
   internal struct Appearance {
     static var `default` = Appearance(
       blurColors: true,
-      opacity: 0.5,
-      blurRadius: 100
+      opacity: 0.6,
+      blurRadius: 48.3
     )
 
     let blurColors: Bool
