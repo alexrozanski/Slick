@@ -12,6 +12,7 @@ public struct AuroraView<Image>: View where Image: View {
   public typealias ImageViewBuilder = (_ nsImage: NSImage) -> Image
 
   private let image: NSImage?
+  private let padding: CGFloat?
   private let imageView: ImageViewBuilder
 
   @StateObject private var viewModel: AuroraViewModel
@@ -25,8 +26,9 @@ public struct AuroraView<Image>: View where Image: View {
 
   private var debugInfo: DebugInfo? = nil
 
-  public init(_ image: NSImage?, @ViewBuilder imageView: @escaping ImageViewBuilder) {
+  public init(_ image: NSImage?, padding: CGFloat? = 96, @ViewBuilder imageView: @escaping ImageViewBuilder) {
     self.image = image
+    self.padding = padding
     self.imageView = imageView
 
     _viewModel = StateObject(wrappedValue: AuroraViewModel(initialImage: image))
@@ -47,6 +49,7 @@ public struct AuroraView<Image>: View where Image: View {
         .background(
           BackgroundView(viewModel: viewModel, appearance: backgroundAppearance)
         )
+        .padding(padding ?? 0)
     }
   }
 }
