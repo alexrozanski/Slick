@@ -8,15 +8,13 @@
 import SwiftUI
 import Aurora
 
-let images = ["astronaut", "frog"]
-
 struct ContentView: View {
   @State var selectedImage = "astronaut"
 
   @ViewBuilder var imageSelection: some View {
     VStack {
       Picker("Image", selection: $selectedImage) {
-        ForEach(images, id: \.self) {
+        ForEach(ExampleImages.allNames, id: \.self) {
           Text($0)
         }
       }

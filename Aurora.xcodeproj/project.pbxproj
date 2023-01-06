@@ -32,6 +32,10 @@
 		82947D932968D3BB00BBA872 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D922968D3BB00BBA872 /* ContentView.swift */; };
 		82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D942968D3BC00BBA872 /* Assets.xcassets */; };
 		82947D992968D3BC00BBA872 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D982968D3BC00BBA872 /* Preview Assets.xcassets */; };
+		82947DA22968D56F00BBA872 /* ExampleImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947DA12968D56F00BBA872 /* ExampleImages.xcassets */; };
+		82947DA32968D56F00BBA872 /* ExampleImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947DA12968D56F00BBA872 /* ExampleImages.xcassets */; };
+		82947DA52968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
+		82947DA62968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
 /* End PBXBuildFile section */
@@ -80,6 +84,8 @@
 		82947D942968D3BC00BBA872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82947D962968D3BC00BBA872 /* AuroraSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuroraSampleApp.entitlements; sourceTree = "<group>"; };
 		82947D982968D3BC00BBA872 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		82947DA12968D56F00BBA872 /* ExampleImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExampleImages.xcassets; sourceTree = "<group>"; };
+		82947DA42968D67300BBA872 /* ExampleImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleImages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 				821933A8295DF89C00B47BFB /* Aurora */,
 				82947D882968D35B00BBA872 /* dev */,
 				82947D892968D38400BBA872 /* samples */,
+				82947D9D2968D50700BBA872 /* shared */,
 				821933A7295DF89500B47BFB /* Package.swift */,
 				8219339E295DF86900B47BFB /* Products */,
 			);
@@ -260,6 +267,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		82947D9D2968D50700BBA872 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				82947DA42968D67300BBA872 /* ExampleImages.swift */,
+				82947DA12968D56F00BBA872 /* ExampleImages.xcassets */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -392,6 +408,7 @@
 			files = (
 				821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */,
 				821933B9295DF94E00B47BFB /* Assets.xcassets in Resources */,
+				82947DA22968D56F00BBA872 /* ExampleImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +418,7 @@
 			files = (
 				82947D992968D3BC00BBA872 /* Preview Assets.xcassets in Resources */,
 				82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */,
+				82947DA32968D56F00BBA872 /* ExampleImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +455,7 @@
 			files = (
 				821933B7295DF94D00B47BFB /* ContentView.swift in Sources */,
 				821933B5295DF94D00B47BFB /* AuroraDesignerApp.swift in Sources */,
+				82947DA52968D67300BBA872 /* ExampleImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +465,7 @@
 			files = (
 				82947D932968D3BB00BBA872 /* ContentView.swift in Sources */,
 				82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */,
+				82947DA62968D67300BBA872 /* ExampleImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
