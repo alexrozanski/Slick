@@ -36,6 +36,7 @@
 		82947DA32968D56F00BBA872 /* ExampleImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947DA12968D56F00BBA872 /* ExampleImages.xcassets */; };
 		82947DA52968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
 		82947DA62968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
+		82947DAA2968D70C00BBA872 /* Aurora.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8219339D295DF86900B47BFB /* Aurora.framework */; platformFilters = (macos, ); };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8219339C295DF86900B47BFB;
 			remoteInfo = Slick;
+		};
+		82947DA72968D70400BBA872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82193394295DF86900B47BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8219339C295DF86900B47BFB;
+			remoteInfo = Aurora;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -109,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82947DAA2968D70C00BBA872 /* Aurora.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +135,7 @@
 				82947D9D2968D50700BBA872 /* shared */,
 				821933A7295DF89500B47BFB /* Package.swift */,
 				8219339E295DF86900B47BFB /* Products */,
+				82947DA92968D70C00BBA872 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -276,6 +286,13 @@
 			path = shared;
 			sourceTree = "<group>";
 		};
+		82947DA92968D70C00BBA872 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -342,6 +359,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				82947DA82968D70400BBA872 /* PBXTargetDependency */,
 			);
 			name = AuroraSampleApp;
 			productName = AuroraSampleApp;
@@ -476,6 +494,11 @@
 			isa = PBXTargetDependency;
 			target = 8219339C295DF86900B47BFB /* Aurora */;
 			targetProxy = 821933C5295DFCC800B47BFB /* PBXContainerItemProxy */;
+		};
+		82947DA82968D70400BBA872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8219339C295DF86900B47BFB /* Aurora */;
+			targetProxy = 82947DA72968D70400BBA872 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
