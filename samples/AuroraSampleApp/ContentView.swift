@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Aurora
 
 struct ContentView: View {
   var body: some View {
     VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundColor(.accentColor)
-      Text("Hello, world!")
+      AuroraView(NSImage(named: "astronaut")) { image in
+        Image(nsImage: image)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+      }
     }
     .padding()
   }
