@@ -51,25 +51,6 @@ padding: .horizontal(96).vertical(48) // Leading/trailing have 96pts of padding.
 padding: .init(top: 24, leading: 16, bottom: 32, trailing: 24)  // All edges have different padding
 ```
 
-### Debug View
-
-Aurora allows you to render a debug view to show which parts of your image are being sampled and the colours which are being sampled from each section. To render the debug view, simply add a `AuroraDebugView` and wrap both in a `AuroraDebugContainerView`, for example:
-
-```swift
-AuroraDebugContainerView {
-  HStack(alignment: .top) {
-    AuroraView(NSImage(named: "astronaut")) { nsImage in
-      Image(nsImage: nsImage)
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-    }
-    AuroraDebugView()
-  }
-}
-```
-
-`AuroraDebugContainerView` is required to connect the `AuroraView` and `AuroraDebugView` together.
-
 ## Setup
 
 ### [Preferred] Swift Package Manager
@@ -100,9 +81,38 @@ git clone https://github.com/alexrozanski/Aurora.git # or git@github.com:alexroz
 
 ## Sample App
 
-The `SlickExample` app shows an example of Slick in action, with some sample images and info showing which sections of the image and which colours were sampled.
+The `Aurora Sample` app shows an example of Aurora in action, with some sample images.
 
-![SlickExample app](docs/example_app.png)
+![Aurora Sample app](docs/example_app.png)
+
+## Contributing
+
+Contributions are more than welcome, just open a Pull Request with any changes.
+
+Most of the appearance settings have been determined experimentally, so it's probable that there are some tweaked settings that look better.
+
+### Debug View
+
+Aurora allows you to render a debug view to show which parts of your image are being sampled and the colours which are being sampled from each section. To render the debug view, simply add a `AuroraDebugView` and wrap both in a `AuroraDebugContainerView`, for example:
+
+```swift
+AuroraDebugContainerView {
+  HStack(alignment: .top) {
+    AuroraView(NSImage(named: "astronaut")) { nsImage in
+      Image(nsImage: nsImage)
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+    }
+    AuroraDebugView()
+  }
+}
+```
+
+`AuroraDebugContainerView` is required to connect the `AuroraView` and `AuroraDebugView` together.
+
+### Aurora Designer
+
+The Aurora Designer app allows you to play around with appearance settings and see how these affect the resulting background colours. You can build it from the `Aurora Designer` target from Xcode.
 
 ## Credits
 
