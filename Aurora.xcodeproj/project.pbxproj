@@ -645,11 +645,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AuroraDesigner/AuroraDesigner.entitlements;
+				CODE_SIGN_ENTITLEMENTS = dev/AuroraDesigner/AuroraDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AuroraDesigner/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"dev/AuroraDesigner/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -672,11 +672,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AuroraDesigner/AuroraDesigner.entitlements;
+				CODE_SIGN_ENTITLEMENTS = dev/AuroraDesigner/AuroraDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AuroraDesigner/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"dev/AuroraDesigner/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
