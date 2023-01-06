@@ -31,6 +31,26 @@ Which will render:
 
 <img src="https://github.com/alexrozanski/Aurora/blob/main/docs/astronaut_example.png?raw=true" width="630" height="553">
 
+`AuroraView` provides default padding so that the background colours can be easily seen out of the box. Pass a `padding:` argument to `AuroraView` to customise this:
+
+```swift
+AuroraView(NSImage(named: "astronaut"), padding: .all(48)) { nsImage in
+  Image(nsImage: nsImage)
+    .resizable()
+    .aspectRatio(contentMode: .fit)
+}
+```
+
+Padding can be specified for all edges, horizontal, vertical or each edge individually:
+
+```swift
+padding: .all(96) // All edges have 96pts of padding
+padding: .horizontal(96) // Leading/trailing have 96pts of padding. Top/bottom have 0
+padding: .vertical(48) // Top/bottom have 48pts of padding. Leading/trailing have 0
+padding: .horizontal(96).vertical(48) // Leading/trailing have 96pts of padding. Top/bottom have 48
+padding: .init(top: 24, leading: 16, bottom: 32, trailing: 24)  // All edges have different padding
+```
+
 ### Debug View
 
 Aurora allows you to render a debug view to show which parts of your image are being sampled and the colours which are being sampled from each section. To render the debug view, simply add a `AuroraDebugView` and wrap both in a `AuroraDebugContainerView`, for example:
