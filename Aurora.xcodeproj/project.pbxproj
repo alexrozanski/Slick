@@ -97,8 +97,8 @@
 			children = (
 				821933E1295E207600B47BFB /* README.md */,
 				821933E2295E237200B47BFB /* LICENSE */,
-				821933B3295DF94D00B47BFB /* AuroraDesigner */,
 				821933A8295DF89C00B47BFB /* Aurora */,
+				82947D882968D35B00BBA872 /* dev */,
 				821933A7295DF89500B47BFB /* Package.swift */,
 				8219339E295DF86900B47BFB /* Products */,
 			);
@@ -203,6 +203,14 @@
 				821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */,
 			);
 			path = geometry;
+			sourceTree = "<group>";
+		};
+		82947D882968D35B00BBA872 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				821933B3295DF94D00B47BFB /* AuroraDesigner */,
+			);
+			path = dev;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
