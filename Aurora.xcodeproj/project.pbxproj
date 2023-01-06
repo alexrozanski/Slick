@@ -62,7 +62,7 @@
 		8219339D295DF86900B47BFB /* Aurora.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aurora.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933A7295DF89500B47BFB /* Package.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		821933AB295DF8B500B47BFB /* AuroraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraView.swift; sourceTree = "<group>"; };
-		821933B2295DF94D00B47BFB /* AuroraDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		821933B2295DF94D00B47BFB /* Aurora Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821933B4295DF94D00B47BFB /* AuroraDesignerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDesignerApp.swift; sourceTree = "<group>"; };
 		821933B6295DF94D00B47BFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		821933B8295DF94E00B47BFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,11 +86,11 @@
 		821933F22964C55B00B47BFB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		821933F42964C57B00B47BFB /* AuroraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraViewModel.swift; sourceTree = "<group>"; };
 		821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCoordinates.swift; sourceTree = "<group>"; };
-		82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82947D8E2968D3BB00BBA872 /* Aurora Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSampleApp.swift; sourceTree = "<group>"; };
 		82947D922968D3BB00BBA872 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		82947D942968D3BC00BBA872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		82947D962968D3BC00BBA872 /* AuroraSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuroraSampleApp.entitlements; sourceTree = "<group>"; };
+		82947D962968D3BC00BBA872 /* AuroraSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuroraSample.entitlements; sourceTree = "<group>"; };
 		82947D982968D3BC00BBA872 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82947DA12968D56F00BBA872 /* ExampleImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExampleImages.xcassets; sourceTree = "<group>"; };
 		82947DA42968D67300BBA872 /* ExampleImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleImages.swift; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				8219339D295DF86900B47BFB /* Aurora.framework */,
-				821933B2295DF94D00B47BFB /* AuroraDesigner.app */,
-				82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */,
+				821933B2295DF94D00B47BFB /* Aurora Designer.app */,
+				82947D8E2968D3BB00BBA872 /* Aurora Sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,21 +252,21 @@
 		82947D892968D38400BBA872 /* samples */ = {
 			isa = PBXGroup;
 			children = (
-				82947D8F2968D3BB00BBA872 /* AuroraSampleApp */,
+				82947D8F2968D3BB00BBA872 /* AuroraSample */,
 			);
 			path = samples;
 			sourceTree = "<group>";
 		};
-		82947D8F2968D3BB00BBA872 /* AuroraSampleApp */ = {
+		82947D8F2968D3BB00BBA872 /* AuroraSample */ = {
 			isa = PBXGroup;
 			children = (
 				82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */,
 				82947D922968D3BB00BBA872 /* ContentView.swift */,
 				82947D942968D3BC00BBA872 /* Assets.xcassets */,
-				82947D962968D3BC00BBA872 /* AuroraSampleApp.entitlements */,
+				82947D962968D3BC00BBA872 /* AuroraSample.entitlements */,
 				82947D972968D3BC00BBA872 /* Preview Content */,
 			);
-			path = AuroraSampleApp;
+			path = AuroraSample;
 			sourceTree = "<group>";
 		};
 		82947D972968D3BC00BBA872 /* Preview Content */ = {
@@ -328,9 +328,9 @@
 			productReference = 8219339D295DF86900B47BFB /* Aurora.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		821933B1295DF94D00B47BFB /* AuroraDesigner */ = {
+		821933B1295DF94D00B47BFB /* Aurora Designer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "AuroraDesigner" */;
+			buildConfigurationList = 821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "Aurora Designer" */;
 			buildPhases = (
 				821933AE295DF94D00B47BFB /* Sources */,
 				821933AF295DF94D00B47BFB /* Frameworks */,
@@ -341,16 +341,16 @@
 			dependencies = (
 				821933C6295DFCC800B47BFB /* PBXTargetDependency */,
 			);
-			name = AuroraDesigner;
+			name = "Aurora Designer";
 			packageProductDependencies = (
 			);
 			productName = SlickExample;
-			productReference = 821933B2295DF94D00B47BFB /* AuroraDesigner.app */;
+			productReference = 821933B2295DF94D00B47BFB /* Aurora Designer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		82947D8D2968D3BB00BBA872 /* AuroraSampleApp */ = {
+		82947D8D2968D3BB00BBA872 /* Aurora Sample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "AuroraSampleApp" */;
+			buildConfigurationList = 82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "Aurora Sample" */;
 			buildPhases = (
 				82947D8A2968D3BB00BBA872 /* Sources */,
 				82947D8B2968D3BB00BBA872 /* Frameworks */,
@@ -361,9 +361,9 @@
 			dependencies = (
 				82947DA82968D70400BBA872 /* PBXTargetDependency */,
 			);
-			name = AuroraSampleApp;
+			name = "Aurora Sample";
 			productName = AuroraSampleApp;
-			productReference = 82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */;
+			productReference = 82947D8E2968D3BB00BBA872 /* Aurora Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -406,8 +406,8 @@
 			projectRoot = "";
 			targets = (
 				8219339C295DF86900B47BFB /* Aurora */,
-				82947D8D2968D3BB00BBA872 /* AuroraSampleApp */,
-				821933B1295DF94D00B47BFB /* AuroraDesigner */,
+				82947D8D2968D3BB00BBA872 /* Aurora Sample */,
+				821933B1295DF94D00B47BFB /* Aurora Designer */,
 			);
 		};
 /* End PBXProject section */
@@ -742,10 +742,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = samples/AuroraSampleApp/AuroraSampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = samples/AuroraSample/AuroraSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSampleApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSample/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -780,10 +780,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = samples/AuroraSampleApp/AuroraSampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = samples/AuroraSample/AuroraSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSampleApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSample/Preview Content\"";
 				DEVELOPMENT_TEAM = 44847G58BM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -834,7 +834,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "AuroraDesigner" */ = {
+		821933BE295DF94E00B47BFB /* Build configuration list for PBXNativeTarget "Aurora Designer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				821933BF295DF94E00B47BFB /* Debug */,
@@ -843,7 +843,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "AuroraSampleApp" */ = {
+		82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "Aurora Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82947D9B2968D3BC00BBA872 /* Debug */,
