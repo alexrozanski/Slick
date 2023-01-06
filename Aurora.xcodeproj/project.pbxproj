@@ -28,6 +28,10 @@
 		821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F22964C55B00B47BFB /* BackgroundView.swift */; };
 		821933F52964C57B00B47BFB /* AuroraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* AuroraViewModel.swift */; };
 		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
+		82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */; };
+		82947D932968D3BB00BBA872 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D922968D3BB00BBA872 /* ContentView.swift */; };
+		82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D942968D3BC00BBA872 /* Assets.xcassets */; };
+		82947D992968D3BC00BBA872 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D982968D3BC00BBA872 /* Preview Assets.xcassets */; };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
 /* End PBXBuildFile section */
@@ -70,6 +74,12 @@
 		821933F22964C55B00B47BFB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		821933F42964C57B00B47BFB /* AuroraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraViewModel.swift; sourceTree = "<group>"; };
 		821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCoordinates.swift; sourceTree = "<group>"; };
+		82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSampleApp.swift; sourceTree = "<group>"; };
+		82947D922968D3BB00BBA872 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		82947D942968D3BC00BBA872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		82947D962968D3BC00BBA872 /* AuroraSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AuroraSampleApp.entitlements; sourceTree = "<group>"; };
+		82947D982968D3BC00BBA872 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +99,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82947D8B2968D3BB00BBA872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -99,6 +116,7 @@
 				821933E2295E237200B47BFB /* LICENSE */,
 				821933A8295DF89C00B47BFB /* Aurora */,
 				82947D882968D35B00BBA872 /* dev */,
+				82947D892968D38400BBA872 /* samples */,
 				821933A7295DF89500B47BFB /* Package.swift */,
 				8219339E295DF86900B47BFB /* Products */,
 			);
@@ -109,6 +127,7 @@
 			children = (
 				8219339D295DF86900B47BFB /* Aurora.framework */,
 				821933B2295DF94D00B47BFB /* AuroraDesigner.app */,
+				82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,6 +232,34 @@
 			path = dev;
 			sourceTree = "<group>";
 		};
+		82947D892968D38400BBA872 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				82947D8F2968D3BB00BBA872 /* AuroraSampleApp */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
+		82947D8F2968D3BB00BBA872 /* AuroraSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */,
+				82947D922968D3BB00BBA872 /* ContentView.swift */,
+				82947D942968D3BC00BBA872 /* Assets.xcassets */,
+				82947D962968D3BC00BBA872 /* AuroraSampleApp.entitlements */,
+				82947D972968D3BC00BBA872 /* Preview Content */,
+			);
+			path = AuroraSampleApp;
+			sourceTree = "<group>";
+		};
+		82947D972968D3BC00BBA872 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				82947D982968D3BC00BBA872 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -268,6 +315,23 @@
 			productReference = 821933B2295DF94D00B47BFB /* AuroraDesigner.app */;
 			productType = "com.apple.product-type.application";
 		};
+		82947D8D2968D3BB00BBA872 /* AuroraSampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "AuroraSampleApp" */;
+			buildPhases = (
+				82947D8A2968D3BB00BBA872 /* Sources */,
+				82947D8B2968D3BB00BBA872 /* Frameworks */,
+				82947D8C2968D3BB00BBA872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AuroraSampleApp;
+			productName = AuroraSampleApp;
+			productReference = 82947D8E2968D3BB00BBA872 /* AuroraSampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -283,6 +347,9 @@
 						LastSwiftMigration = 1410;
 					};
 					821933B1295DF94D00B47BFB = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					82947D8D2968D3BB00BBA872 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -306,6 +373,7 @@
 			targets = (
 				8219339C295DF86900B47BFB /* Aurora */,
 				821933B1295DF94D00B47BFB /* AuroraDesigner */,
+				82947D8D2968D3BB00BBA872 /* AuroraSampleApp */,
 			);
 		};
 /* End PBXProject section */
@@ -324,6 +392,15 @@
 			files = (
 				821933BC295DF94E00B47BFB /* Preview Assets.xcassets in Resources */,
 				821933B9295DF94E00B47BFB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82947D8C2968D3BB00BBA872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82947D992968D3BC00BBA872 /* Preview Assets.xcassets in Resources */,
+				82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +437,15 @@
 			files = (
 				821933B7295DF94D00B47BFB /* ContentView.swift in Sources */,
 				821933B5295DF94D00B47BFB /* AuroraDesignerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82947D8A2968D3BB00BBA872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82947D932968D3BB00BBA872 /* ContentView.swift in Sources */,
+				82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +694,82 @@
 			};
 			name = Release;
 		};
+		82947D9B2968D3BC00BBA872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = samples/AuroraSampleApp/AuroraSampleApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 44847G58BM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.AuroraSampleApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		82947D9C2968D3BC00BBA872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = samples/AuroraSampleApp/AuroraSampleApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"samples/AuroraSampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 44847G58BM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexrozanski.AuroraSampleApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,6 +796,15 @@
 			buildConfigurations = (
 				821933BF295DF94E00B47BFB /* Debug */,
 				821933C0295DF94E00B47BFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82947D9A2968D3BC00BBA872 /* Build configuration list for PBXNativeTarget "AuroraSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82947D9B2968D3BC00BBA872 /* Debug */,
+				82947D9C2968D3BC00BBA872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
