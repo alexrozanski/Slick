@@ -388,8 +388,8 @@
 			projectRoot = "";
 			targets = (
 				8219339C295DF86900B47BFB /* Aurora */,
-				821933B1295DF94D00B47BFB /* AuroraDesigner */,
 				82947D8D2968D3BB00BBA872 /* AuroraSampleApp */,
+				821933B1295DF94D00B47BFB /* AuroraDesigner */,
 			);
 		};
 /* End PBXProject section */
