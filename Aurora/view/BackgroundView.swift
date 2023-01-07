@@ -25,28 +25,57 @@ internal struct BackgroundView: View {
   let appearance: Appearance
 
   @State var showColors = false
+  @State var rotationSteps = [Double]()
+  @State var scaleSteps = [Double]()
+  @State var opacitySteps = [Double]()
 
   var body: some View {
-    colors
-      .onChange(of: viewModel.backgroundColors, perform: { _ in
+    orbs
+      .onChange(of: viewModel.backgroundOrbs) { _ in
+        rotationSteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
+        scaleSteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
+        opacitySteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
         withAnimation {
-          showColors = viewModel.backgroundColors != nil
+          showColors = viewModel.backgroundOrbs != nil
         }
-      })
+      }
   }
 
-  @ViewBuilder private var colors: some View {
-    if let backgroundColors = viewModel.backgroundColors, showColors {
+  @ViewBuilder private var orbs: some View {
+    if let backgroundOrbs = viewModel.backgroundOrbs, showColors {
       GeometryReader { geometry in
         ZStack {
-          ForEach(backgroundColors, id: \.color) { backgroundColor in
-            Circle()
-              .fill(Color(cgColor: backgroundColor.color.cgColor))
-              .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
-              .offset(orbCenterOffset(for: geometry.size, angle: backgroundColor.angle))
-              .opacity(appearance.opacity)
-              .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-              .transition(.opacity.animation(.easeIn(duration: 0.25)))
+          ForEach(Array(backgroundOrbs.enumerated()), id: \.element) { index, backgroundOrb in
+            VStack {
+              Circle()
+                .fill(Color(cgColor: backgroundOrb.color.cgColor))
+                .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
+                .opacity(opacitySteps[index] * (backgroundOrb.maxOpacity - backgroundOrb.minOpacity) + backgroundOrb.minOpacity)
+                .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
+                .transition(.opacity.animation(.easeIn(duration: 0.25)))
+                .rotationEffect(
+                  .degrees(rotationSteps[index] * 360.0),
+                  anchor: UnitPoint(x: backgroundOrb.rotationCenterOffset.x, y: backgroundOrb.rotationCenterOffset.y)
+                )
+                .scaleEffect(scaleSteps[index] * (backgroundOrb.maxScale - backgroundOrb.minScale) + backgroundOrb.minScale)
+            }
+            .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
+            .onAppear {
+              withAnimation(
+                .linear(duration: 10.0)
+                .repeatForever(autoreverses: false)
+                .delay(backgroundOrb.animationDelay)
+              ) {
+                rotationSteps[index] = 1
+              }
+              withAnimation(
+                .linear(duration: 10.0)
+                .repeatForever(autoreverses: true)
+              ) {
+                scaleSteps[index] = 1
+                opacitySteps[index] = 1
+              }
+            }
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

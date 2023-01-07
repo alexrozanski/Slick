@@ -37,6 +37,7 @@
 		82947DA52968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
 		82947DA62968D67300BBA872 /* ExampleImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DA42968D67300BBA872 /* ExampleImages.swift */; };
 		82947DAA2968D70C00BBA872 /* Aurora.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8219339D295DF86900B47BFB /* Aurora.framework */; platformFilters = (macos, ); };
+		82947DAD2968F87100BBA872 /* BackgroundOrbViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947DAC2968F87100BBA872 /* BackgroundOrbViewModel.swift */; };
 		82BCD4122965241A001D01B5 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4112965241A001D01B5 /* ExceptionCatcher */; };
 		82BCD4182965281B001D01B5 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 82BCD4172965281B001D01B5 /* Algorithms */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		82947D982968D3BC00BBA872 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82947DA12968D56F00BBA872 /* ExampleImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExampleImages.xcassets; sourceTree = "<group>"; };
 		82947DA42968D67300BBA872 /* ExampleImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleImages.swift; sourceTree = "<group>"; };
+		82947DAC2968F87100BBA872 /* BackgroundOrbViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundOrbViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				821933F62964CB7B00B47BFB /* geometry */,
 				821933CB295DFF5600B47BFB /* image */,
 				821933EB295FD9E500B47BFB /* internal */,
+				82947DAB2968F86300BBA872 /* model */,
 				821933C7295DFDE900B47BFB /* view */,
 			);
 			path = Aurora;
@@ -186,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				821933AB295DF8B500B47BFB /* AuroraView.swift */,
-				821933F42964C57B00B47BFB /* AuroraViewModel.swift */,
 				821933F22964C55B00B47BFB /* BackgroundView.swift */,
 			);
 			path = view;
@@ -291,6 +293,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82947DAB2968F86300BBA872 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				821933F42964C57B00B47BFB /* AuroraViewModel.swift */,
+				82947DAC2968F87100BBA872 /* BackgroundOrbViewModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,6 +474,7 @@
 				821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */,
 				821933AC295DF8B500B47BFB /* AuroraView.swift in Sources */,
 				821933D1295DFFD200B47BFB /* Bucket.swift in Sources */,
+				82947DAD2968F87100BBA872 /* BackgroundOrbViewModel.swift in Sources */,
 				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

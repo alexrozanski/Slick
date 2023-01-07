@@ -16,7 +16,7 @@ internal class AuroraViewModel: ObservableObject {
 
   private var subscriptions = Set<AnyCancellable>()
 
-  @Published var backgroundColors: [ImageColorExtractor.BackgroundColor]?
+  @Published var backgroundOrbs: [BackgroundOrbViewModel]?
   @Published var debugInfo: DebugInfo?
 
   init(initialImage: NSImage?) {
@@ -43,8 +43,8 @@ internal class AuroraViewModel: ObservableObject {
       .share()
 
     colorsAndDebugInfo
-      .map { (colors, _) in colors }
-      .assign(to: \.backgroundColors, on: self)
+      .map { (colors, _) in colors.map { BackgroundOrbViewModel(backgroundColor: $0) } }
+      .assign(to: \.backgroundOrbs, on: self)
       .store(in: &subscriptions)
 
     colorsAndDebugInfo

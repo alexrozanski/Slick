@@ -35,17 +35,10 @@ internal class ImageColorExtractor {
     let colorPrioritization: ColorPrioritization
   }
 
-  struct BackgroundColor: Hashable {
+  struct BackgroundColor {
     // Expressed in 0 <= degrees <= 360
     let angle: Double
     let color: NSColor
-
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(color.redComponent)
-      hasher.combine(color.greenComponent)
-      hasher.combine(color.blueComponent)
-      hasher.combine(angle)
-    }
   }
 
   struct ExtractionDebugInfo {
