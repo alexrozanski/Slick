@@ -10,11 +10,12 @@ import SwiftUI
 struct BackgroundOrb: View {
   let viewModel: BackgroundOrbViewModel
   let appearance: BackgroundView.Appearance
+  let animationConfiguration: BackgroundView.AnimationConfiguration
 
   var body: some View {
-    Rotation(enabled: appearance.animateRotation, centerOffset: viewModel.rotationCenterOffset, animationDelay: viewModel.animationDelay) {
-      Opacity(enabled: appearance.animateOpacity, minOpacity: viewModel.minOpacity, maxOpacity: viewModel.maxOpacity) {
-        Scale(enabled: appearance.animateScale, minScale: viewModel.minScale, maxScale: viewModel.maxScale) {
+    Rotation(enabled: animationConfiguration.animateRotation, centerOffset: viewModel.rotationCenterOffset, animationDelay: viewModel.animationDelay) {
+      Opacity(enabled: animationConfiguration.animateOpacity, minOpacity: viewModel.minOpacity, maxOpacity: viewModel.maxOpacity) {
+        Scale(enabled: animationConfiguration.animateScale, minScale: viewModel.minScale, maxScale: viewModel.maxScale) {
           Circle()
             .fill(Color(cgColor: viewModel.color.cgColor))
             .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)

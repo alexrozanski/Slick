@@ -14,6 +14,7 @@ internal class InternalDataHolder: ObservableObject {
   @Published var debugInfo: DebugInfo?
   @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default()
   @Published var backgroundViewAppearance: BackgroundView.Appearance = .default()
+  @Published var backgroundViewAnimationConfiguration: BackgroundView.AnimationConfiguration = .default()
 }
 
 internal struct InternalDataHolderKey: EnvironmentKey {
@@ -30,6 +31,10 @@ internal struct ExtractionConfigKey: EnvironmentKey {
 
 internal struct BackgroundViewAppearanceKey: EnvironmentKey {
   static var defaultValue: BackgroundView.Appearance = .default()
+}
+
+internal struct BackgroundViewAnimationConfigurationKey: EnvironmentKey {
+  static var defaultValue: BackgroundView.AnimationConfiguration = .default()
 }
 
 internal extension EnvironmentValues {
@@ -51,5 +56,10 @@ internal extension EnvironmentValues {
   var backgroundViewAppearance: BackgroundView.Appearance {
     get { self[BackgroundViewAppearanceKey.self] }
     set { self[BackgroundViewAppearanceKey.self] = newValue }
+  }
+
+  var backgroundViewAnimationConfiguration: BackgroundView.AnimationConfiguration {
+    get { self[BackgroundViewAnimationConfigurationKey.self] }
+    set { self[BackgroundViewAnimationConfigurationKey.self] = newValue }
   }
 }

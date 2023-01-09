@@ -24,5 +24,6 @@ public struct AuroraDebugContainerView<Content>: View where Content: View {
       .environment(\.debugInfo, internalDataHolder.debugInfo)
       .environment(\.extractionConfig, internalDataHolder.extractionConfig)
       .environment(\.backgroundViewAppearance, internalDataHolder.backgroundViewAppearance)
+      .environment(\.backgroundViewAnimationConfiguration, internalDataHolder.backgroundViewAnimationConfiguration)
   }
 }

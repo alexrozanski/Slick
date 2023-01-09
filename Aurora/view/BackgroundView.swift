@@ -14,34 +14,48 @@ internal struct BackgroundView: View {
       return Appearance(
         blurColors: true,
         opacity: 0.6,
-        blurRadius: 48.3,
-        animateRotation: true,
-        animateScale: true,
-        animateOpacity: true
+        blurRadius: 48.3
       )
     }
 
     let blurColors: Bool
     let opacity: Double
     let blurRadius: Double
-    let animateRotation: Bool
-    let animateScale: Bool
-    let animateOpacity: Bool
 
-    init(blurColors: Bool, opacity: Double, blurRadius: Double, animateRotation: Bool, animateScale: Bool, animateOpacity: Bool) {
+    init(blurColors: Bool, opacity: Double, blurRadius: Double) {
       self.blurColors = blurColors
       self.opacity = opacity
       self.blurRadius = blurRadius
-      self.animateRotation = animateRotation
-      self.animateScale = animateScale
-      self.animateOpacity = animateOpacity
     }
 
     static func == (lhs: BackgroundView.Appearance, rhs: BackgroundView.Appearance) -> Bool {
       return lhs.blurColors == rhs.blurColors &&
       lhs.opacity == rhs.opacity &&
-      lhs.blurRadius == rhs.blurRadius &&
-      lhs.animateRotation == rhs.animateRotation &&
+      lhs.blurRadius == rhs.blurRadius
+    }
+  }
+
+  class AnimationConfiguration: Equatable {
+    static func `default`() -> AnimationConfiguration {
+      return AnimationConfiguration(
+        animateRotation: true,
+        animateScale: true,
+        animateOpacity: true
+      )
+    }
+
+    let animateRotation: Bool
+    let animateScale: Bool
+    let animateOpacity: Bool
+
+    init(animateRotation: Bool, animateScale: Bool, animateOpacity: Bool) {
+      self.animateRotation = animateRotation
+      self.animateScale = animateScale
+      self.animateOpacity = animateOpacity
+    }
+
+    static func == (lhs: BackgroundView.AnimationConfiguration, rhs: BackgroundView.AnimationConfiguration) -> Bool {
+      return lhs.animateRotation == rhs.animateRotation &&
       lhs.animateScale == rhs.animateScale &&
       lhs.animateOpacity == rhs.animateOpacity
     }
@@ -49,6 +63,7 @@ internal struct BackgroundView: View {
 
   @ObservedObject var viewModel: AuroraViewModel
   let appearance: Appearance
+  let animationConfiguration: AnimationConfiguration
 
   @State var showColors = false
 
@@ -66,7 +81,7 @@ internal struct BackgroundView: View {
       GeometryReader { geometry in
         ZStack {
           ForEach(backgroundOrbs, id: \.angle) { backgroundOrb in
-            BackgroundOrb(viewModel: backgroundOrb, appearance: appearance)
+            BackgroundOrb(viewModel: backgroundOrb, appearance: appearance, animationConfiguration: animationConfiguration)
               .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
               .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
           }

@@ -11,6 +11,7 @@ public struct AuroraDebugSettingsView: View {
   @Environment(\.internalDataHolder) var internalDataHolder
   @Environment(\.extractionConfig) var extractionConfig
   @Environment(\.backgroundViewAppearance) var backgroundViewAppearance
+  @Environment(\.backgroundViewAnimationConfiguration) var backgroundViewAnimationConfiguration
 
   @State private var labelWidth: CGFloat?
 
@@ -111,16 +112,16 @@ public struct AuroraDebugSettingsView: View {
 
   @ViewBuilder var animationSettings: some View {
     let animateRotation = Binding<Bool>(
-      get: { backgroundViewAppearance.animateRotation },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateRotation($0) }
+      get: { backgroundViewAnimationConfiguration.animateRotation },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateRotation($0) }
     )
     let animateScale = Binding<Bool>(
-      get: { backgroundViewAppearance.animateScale },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateScale($0) }
+      get: { backgroundViewAnimationConfiguration.animateScale },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateScale($0) }
     )
     let animateOpacity = Binding<Bool>(
-      get: { backgroundViewAppearance.animateOpacity },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateOpacity($0) }
+      get: { backgroundViewAnimationConfiguration.animateOpacity },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateOpacity($0) }
     )
 
     VStack {
@@ -261,10 +262,7 @@ fileprivate extension BackgroundView.Appearance {
     return BackgroundView.Appearance(
       blurColors: newBlurColors,
       opacity: opacity,
-      blurRadius: blurRadius,
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity
+      blurRadius: blurRadius
     )
   }
 
@@ -272,10 +270,7 @@ fileprivate extension BackgroundView.Appearance {
     return BackgroundView.Appearance(
       blurColors: blurColors,
       opacity: newOpacity,
-      blurRadius: blurRadius,
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity
+      blurRadius: blurRadius
     )
   }
 
@@ -283,40 +278,30 @@ fileprivate extension BackgroundView.Appearance {
     return BackgroundView.Appearance(
       blurColors: blurColors,
       opacity: opacity,
-      blurRadius: newBlurRadius,
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity
+      blurRadius: newBlurRadius
     )
   }
+}
 
-  func withAnimateRotation(_ newAnimateRotation: Bool) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: blurColors,
-      opacity: opacity,
-      blurRadius: blurRadius,
+fileprivate extension BackgroundView.AnimationConfiguration {
+  func withAnimateRotation(_ newAnimateRotation: Bool) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
       animateRotation: newAnimateRotation,
       animateScale: animateScale,
       animateOpacity: animateOpacity
     )
   }
 
-  func withAnimateScale(_ newAnimateScale: Bool) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: blurColors,
-      opacity: opacity,
-      blurRadius: blurRadius,
+  func withAnimateScale(_ newAnimateScale: Bool) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
       animateRotation: animateRotation,
       animateScale: newAnimateScale,
       animateOpacity: animateOpacity
     )
   }
 
-  func withAnimateOpacity(_ newAnimateOpacity: Bool) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: blurColors,
-      opacity: opacity,
-      blurRadius: blurRadius,
+  func withAnimateOpacity(_ newAnimateOpacity: Bool) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
       animateRotation: animateRotation,
       animateScale: animateScale,
       animateOpacity: newAnimateOpacity

@@ -23,6 +23,7 @@ public struct AuroraView<Image>: View where Image: View {
   // Use these for reads as they will be reactive.
   @Environment(\.extractionConfig) private var extractionConfig
   @Environment(\.backgroundViewAppearance) private var backgroundAppearance
+  @Environment(\.backgroundViewAnimationConfiguration) private var backgroundAnimationConfiguration
 
   private var debugInfo: DebugInfo? = nil
 
@@ -47,7 +48,11 @@ public struct AuroraView<Image>: View where Image: View {
           internalDataHolder.debugInfo = debugInfo
         })
         .background(
-          BackgroundView(viewModel: viewModel, appearance: backgroundAppearance)
+          BackgroundView(
+            viewModel: viewModel,
+            appearance: backgroundAppearance,
+            animationConfiguration: backgroundAnimationConfiguration
+          )
         )
         .padding(padding?.edgeInsets ?? EdgeInsets())
     }
