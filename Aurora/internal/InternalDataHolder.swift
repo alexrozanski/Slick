@@ -12,8 +12,8 @@ import Combine
 // data upwards from below and shared amongst internal components.
 internal class InternalDataHolder: ObservableObject {
   @Published var debugInfo: DebugInfo?
-  @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default
-  @Published var backgroundViewAppearance: BackgroundView.Appearance = .default
+  @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default()
+  @Published var backgroundViewAppearance: BackgroundView.Appearance = .default()
 }
 
 internal struct InternalDataHolderKey: EnvironmentKey {
@@ -25,11 +25,11 @@ internal struct DebugInfoKey: EnvironmentKey {
 }
 
 internal struct ExtractionConfigKey: EnvironmentKey {
-  static var defaultValue: ImageColorExtractor.ExtractionConfig = .default
+  static var defaultValue: ImageColorExtractor.ExtractionConfig = .default()
 }
 
 internal struct BackgroundViewAppearanceKey: EnvironmentKey {
-  static var defaultValue: BackgroundView.Appearance = .default
+  static var defaultValue: BackgroundView.Appearance = .default()
 }
 
 internal extension EnvironmentValues {

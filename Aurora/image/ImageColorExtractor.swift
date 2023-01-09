@@ -10,12 +10,14 @@ import Algorithms
 
 internal class ImageColorExtractor {
   struct ExtractionConfig {
-    static var `default` = ExtractionConfig(
-      samplePoints: 8,
-      gridSize: 5,
-      sampleImageSideLength: 141,
-      colorPrioritization: []
-    )
+    static func `default`() -> ExtractionConfig {
+      return ExtractionConfig(
+        samplePoints: 8,
+        gridSize: 5,
+        sampleImageSideLength: 141,
+        colorPrioritization: []
+      )
+    }
 
     struct ColorPrioritization: OptionSet {
       let rawValue: Int
@@ -48,7 +50,7 @@ internal class ImageColorExtractor {
 
   func extractColors(
     from image: NSImage,
-    config: ExtractionConfig = .default,
+    config: ExtractionConfig = .default(),
     completion: @escaping ([BackgroundColor]) -> Void,
     completionQueue: DispatchQueue = .main
   ) {
@@ -60,7 +62,7 @@ internal class ImageColorExtractor {
   // Top left color is first, then works its way around 360 degrees.
   func extractColors(
     from image: NSImage,
-    config: ExtractionConfig = .default,
+    config: ExtractionConfig = .default(),
     completion: @escaping ([BackgroundColor], ExtractionDebugInfo) -> Void,
     completionQueue: DispatchQueue = .main
   ) {

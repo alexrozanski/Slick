@@ -21,7 +21,7 @@ internal class AuroraViewModel: ObservableObject {
 
   init(initialImage: NSImage?) {
     imageSubject = CurrentValueSubject<NSImage?, Never>(initialImage)
-    configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>(.default)
+    configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>(.default())
 
     let colorsAndDebugInfo = imageSubject
       .combineLatest(configSubject)
