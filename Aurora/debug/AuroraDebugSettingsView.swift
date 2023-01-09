@@ -25,6 +25,11 @@ public struct AuroraDebugSettingsView: View {
         .fontWeight(.semibold)
         .padding(.top, 12)
       appearanceSettings
+      Text("Animation")
+        .fontWeight(.semibold)
+        .padding(.top, 12)
+      animationSettings
+
     }
     .environment(\.labelWidth, labelWidth)
     .onPreferenceChange(LabelWidthPreferenceKey.self) { newLabelWidth in
@@ -82,18 +87,6 @@ public struct AuroraDebugSettingsView: View {
       get: { backgroundViewAppearance.blurRadius },
       set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withBlurRadius($0) }
     )
-    let animateRotation = Binding<Bool>(
-      get: { backgroundViewAppearance.animateRotation },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateRotation($0) }
-    )
-    let animateScale = Binding<Bool>(
-      get: { backgroundViewAppearance.animateScale },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateScale($0) }
-    )
-    let animateOpacity = Binding<Bool>(
-      get: { backgroundViewAppearance.animateOpacity },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateOpacity($0) }
-    )
 
     VStack {
       LabelledRow {
@@ -113,6 +106,24 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: blurRadius,
         range: (0...200)
       )
+    }
+  }
+
+  @ViewBuilder var animationSettings: some View {
+    let animateRotation = Binding<Bool>(
+      get: { backgroundViewAppearance.animateRotation },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateRotation($0) }
+    )
+    let animateScale = Binding<Bool>(
+      get: { backgroundViewAppearance.animateScale },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateScale($0) }
+    )
+    let animateOpacity = Binding<Bool>(
+      get: { backgroundViewAppearance.animateOpacity },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateOpacity($0) }
+    )
+
+    VStack {
       LabelledRow {
         Text("Animate Rotation")
       } content: {
