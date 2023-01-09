@@ -8,33 +8,53 @@
 import SwiftUI
 
 internal struct BackgroundView: View {
-  // Keep this struct internal -- expose a higher-level appearance API if configuratiojn is desired.
-  internal struct Appearance {
-    static var `default` = Appearance(
-      blurColors: true,
-      opacity: 0.6,
-      blurRadius: 48.3
-    )
+  // Keep this struct internal -- expose a higher-level appearance API if configuration is desired.
+  class Appearance: Equatable {
+    static func `default`() -> Appearance {
+      return Appearance(
+        blurColors: true,
+        opacity: 0.6,
+        blurRadius: 48.3,
+        animateRotation: true,
+        animateScale: true,
+        animateOpacity: true
+      )
+    }
 
     let blurColors: Bool
     let opacity: Double
     let blurRadius: Double
+    let animateRotation: Bool
+    let animateScale: Bool
+    let animateOpacity: Bool
+
+    init(blurColors: Bool, opacity: Double, blurRadius: Double, animateRotation: Bool, animateScale: Bool, animateOpacity: Bool) {
+      self.blurColors = blurColors
+      self.opacity = opacity
+      self.blurRadius = blurRadius
+      self.animateRotation = animateRotation
+      self.animateScale = animateScale
+      self.animateOpacity = animateOpacity
+    }
+
+    static func == (lhs: BackgroundView.Appearance, rhs: BackgroundView.Appearance) -> Bool {
+      return lhs.blurColors == rhs.blurColors &&
+      lhs.opacity == rhs.opacity &&
+      lhs.blurRadius == rhs.blurRadius &&
+      lhs.animateRotation == rhs.animateRotation &&
+      lhs.animateScale == rhs.animateScale &&
+      lhs.animateOpacity == rhs.animateOpacity
+    }
   }
 
   @ObservedObject var viewModel: AuroraViewModel
   let appearance: Appearance
 
   @State var showColors = false
-  @State var rotationSteps = [Double]()
-  @State var scaleSteps = [Double]()
-  @State var opacitySteps = [Double]()
 
   var body: some View {
     orbs
       .onChange(of: viewModel.backgroundOrbs) { _ in
-        rotationSteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
-        scaleSteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
-        opacitySteps = viewModel.backgroundOrbs.map { Array(repeating: 0, count: $0.count) } ?? []
         withAnimation {
           showColors = viewModel.backgroundOrbs != nil
         }
@@ -45,37 +65,10 @@ internal struct BackgroundView: View {
     if let backgroundOrbs = viewModel.backgroundOrbs, showColors {
       GeometryReader { geometry in
         ZStack {
-          ForEach(Array(backgroundOrbs.enumerated()), id: \.element) { index, backgroundOrb in
-            VStack {
-              Circle()
-                .fill(Color(cgColor: backgroundOrb.color.cgColor))
-                .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
-                .opacity(opacitySteps[index] * (backgroundOrb.maxOpacity - backgroundOrb.minOpacity) + backgroundOrb.minOpacity)
-                .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-                .transition(.opacity.animation(.easeIn(duration: 0.25)))
-                .rotationEffect(
-                  .degrees(rotationSteps[index] * 360.0),
-                  anchor: UnitPoint(x: backgroundOrb.rotationCenterOffset.x, y: backgroundOrb.rotationCenterOffset.y)
-                )
-                .scaleEffect(scaleSteps[index] * (backgroundOrb.maxScale - backgroundOrb.minScale) + backgroundOrb.minScale)
-            }
-            .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
-            .onAppear {
-              withAnimation(
-                .linear(duration: 10.0)
-                .repeatForever(autoreverses: false)
-                .delay(backgroundOrb.animationDelay)
-              ) {
-                rotationSteps[index] = 1
-              }
-              withAnimation(
-                .linear(duration: 10.0)
-                .repeatForever(autoreverses: true)
-              ) {
-                scaleSteps[index] = 1
-                opacitySteps[index] = 1
-              }
-            }
+          ForEach(backgroundOrbs, id: \.angle) { backgroundOrb in
+            BackgroundOrb(viewModel: backgroundOrb, appearance: appearance)
+              .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
+              .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

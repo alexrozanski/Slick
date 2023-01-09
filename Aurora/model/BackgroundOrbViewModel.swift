@@ -23,8 +23,8 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.color = color
     self.animationDelay = Double.random(in: 0...1.0)
     self.rotationCenterOffset = CGPoint(x: Double.random(in: 0.45...0.495), y: Double.random(in: 0.45...0.495))
-    self.minScale = Double.random(in: 0.8...0.95)
-    self.maxScale = Double.random(in: 1.05...1.2)
+    self.minScale = Double.random(in: 0.9...0.95)
+    self.maxScale = Double.random(in: 1.05...1.1)
     self.minOpacity = Double.random(in: 0.4...0.49)
     self.maxOpacity = Double.random(in: 0.51...0.8)
   }

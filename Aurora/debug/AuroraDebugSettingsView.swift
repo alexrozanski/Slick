@@ -82,6 +82,18 @@ public struct AuroraDebugSettingsView: View {
       get: { backgroundViewAppearance.blurRadius },
       set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withBlurRadius($0) }
     )
+    let animateRotation = Binding<Bool>(
+      get: { backgroundViewAppearance.animateRotation },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateRotation($0) }
+    )
+    let animateScale = Binding<Bool>(
+      get: { backgroundViewAppearance.animateScale },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateScale($0) }
+    )
+    let animateOpacity = Binding<Bool>(
+      get: { backgroundViewAppearance.animateOpacity },
+      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withAnimateOpacity($0) }
+    )
 
     VStack {
       LabelledRow {
@@ -101,6 +113,21 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: blurRadius,
         range: (0...200)
       )
+      LabelledRow {
+        Text("Animate Rotation")
+      } content: {
+        Toggle("", isOn: animateRotation)
+      }
+      LabelledRow {
+        Text("Animate Scale")
+      } content: {
+        Toggle("", isOn: animateScale)
+      }
+      LabelledRow {
+        Text("Animate Opacity")
+      } content: {
+        Toggle("", isOn: animateOpacity)
+      }
     }
   }
 }
@@ -220,15 +247,69 @@ fileprivate extension ImageColorExtractor.ExtractionConfig {
 
 fileprivate extension BackgroundView.Appearance {
   func withBlurColors(_ newBlurColors: Bool) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(blurColors: newBlurColors, opacity: opacity, blurRadius: blurRadius)
+    return BackgroundView.Appearance(
+      blurColors: newBlurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity
+    )
   }
 
   func withOpacity(_ newOpacity: Double) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(blurColors: blurColors, opacity: newOpacity, blurRadius: blurRadius)
+    return BackgroundView.Appearance(
+      blurColors: blurColors,
+      opacity: newOpacity,
+      blurRadius: blurRadius,
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity
+    )
   }
 
   func withBlurRadius(_ newBlurRadius: Double) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(blurColors: blurColors, opacity: opacity, blurRadius: newBlurRadius)
+    return BackgroundView.Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: newBlurRadius,
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity
+    )
+  }
+
+  func withAnimateRotation(_ newAnimateRotation: Bool) -> BackgroundView.Appearance {
+    return BackgroundView.Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      animateRotation: newAnimateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity
+    )
+  }
+
+  func withAnimateScale(_ newAnimateScale: Bool) -> BackgroundView.Appearance {
+    return BackgroundView.Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      animateRotation: animateRotation,
+      animateScale: newAnimateScale,
+      animateOpacity: animateOpacity
+    )
+  }
+
+  func withAnimateOpacity(_ newAnimateOpacity: Bool) -> BackgroundView.Appearance {
+    return BackgroundView.Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: newAnimateOpacity
+    )
   }
 }
 
