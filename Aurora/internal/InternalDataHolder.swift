@@ -13,8 +13,8 @@ import Combine
 internal class InternalDataHolder: ObservableObject {
   @Published var debugInfo: DebugInfo?
   @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default()
-  @Published var backgroundViewAppearance: BackgroundView.Appearance = .default()
-  @Published var backgroundViewAnimationConfiguration: BackgroundView.AnimationConfiguration = .default()
+  @Published var appearance: Appearance = .default()
+  @Published var animationConfiguration: AnimationConfiguration = .default()
 }
 
 internal struct InternalDataHolderKey: EnvironmentKey {
@@ -29,12 +29,12 @@ internal struct ExtractionConfigKey: EnvironmentKey {
   static var defaultValue: ImageColorExtractor.ExtractionConfig = .default()
 }
 
-internal struct BackgroundViewAppearanceKey: EnvironmentKey {
-  static var defaultValue: BackgroundView.Appearance = .default()
+internal struct AuroraAppearanceKey: EnvironmentKey {
+  static var defaultValue: Appearance = .default()
 }
 
-internal struct BackgroundViewAnimationConfigurationKey: EnvironmentKey {
-  static var defaultValue: BackgroundView.AnimationConfiguration = .default()
+internal struct AuroraAnimationConfigurationKey: EnvironmentKey {
+  static var defaultValue: AnimationConfiguration = .default()
 }
 
 internal extension EnvironmentValues {
@@ -53,13 +53,13 @@ internal extension EnvironmentValues {
     set { self[ExtractionConfigKey.self] = newValue }
   }
 
-  var backgroundViewAppearance: BackgroundView.Appearance {
-    get { self[BackgroundViewAppearanceKey.self] }
-    set { self[BackgroundViewAppearanceKey.self] = newValue }
+  var auroraAppearance: Appearance {
+    get { self[AuroraAppearanceKey.self] }
+    set { self[AuroraAppearanceKey.self] = newValue }
   }
 
-  var backgroundViewAnimationConfiguration: BackgroundView.AnimationConfiguration {
-    get { self[BackgroundViewAnimationConfigurationKey.self] }
-    set { self[BackgroundViewAnimationConfigurationKey.self] = newValue }
+  var auroraAnimationConfiguration: AnimationConfiguration {
+    get { self[AuroraAnimationConfigurationKey.self] }
+    set { self[AuroraAnimationConfigurationKey.self] = newValue }
   }
 }

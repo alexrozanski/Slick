@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BackgroundOrb: View {
   let viewModel: BackgroundOrbViewModel
-  let appearance: BackgroundView.Appearance
-  let animationConfiguration: BackgroundView.AnimationConfiguration
+  let appearance: Appearance
+  let animationConfiguration: AnimationConfiguration
 
   var body: some View {
     Rotation(configuration: animationConfiguration, centerOffset: viewModel.rotationCenterOffset, animationDelay: viewModel.animationDelay) {
@@ -65,7 +65,7 @@ fileprivate struct UpdateAnimation: ViewModifier {
 }
 
 fileprivate struct Rotation<Content>: View where Content: View {
-  let configuration: BackgroundView.AnimationConfiguration
+  let configuration: AnimationConfiguration
   let centerOffset: CGPoint
   let animationDelay: Double
   let content: ContentBuilder<Content>
@@ -98,7 +98,7 @@ fileprivate struct Rotation<Content>: View where Content: View {
 }
 
 fileprivate struct Opacity<Content>: View where Content: View {
-  let configuration: BackgroundView.AnimationConfiguration
+  let configuration: AnimationConfiguration
   let minOpacity: Double
   let maxOpacity: Double
   let content: ContentBuilder<Content>
@@ -129,7 +129,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
 }
 
 fileprivate struct Scale<Content>: View where Content: View {
-  let configuration: BackgroundView.AnimationConfiguration
+  let configuration: AnimationConfiguration
   let minScale: Double
   let maxScale: Double
   let content: ContentBuilder<Content>

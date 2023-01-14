@@ -224,3 +224,43 @@ private func annotatedSampleImage(_ sampleImage: NSImage, markerPoint: CGPoint) 
     return true
   }
 }
+
+// MARK: - Mutations
+
+extension ImageColorExtractor.ExtractionConfig {
+  func withSamplePoints(_ newSamplePoints: Int) -> ImageColorExtractor.ExtractionConfig {
+    return ImageColorExtractor.ExtractionConfig(
+      samplePoints: newSamplePoints,
+      gridSize: gridSize,
+      sampleImageSideLength: sampleImageSideLength,
+      colorPrioritization: colorPrioritization
+    )
+  }
+
+  func withGridSize(_ newGridSize: Int) -> ImageColorExtractor.ExtractionConfig {
+    return ImageColorExtractor.ExtractionConfig(
+      samplePoints: samplePoints,
+      gridSize: newGridSize,
+      sampleImageSideLength: sampleImageSideLength,
+      colorPrioritization: colorPrioritization
+    )
+  }
+
+  func withSampleImageSideLength(_ newSampleImageSideLength: Int) -> ImageColorExtractor.ExtractionConfig {
+    return ImageColorExtractor.ExtractionConfig(
+      samplePoints: samplePoints,
+      gridSize: gridSize,
+      sampleImageSideLength: newSampleImageSideLength,
+      colorPrioritization: colorPrioritization
+    )
+  }
+
+  func withColorPrioritization(_ newColorPrioritization: ImageColorExtractor.ExtractionConfig.ColorPrioritization) -> ImageColorExtractor.ExtractionConfig {
+    return ImageColorExtractor.ExtractionConfig(
+      samplePoints: samplePoints,
+      gridSize: gridSize,
+      sampleImageSideLength: sampleImageSideLength,
+      colorPrioritization: newColorPrioritization
+    )
+  }
+}

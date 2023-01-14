@@ -10,8 +10,8 @@ import SwiftUI
 public struct AuroraDebugSettingsView: View {
   @Environment(\.internalDataHolder) var internalDataHolder
   @Environment(\.extractionConfig) var extractionConfig
-  @Environment(\.backgroundViewAppearance) var backgroundViewAppearance
-  @Environment(\.backgroundViewAnimationConfiguration) var backgroundViewAnimationConfiguration
+  @Environment(\.auroraAppearance) var appearance
+  @Environment(\.auroraAnimationConfiguration) var animationConfiguration
 
   @State private var labelWidth: CGFloat?
 
@@ -77,16 +77,16 @@ public struct AuroraDebugSettingsView: View {
 
   @ViewBuilder var appearanceSettings: some View {
     let blurColors = Binding<Bool>(
-      get: { backgroundViewAppearance.blurColors },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withBlurColors($0) }
+      get: { appearance.blurColors },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurColors($0) }
     )
     let opacity = Binding<Double>(
-      get: { backgroundViewAppearance.opacity },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withOpacity($0) }
+      get: { appearance.opacity },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOpacity($0) }
     )
     let blurRadius = Binding<Double>(
-      get: { backgroundViewAppearance.blurRadius },
-      set: { internalDataHolder.backgroundViewAppearance = internalDataHolder.backgroundViewAppearance.withBlurRadius($0) }
+      get: { appearance.blurRadius },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurRadius($0) }
     )
 
     VStack {
@@ -112,28 +112,28 @@ public struct AuroraDebugSettingsView: View {
 
   @ViewBuilder var animationSettings: some View {
     let animateRotation = Binding<Bool>(
-      get: { backgroundViewAnimationConfiguration.animateRotation },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateRotation($0) }
+      get: { animationConfiguration.animateRotation },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateRotation($0) }
     )
     let rotationAnimationDuration = Binding<Double>(
-      get: { backgroundViewAnimationConfiguration.rotationAnimationDuration },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withRotationAnimationDuration($0) }
+      get: { animationConfiguration.rotationAnimationDuration },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDuration($0) }
     )
     let animateScale = Binding<Bool>(
-      get: { backgroundViewAnimationConfiguration.animateScale },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateScale($0) }
+      get: { animationConfiguration.animateScale },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateScale($0) }
     )
     let scaleAnimationDuration = Binding<Double>(
-      get: { backgroundViewAnimationConfiguration.scaleAnimationDuration },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withScaleAnimationDuration($0) }
+      get: { animationConfiguration.scaleAnimationDuration },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
     )
     let animateOpacity = Binding<Bool>(
-      get: { backgroundViewAnimationConfiguration.animateOpacity },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateOpacity($0) }
+      get: { animationConfiguration.animateOpacity },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateOpacity($0) }
     )
     let opacityAnimationDuration = Binding<Double>(
-      get: { backgroundViewAnimationConfiguration.opacityAnimationDuration },
-      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withOpacityAnimationDuration($0) }
+      get: { animationConfiguration.opacityAnimationDuration },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
     )
 
     VStack {
@@ -246,138 +246,6 @@ fileprivate struct SliderLabelWidthPreferenceKey: PreferenceKey {
 
   static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
     value = max(value, nextValue())
-  }
-}
-
-fileprivate extension ImageColorExtractor.ExtractionConfig {
-  func withSamplePoints(_ newSamplePoints: Int) -> ImageColorExtractor.ExtractionConfig {
-    return ImageColorExtractor.ExtractionConfig(
-      samplePoints: newSamplePoints,
-      gridSize: gridSize,
-      sampleImageSideLength: sampleImageSideLength,
-      colorPrioritization: colorPrioritization
-    )
-  }
-
-  func withGridSize(_ newGridSize: Int) -> ImageColorExtractor.ExtractionConfig {
-    return ImageColorExtractor.ExtractionConfig(
-      samplePoints: samplePoints,
-      gridSize: newGridSize,
-      sampleImageSideLength: sampleImageSideLength,
-      colorPrioritization: colorPrioritization
-    )
-  }
-
-  func withSampleImageSideLength(_ newSampleImageSideLength: Int) -> ImageColorExtractor.ExtractionConfig {
-    return ImageColorExtractor.ExtractionConfig(
-      samplePoints: samplePoints,
-      gridSize: gridSize,
-      sampleImageSideLength: newSampleImageSideLength,
-      colorPrioritization: colorPrioritization
-    )
-  }
-
-  func withColorPrioritization(_ newColorPrioritization: ImageColorExtractor.ExtractionConfig.ColorPrioritization) -> ImageColorExtractor.ExtractionConfig {
-    return ImageColorExtractor.ExtractionConfig(
-      samplePoints: samplePoints,
-      gridSize: gridSize,
-      sampleImageSideLength: sampleImageSideLength,
-      colorPrioritization: newColorPrioritization
-    )
-  }
-}
-
-fileprivate extension BackgroundView.Appearance {
-  func withBlurColors(_ newBlurColors: Bool) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: newBlurColors,
-      opacity: opacity,
-      blurRadius: blurRadius
-    )
-  }
-
-  func withOpacity(_ newOpacity: Double) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: blurColors,
-      opacity: newOpacity,
-      blurRadius: blurRadius
-    )
-  }
-
-  func withBlurRadius(_ newBlurRadius: Double) -> BackgroundView.Appearance {
-    return BackgroundView.Appearance(
-      blurColors: blurColors,
-      opacity: opacity,
-      blurRadius: newBlurRadius
-    )
-  }
-}
-
-fileprivate extension BackgroundView.AnimationConfiguration {
-  func withAnimateRotation(_ newAnimateRotation: Bool) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: newAnimateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
-      rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration
-    )
-  }
-
-  func withAnimateScale(_ newAnimateScale: Bool) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: animateRotation,
-      animateScale: newAnimateScale,
-      animateOpacity: animateOpacity,
-      rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration
-    )
-  }
-
-  func withAnimateOpacity(_ newAnimateOpacity: Bool) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: newAnimateOpacity,
-      rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration
-    )
-  }
-
-  func withRotationAnimationDuration(_ newRotationAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
-      rotationAnimationDuration: newRotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration
-    )
-  }
-
-  func withScaleAnimationDuration(_ newScaleAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
-      rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: newScaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration
-    )
-  }
-
-  func withOpacityAnimationDuration(_ newOpacityAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
-    return BackgroundView.AnimationConfiguration(
-      animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
-      rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: newOpacityAnimationDuration
-    )
   }
 }
 

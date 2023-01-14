@@ -29,6 +29,8 @@
 		821933F52964C57B00B47BFB /* AuroraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* AuroraViewModel.swift */; };
 		821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */; };
 		823CBB98296B81E100CA5CDD /* BackgroundOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB97296B81E100CA5CDD /* BackgroundOrb.swift */; };
+		823CBB9A2973594B00CA5CDD /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB992973594B00CA5CDD /* Appearance.swift */; };
+		823CBB9C2973596400CA5CDD /* AnimationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */; };
 		82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */; };
 		82947D932968D3BB00BBA872 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D922968D3BB00BBA872 /* ContentView.swift */; };
 		82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D942968D3BC00BBA872 /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		821933F42964C57B00B47BFB /* AuroraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraViewModel.swift; sourceTree = "<group>"; };
 		821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCoordinates.swift; sourceTree = "<group>"; };
 		823CBB97296B81E100CA5CDD /* BackgroundOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundOrb.swift; sourceTree = "<group>"; };
+		823CBB992973594B00CA5CDD /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConfiguration.swift; sourceTree = "<group>"; };
 		82947D8E2968D3BB00BBA872 /* Aurora Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSampleApp.swift; sourceTree = "<group>"; };
 		82947D922968D3BB00BBA872 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -301,6 +305,8 @@
 		82947DAB2968F86300BBA872 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				823CBB992973594B00CA5CDD /* Appearance.swift */,
+				823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */,
 				821933F42964C57B00B47BFB /* AuroraViewModel.swift */,
 				82947DAC2968F87100BBA872 /* BackgroundOrbViewModel.swift */,
 			);
@@ -476,9 +482,11 @@
 				821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */,
 				821933CD295DFF6200B47BFB /* ImageColorExtractor.swift in Sources */,
 				821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */,
+				823CBB9A2973594B00CA5CDD /* Appearance.swift in Sources */,
 				821933AC295DF8B500B47BFB /* AuroraView.swift in Sources */,
 				821933D1295DFFD200B47BFB /* Bucket.swift in Sources */,
 				82947DAD2968F87100BBA872 /* BackgroundOrbViewModel.swift in Sources */,
+				823CBB9C2973596400CA5CDD /* AnimationConfiguration.swift in Sources */,
 				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
