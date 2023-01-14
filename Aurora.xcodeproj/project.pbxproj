@@ -174,8 +174,8 @@
 		821933B3295DF94D00B47BFB /* AuroraDesigner */ = {
 			isa = PBXGroup;
 			children = (
+				823CBBA02973679F00CA5CDD /* view */,
 				821933B4295DF94D00B47BFB /* AuroraDesignerApp.swift */,
-				821933B6295DF94D00B47BFB /* ContentView.swift */,
 				821933B8295DF94E00B47BFB /* Assets.xcassets */,
 				821933BD295DF94E00B47BFB /* AuroraDesigner.entitlements */,
 				821933BA295DF94E00B47BFB /* Preview Content */,
@@ -248,6 +248,14 @@
 				821933F72964CB8E00B47BFB /* EdgeCoordinates.swift */,
 			);
 			path = geometry;
+			sourceTree = "<group>";
+		};
+		823CBBA02973679F00CA5CDD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				821933B6295DF94D00B47BFB /* ContentView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		82947D882968D35B00BBA872 /* dev */ = {

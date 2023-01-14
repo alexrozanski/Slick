@@ -199,7 +199,7 @@ fileprivate struct LabelledRow<Label, Content>: View where Content: View, Label:
             )
           }
         )
-        .frame(width: labelWidth, alignment: .trailing)
+        .frame(minWidth: labelWidth, alignment: .trailing)
       content()
       Spacer()
     }
