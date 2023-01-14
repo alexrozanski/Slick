@@ -37,7 +37,9 @@ struct ContentView: View {
 
   @ViewBuilder var right: some View {
     VStack(spacing: 0) {
-      AuroraDebugSettingsView()
+      ScrollView {
+        AuroraDebugSettingsView()
+      }
       Divider()
       AuroraDebugView()
     }

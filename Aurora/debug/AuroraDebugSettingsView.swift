@@ -115,13 +115,25 @@ public struct AuroraDebugSettingsView: View {
       get: { backgroundViewAnimationConfiguration.animateRotation },
       set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateRotation($0) }
     )
+    let rotationAnimationDuration = Binding<Double>(
+      get: { backgroundViewAnimationConfiguration.rotationAnimationDuration },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withRotationAnimationDuration($0) }
+    )
     let animateScale = Binding<Bool>(
       get: { backgroundViewAnimationConfiguration.animateScale },
       set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateScale($0) }
     )
+    let scaleAnimationDuration = Binding<Double>(
+      get: { backgroundViewAnimationConfiguration.scaleAnimationDuration },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withScaleAnimationDuration($0) }
+    )
     let animateOpacity = Binding<Bool>(
       get: { backgroundViewAnimationConfiguration.animateOpacity },
       set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withAnimateOpacity($0) }
+    )
+    let opacityAnimationDuration = Binding<Double>(
+      get: { backgroundViewAnimationConfiguration.opacityAnimationDuration },
+      set: { internalDataHolder.backgroundViewAnimationConfiguration = internalDataHolder.backgroundViewAnimationConfiguration.withOpacityAnimationDuration($0) }
     )
 
     VStack {
@@ -130,16 +142,34 @@ public struct AuroraDebugSettingsView: View {
       } content: {
         Toggle("", isOn: animateRotation)
       }
+      SliderRow(
+        label: "Duration",
+        mode: .continuous,
+        valueBinding: rotationAnimationDuration,
+        range: (0...20)
+      )
       LabelledRow {
         Text("Animate Scale")
       } content: {
         Toggle("", isOn: animateScale)
       }
+      SliderRow(
+        label: "Duration",
+        mode: .continuous,
+        valueBinding: scaleAnimationDuration,
+        range: (0...20)
+      )
       LabelledRow {
         Text("Animate Opacity")
       } content: {
         Toggle("", isOn: animateOpacity)
       }
+      SliderRow(
+        label: "Duration",
+        mode: .continuous,
+        valueBinding: opacityAnimationDuration,
+        range: (0...20)
+      )
     }
   }
 }
@@ -288,7 +318,10 @@ fileprivate extension BackgroundView.AnimationConfiguration {
     return BackgroundView.AnimationConfiguration(
       animateRotation: newAnimateRotation,
       animateScale: animateScale,
-      animateOpacity: animateOpacity
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration
     )
   }
 
@@ -296,7 +329,10 @@ fileprivate extension BackgroundView.AnimationConfiguration {
     return BackgroundView.AnimationConfiguration(
       animateRotation: animateRotation,
       animateScale: newAnimateScale,
-      animateOpacity: animateOpacity
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration
     )
   }
 
@@ -304,7 +340,43 @@ fileprivate extension BackgroundView.AnimationConfiguration {
     return BackgroundView.AnimationConfiguration(
       animateRotation: animateRotation,
       animateScale: animateScale,
-      animateOpacity: newAnimateOpacity
+      animateOpacity: newAnimateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration
+    )
+  }
+
+  func withRotationAnimationDuration(_ newRotationAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: newRotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration
+    )
+  }
+
+  func withScaleAnimationDuration(_ newScaleAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: newScaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration
+    )
+  }
+
+  func withOpacityAnimationDuration(_ newOpacityAnimationDuration: Double) -> BackgroundView.AnimationConfiguration {
+    return BackgroundView.AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: newOpacityAnimationDuration
     )
   }
 }

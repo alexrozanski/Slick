@@ -40,24 +40,43 @@ internal struct BackgroundView: View {
       return AnimationConfiguration(
         animateRotation: true,
         animateScale: true,
-        animateOpacity: true
+        animateOpacity: true,
+        rotationAnimationDuration: 10.0,
+        scaleAnimationDuration: 10.0,
+        opacityAnimationDuration: 10.0
       )
     }
 
     let animateRotation: Bool
     let animateScale: Bool
     let animateOpacity: Bool
+    let rotationAnimationDuration: Double
+    let scaleAnimationDuration: Double
+    let opacityAnimationDuration: Double
 
-    init(animateRotation: Bool, animateScale: Bool, animateOpacity: Bool) {
+    init(
+      animateRotation: Bool,
+      animateScale: Bool,
+      animateOpacity: Bool,
+      rotationAnimationDuration: Double,
+      scaleAnimationDuration: Double,
+      opacityAnimationDuration: Double
+    ) {
       self.animateRotation = animateRotation
       self.animateScale = animateScale
       self.animateOpacity = animateOpacity
+      self.rotationAnimationDuration = rotationAnimationDuration
+      self.scaleAnimationDuration = scaleAnimationDuration
+      self.opacityAnimationDuration = opacityAnimationDuration
     }
 
     static func == (lhs: BackgroundView.AnimationConfiguration, rhs: BackgroundView.AnimationConfiguration) -> Bool {
       return lhs.animateRotation == rhs.animateRotation &&
       lhs.animateScale == rhs.animateScale &&
-      lhs.animateOpacity == rhs.animateOpacity
+      lhs.animateOpacity == rhs.animateOpacity &&
+      lhs.rotationAnimationDuration == rhs.rotationAnimationDuration &&
+      lhs.scaleAnimationDuration == rhs.scaleAnimationDuration &&
+      lhs.opacityAnimationDuration == rhs.opacityAnimationDuration
     }
   }
 
