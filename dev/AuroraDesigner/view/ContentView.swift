@@ -22,7 +22,7 @@ struct ContentView: View {
           }
         }
       }
-        .padding()
+      .padding()
       Divider()
       Spacer()
       AuroraView(NSImage(named: selectedImage)) { nsImage in
@@ -40,15 +40,17 @@ struct ContentView: View {
       ScrollView {
         AuroraDebugSettingsView()
       }
+      .frame(minHeight: 300)
       AuroraDebugView()
+        .frame(minHeight: 300)
     }
   }
 
   var body: some View {
     AuroraDebugContainerView {
       HSplitView {
-        left
-        right
+        left.frame(minWidth: 400)
+        right.frame(minWidth: 400)
       }
     }
   }
