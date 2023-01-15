@@ -38,9 +38,13 @@ fileprivate extension DebugInfo.Position {
   var label: String {
     switch self {
     case .topLeft: return "Top Left"
+    case .topCenter: return "Top Center"
     case .topRight: return "Top Right"
+    case .centerRight: return "Center Right"
     case .bottomRight: return "Bottom Right"
+    case .bottomCenter: return "Bottom Center"
     case .bottomLeft: return "Bottom Left"
+    case .centerLeft: return "Center Left"
     case .angle: return "\(angle)°"
     }
   }
