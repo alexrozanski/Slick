@@ -176,18 +176,22 @@ private extension Array where Element == Bucket {
 }
 
 // Get a sample rect from the source image from the centerPoint (of the sample rect) which should be on the edge of the image bounds.
-// `centerPoint` is returned in the sampleRect's coordinate system as `outCenterPoint` is
+// `centerPoint` is returned in the sampleRect's coordinate system as `outCenterPoint`
 private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideLength: Int, outCenterPoint: inout CGPoint) -> NSRect {
-  let imageRect = NSRect(origin: .zero, size: image.size)
-  let sampleRect = NSIntersectionRect(
-    imageRect,
-    NSRect(
-      x: centerPoint.x - Double(sampleSideLength),
-      y: centerPoint.y - Double(sampleSideLength),
-      width: Double(sampleSideLength) * 2,
-      height: Double(sampleSideLength) * 2
-    )
-  )
+  let sideLength = Double(sampleSideLength)
+
+  var origin = CGPoint(x: centerPoint.x - sideLength / 2, y: centerPoint.y - sideLength / 2)
+  if origin.x < 0 { origin.x = 0 }
+  if origin.y < 0 { origin.y = 0 }
+
+  if origin.x + sideLength > image.size.width {
+    origin.x = image.size.width - sideLength
+  }
+  if origin.y + sideLength > image.size.height {
+    origin.y = image.size.height - sideLength
+  }
+
+  let sampleRect = NSRect(origin: origin, size: CGSize(width: sideLength, height: sideLength))
   outCenterPoint = CGPoint(x: centerPoint.x - sampleRect.minX, y: centerPoint.y - sampleRect.minY)
   return sampleRect
 }
