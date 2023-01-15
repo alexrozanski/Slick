@@ -119,6 +119,10 @@ public struct AuroraDebugSettingsView: View {
       get: { animationConfiguration.rotationAnimationDuration },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDuration($0) }
     )
+    let rotationAnimationDelay = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.rotationAnimationDelayRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayRange($0) }
+    )
     let animateScale = Binding<Bool>(
       get: { animationConfiguration.animateScale },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateScale($0) }
@@ -147,6 +151,11 @@ public struct AuroraDebugSettingsView: View {
         mode: .continuous,
         valueBinding: rotationAnimationDuration,
         range: (0...20)
+      )
+      RangeSliderRow(
+        label: "Delay",
+        valueBinding: rotationAnimationDelay,
+        range: 0...1
       )
       LabelledRow {
         Text("Animate Scale")
@@ -206,6 +215,33 @@ fileprivate struct LabelledRow<Label, Content>: View where Content: View, Label:
   }
 }
 
+fileprivate struct RangeSliderRow: View {
+  let label: String
+  let valueBinding: Binding<ClosedRange<Double>>
+  let range: ClosedRange<Double>
+
+  var body: some View {
+    LabelledRow {
+      Text(label)
+    } content: {
+      HStack {
+        RangeSliderView(
+          value: valueBinding,
+          range: range
+        )
+        HStack(spacing: 0) {
+          Text("(")
+          Text(valueBinding.wrappedValue.lowerBound, format: .number.precision(.fractionLength(2)))
+          Text(", ")
+          Text(valueBinding.wrappedValue.upperBound, format: .number.precision(.fractionLength(2)))
+          Text(")")
+        }
+        .frame(width: 80, alignment: .leading)
+      }
+    }
+  }
+}
+
 fileprivate struct SliderRow: View {
   enum Mode {
     case discrete(step: Double)
@@ -228,7 +264,7 @@ fileprivate struct SliderRow: View {
         Slider(value: valueBinding, in: range)
       }
       Text(valueBinding.wrappedValue, format: .number.precision(.fractionLength(1)))
-        .frame(width: 50, alignment: .leading)
+        .frame(width: 80, alignment: .leading)
     }
   }
 }
