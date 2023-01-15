@@ -31,6 +31,7 @@
 		823CBB98296B81E100CA5CDD /* BackgroundOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB97296B81E100CA5CDD /* BackgroundOrb.swift */; };
 		823CBB9A2973594B00CA5CDD /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB992973594B00CA5CDD /* Appearance.swift */; };
 		823CBB9C2973596400CA5CDD /* AnimationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */; };
+		823CBBA629749EDD00CA5CDD /* RangeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */; };
 		82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */; };
 		82947D932968D3BB00BBA872 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D922968D3BB00BBA872 /* ContentView.swift */; };
 		82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D942968D3BC00BBA872 /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		823CBB97296B81E100CA5CDD /* BackgroundOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundOrb.swift; sourceTree = "<group>"; };
 		823CBB992973594B00CA5CDD /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConfiguration.swift; sourceTree = "<group>"; };
+		823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderView.swift; sourceTree = "<group>"; };
 		82947D8E2968D3BB00BBA872 /* Aurora Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSampleApp.swift; sourceTree = "<group>"; };
 		82947D922968D3BB00BBA872 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				821933D7295E0F9600B47BFB /* DebugInfo.swift */,
 				821933DD295E1DD800B47BFB /* DebugCornerView.swift */,
 				821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */,
+				823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				821933D6295E0E8B00B47BFB /* AuroraDebugView.swift in Sources */,
 				821933DA295E101C00B47BFB /* AuroraDebugContainerView.swift in Sources */,
 				823CBB98296B81E100CA5CDD /* BackgroundOrb.swift in Sources */,
+				823CBBA629749EDD00CA5CDD /* RangeSliderView.swift in Sources */,
 				821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */,
 				821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */,
 				821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */,
