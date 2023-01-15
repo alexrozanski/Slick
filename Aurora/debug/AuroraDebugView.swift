@@ -37,14 +37,14 @@ public struct AuroraDebugView: View {
 fileprivate extension DebugInfo.Position {
   var label: String {
     switch self {
-    case .topLeft: return "Top Left"
-    case .topCenter: return "Top Center"
-    case .topRight: return "Top Right"
-    case .centerRight: return "Center Right"
-    case .bottomRight: return "Bottom Right"
-    case .bottomCenter: return "Bottom Center"
-    case .bottomLeft: return "Bottom Left"
-    case .centerLeft: return "Center Left"
+    case .topLeft: return "Top Left (0°)"
+    case .topCenter: return "Top Center (45°)"
+    case .topRight: return "Top Right (90°)"
+    case .centerRight: return "Center Right (135°)"
+    case .bottomRight: return "Bottom Right (180°)"
+    case .bottomCenter: return "Bottom Center (225°)"
+    case .bottomLeft: return "Bottom Left (270°)"
+    case .centerLeft: return "Center Left (315°)"
     case .angle: return "\(angle)°"
     }
   }
