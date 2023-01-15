@@ -44,8 +44,14 @@ internal class ImageColorExtractor {
   }
 
   struct ExtractionDebugInfo {
-    // Angle -> (NSImage?, [NSColor])
-    let info: [Double: (NSImage?, [NSColor])]
+    struct Point {
+      let angle: Double
+      let sampledImage: NSImage
+      let topColors: [NSColor]
+      let edgeCoordinates: CGPoint
+    }
+
+    let points: [Point]
   }
 
   func extractColors(
@@ -68,26 +74,37 @@ internal class ImageColorExtractor {
   ) {
     DispatchQueue.global(qos: .userInitiated).async {
       var backgroundColors = [BackgroundColor]()
-      var debugInfo = [Double: (NSImage?, [NSColor])]()
+      var debugInfo = [ExtractionDebugInfo.Point]()
 
       let interval = 360.0 / Double(config.samplePoints)
       let points = (0..<config.samplePoints).map { i in Double(i) * interval }
       points.forEach { angle in
         var clippedImage: NSImage?
+        var sampleCenterPoint: CGPoint?
         let buckets = self.bucket(
           from: image,
           angle: angle,
           outImage: &clippedImage,
+          outSampleCenterPoint: &sampleCenterPoint,
           config: config
         )
         let topColors = buckets.topColors(with: config)
         backgroundColors.append(BackgroundColor(angle: angle, color: topColors.first ?? .black))
 
-        debugInfo[angle] = (clippedImage, Array(topColors[0...min(topColors.count - 1, 4)].uniqued()))
+        if let sampledImage = clippedImage, let edgeCoordinates = sampleCenterPoint {
+          debugInfo.append(
+            ExtractionDebugInfo.Point(
+              angle: angle,
+              sampledImage: sampledImage,
+              topColors: Array(topColors[0...min(topColors.count - 1, 4)].uniqued()),
+              edgeCoordinates: edgeCoordinates
+            )
+          )
+        }
       }
 
       completionQueue.async {
-        completion(backgroundColors, ExtractionDebugInfo(info: debugInfo))
+        completion(backgroundColors, ExtractionDebugInfo(points: debugInfo))
       }
     }
   }
@@ -97,6 +114,7 @@ internal class ImageColorExtractor {
     from image: NSImage,
     angle: Double,
     outImage: inout NSImage?,
+    outSampleCenterPoint: inout CGPoint?,
     config: ExtractionConfig
   ) -> [Bucket] {
     let angle = angle.truncatingRemainder(dividingBy: 360.0)
@@ -142,6 +160,7 @@ internal class ImageColorExtractor {
     }
 
     outImage = sampleImage.flatMap { annotatedSampleImage($0, markerPoint: focusPoint) }
+    outSampleCenterPoint = sampleCenterPoint
 
     return buckets.flatMap { $0 }.flatMap { $0 }
   }

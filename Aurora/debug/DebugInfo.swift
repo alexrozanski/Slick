@@ -8,58 +8,57 @@
 import SwiftUI
 
 internal class DebugInfo: ObservableObject {
-  enum Position: Hashable {
-    case topLeft
-    case topCenter
-    case topRight
-    case centerRight
-    case bottomRight
-    case bottomCenter
-    case bottomLeft
-    case centerLeft
-    case angle(Double)
-
-    init(angle: Double) {
-      switch angle {
-      case 0: self = .topLeft
-      case 45: self = .topCenter
-      case 90: self = .topRight
-      case 135: self = .centerRight
-      case 180: self = .bottomRight
-      case 225: self = .bottomCenter
-      case 270: self = .bottomLeft
-      case 315: self = .centerLeft
-      default: self = .angle(angle)
-      }
-    }
-
-    var angle: Double {
-      switch self {
-      case .topLeft: return 0
-      case .topCenter: return 45
-      case .topRight: return 90
-      case .centerRight: return 135
-      case .bottomRight: return 180
-      case .bottomCenter: return 225
-      case .bottomLeft: return 270
-      case .centerLeft: return 315
-      case .angle(let angle): return angle
-      }
-    }
-
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(angle)
-    }
-  }
-
   struct PositionInfo {
+    let angle: Double
     let image: NSImage
     let colors: [NSColor]
+    let edgeCoordinates: CGPoint
   }
 
-  let info: [Position: PositionInfo]
+  // Returns a grid of positions indexed by y-values and x-values.
+  lazy var positionGrid: [[PositionInfo?]] = {
+    var horizontalCoordinates = [Int]()
+    var verticalCoordinates = [Int]()
 
-  init(info: [Position: PositionInfo]) {
-    self.info = info
+    positions.forEach { position in
+      let x = Int(round(position.edgeCoordinates.x))
+      let y = Int(round(position.edgeCoordinates.y))
+
+      if !horizontalCoordinates.fuzzyContains(value: x) { horizontalCoordinates.append(x) }
+      if !verticalCoordinates.fuzzyContains(value: y) { verticalCoordinates.append(y) }
+    }
+
+    var grid = [[PositionInfo?]](
+      repeating: [PositionInfo?](repeating: nil, count: horizontalCoordinates.count),
+      count: verticalCoordinates.count
+    )
+
+    positions.forEach { position in
+      guard
+        let x = horizontalCoordinates.fuzzyIndex(for: Int(round(position.edgeCoordinates.x))),
+        let y = verticalCoordinates.fuzzyIndex(for: Int(round(position.edgeCoordinates.y)))
+      else { return }
+
+      grid[y][x] = position
+    }
+
+    return grid
+  }()
+
+  let positions: [PositionInfo]
+  init(positions: [PositionInfo]) {
+    self.positions = positions
+  }
+}
+
+fileprivate let edgeCoordinateEpsilon = 10
+
+fileprivate extension Array where Element == Int {
+  func fuzzyContains(value: Int) -> Bool {
+    return contains(where: { abs(value - $0) < edgeCoordinateEpsilon })
+  }
+
+  func fuzzyIndex(for value: Int) -> Int? {
+    return firstIndex(where: { abs(value - $0) < edgeCoordinateEpsilon })
   }
 }

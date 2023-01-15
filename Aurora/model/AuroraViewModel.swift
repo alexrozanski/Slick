@@ -64,16 +64,18 @@ internal class AuroraViewModel: ObservableObject {
 
 fileprivate extension DebugInfo {
   convenience init(colorExtractionDebugInfo debugInfo: ImageColorExtractor.ExtractionDebugInfo) {
-    var info = [Position: PositionInfo]()
-    debugInfo.info.keys.forEach { angle in
-      guard
-        let (image, colors) = debugInfo.info[angle],
-        let image = image
-      else { return }
-
-      info[Position(angle: angle)] = PositionInfo(image: image, colors: colors)
-    }
-
-    self.init(info: info)
+    self.init(
+      positions: debugInfo
+        .points
+        .sorted(by: { $0.angle < $1.angle })
+        .map {
+          DebugInfo.PositionInfo(
+            angle: $0.angle,
+            image: $0.sampledImage,
+            colors: $0.topColors,
+            edgeCoordinates: $0.edgeCoordinates
+          )
+        }
+    )
   }
 }

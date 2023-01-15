@@ -15,15 +15,20 @@ public struct AuroraDebugView: View {
   public var body: some View {
     if let debugInfo = debugInfo {
       ScrollView {
-        VStack {
-          ForEach(Array(debugInfo.info.keys.sorted(by: { p1, p2 in p1.angle < p2.angle })), id: \.self) { position in
-            if let info = debugInfo.info[position] {
-              DebugCornerView(
-                label: position.label,
-                sampledImage: info.image,
-                colors: info.colors
-              )
-              .padding(.bottom, 24)
+        Grid {
+          ForEach(Array(debugInfo.positionGrid.enumerated()), id: \.offset) { index, row in
+            GridRow {
+              ForEach(Array(row.enumerated()), id: \.offset) { index, position in
+                if let position {
+                  DebugCornerView(
+                    label: position.label,
+                    sampledImage: position.image,
+                    colors: position.colors
+                  )
+                } else {
+                  Spacer()
+                }
+              }
             }
           }
         }
@@ -34,18 +39,18 @@ public struct AuroraDebugView: View {
   }
 }
 
-fileprivate extension DebugInfo.Position {
+fileprivate extension DebugInfo.PositionInfo {
   var label: String {
-    switch self {
-    case .topLeft: return "Top Left (0°)"
-    case .topCenter: return "Top Center (45°)"
-    case .topRight: return "Top Right (90°)"
-    case .centerRight: return "Center Right (135°)"
-    case .bottomRight: return "Bottom Right (180°)"
-    case .bottomCenter: return "Bottom Center (225°)"
-    case .bottomLeft: return "Bottom Left (270°)"
-    case .centerLeft: return "Center Left (315°)"
-    case .angle: return "\(angle)°"
+    switch angle {
+    case 0: return "Top Left (0°)"
+    case 45: return "Top Center (45°)"
+    case 90: return "Top Right (90°)"
+    case 135: return "Center Right (135°)"
+    case 180: return "Bottom Right (180°)"
+    case 225: return "Bottom Center (225°)"
+    case 270: return "Bottom Left (270°)"
+    case 315: return "Center Left (315°)"
+    default: return "\(angle)°"
     }
   }
 }
