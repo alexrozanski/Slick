@@ -10,12 +10,11 @@ import SwiftUI
 struct BackgroundOrb: View {
   let viewModel: BackgroundOrbViewModel
   let appearance: Appearance
-  let animationConfiguration: AnimationConfiguration
 
   var body: some View {
-    Rotation(configuration: animationConfiguration, centerOffset: viewModel.rotationCenterOffset, delay: viewModel.rotationAnimationDelay) {
-      Opacity(configuration: animationConfiguration, minOpacity: viewModel.minOpacity, maxOpacity: viewModel.maxOpacity, delay: viewModel.opacityAnimationDelay) {
-        Scale(configuration: animationConfiguration, minScale: viewModel.minScale, maxScale: viewModel.maxScale, delay: viewModel.scaleAnimationDelay) {
+    Rotation(viewModel: viewModel) {
+      Opacity(viewModel: viewModel) {
+        Scale(viewModel: viewModel) {
           Circle()
             .fill(Color(cgColor: viewModel.color.cgColor))
             .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
@@ -80,9 +79,7 @@ fileprivate struct UpdateAnimation: ViewModifier {
 }
 
 fileprivate struct Rotation<Content>: View where Content: View {
-  let configuration: AnimationConfiguration
-  let centerOffset: CGPoint
-  let delay: Double
+  let viewModel: BackgroundOrbViewModel
   let content: ContentBuilder<Content>
 
   @State private var isRotating = false
@@ -95,17 +92,17 @@ fileprivate struct Rotation<Content>: View where Content: View {
     content()
       .rotationEffect(
         .degrees(isRotating ? 360 : 0),
-        anchor: UnitPoint(x: centerOffset.x, y: centerOffset.y)
+        anchor: UnitPoint(x: viewModel.rotationCenterOffset.x, y: viewModel.rotationCenterOffset.y)
       )
-      .animation(animation(duration: configuration.rotationAnimationDuration, delay: delay), value: isRotating)
+      .animation(animation(duration: viewModel.rotationAnimationDuration, delay: viewModel.rotationAnimationDelay), value: isRotating)
       .onAppear {
         isRotating = true
       }
       .modifier(
         UpdateAnimation(
-          enabled: configuration.animateRotation,
-          duration: configuration.rotationAnimationDuration,
-          delay: delay,
+          enabled: viewModel.animateRotation,
+          duration: viewModel.rotationAnimationDuration,
+          delay: viewModel.rotationAnimationDelay,
           isAnimated: $isRotating,
           animationBuilder: animation
         )
@@ -114,10 +111,7 @@ fileprivate struct Rotation<Content>: View where Content: View {
 }
 
 fileprivate struct Opacity<Content>: View where Content: View {
-  let configuration: AnimationConfiguration
-  let minOpacity: Double
-  let maxOpacity: Double
-  let delay: Double
+  let viewModel: BackgroundOrbViewModel
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
@@ -128,17 +122,17 @@ fileprivate struct Opacity<Content>: View where Content: View {
 
   var body: some View {
     content()
-      .opacity(isAnimating ? minOpacity : maxOpacity)
+      .opacity(isAnimating ? viewModel.minOpacity : viewModel.maxOpacity)
       .onAppear {
-        withAnimation(animation(duration: configuration.opacityAnimationDuration, delay: delay)) {
+        withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
           isAnimating = true
         }
       }
       .modifier(
         UpdateAnimation(
-          enabled: configuration.animateOpacity,
-          duration: configuration.opacityAnimationDuration,
-          delay: delay,
+          enabled: viewModel.animateOpacity,
+          duration: viewModel.opacityAnimationDuration,
+          delay: viewModel.opacityAnimationDelay,
           isAnimated: $isAnimating,
           animationBuilder: animation
         )
@@ -147,10 +141,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
 }
 
 fileprivate struct Scale<Content>: View where Content: View {
-  let configuration: AnimationConfiguration
-  let minScale: Double
-  let maxScale: Double
-  let delay: Double
+  let viewModel: BackgroundOrbViewModel
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
@@ -161,17 +152,17 @@ fileprivate struct Scale<Content>: View where Content: View {
 
   var body: some View {
     content()
-      .scaleEffect(isAnimating ? minScale : maxScale)
+      .scaleEffect(isAnimating ? viewModel.minScale : viewModel.maxScale)
       .onAppear {
-        withAnimation(animation(duration: configuration.scaleAnimationDuration, delay: delay)) {
+        withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
           isAnimating = true
         }
       }
       .modifier(
         UpdateAnimation(
-          enabled: configuration.animateScale,
-          duration: configuration.scaleAnimationDuration,
-          delay: delay,
+          enabled: viewModel.animateScale,
+          duration: viewModel.scaleAnimationDuration,
+          delay: viewModel.scaleAnimationDelay,
           isAnimated: $isAnimating,
           animationBuilder: animation
         )

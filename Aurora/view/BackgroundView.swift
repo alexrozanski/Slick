@@ -28,7 +28,7 @@ internal struct BackgroundView: View {
       GeometryReader { geometry in
         ZStack {
           ForEach(backgroundOrbs, id: \.angle) { backgroundOrb in
-            BackgroundOrb(viewModel: backgroundOrb, appearance: appearance, animationConfiguration: animationConfiguration)
+            BackgroundOrb(viewModel: backgroundOrb, appearance: appearance)
               .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
               .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
           }
