@@ -67,7 +67,9 @@ extension AnimationConfiguration: Equatable {
     lhs.rotationAnimationDuration == rhs.rotationAnimationDuration &&
     lhs.scaleAnimationDuration == rhs.scaleAnimationDuration &&
     lhs.opacityAnimationDuration == rhs.opacityAnimationDuration &&
-    lhs.rotationAnimationDelayRange == rhs.rotationAnimationDelayRange
+    lhs.rotationAnimationDelayRange == rhs.rotationAnimationDelayRange &&
+    lhs.scaleAnimationDelayRange == rhs.scaleAnimationDelayRange &&
+    lhs.opacityAnimationDelayRange == rhs.opacityAnimationDelayRange
   }
 }
 

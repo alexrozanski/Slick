@@ -13,9 +13,9 @@ struct BackgroundOrb: View {
   let animationConfiguration: AnimationConfiguration
 
   var body: some View {
-    Rotation(configuration: animationConfiguration, centerOffset: viewModel.rotationCenterOffset, animationDelay: viewModel.rotationAnimationDelay) {
-      Opacity(configuration: animationConfiguration, minOpacity: viewModel.minOpacity, maxOpacity: viewModel.maxOpacity) {
-        Scale(configuration: animationConfiguration, minScale: viewModel.minScale, maxScale: viewModel.maxScale) {
+    Rotation(configuration: animationConfiguration, centerOffset: viewModel.rotationCenterOffset, delay: viewModel.rotationAnimationDelay) {
+      Opacity(configuration: animationConfiguration, minOpacity: viewModel.minOpacity, maxOpacity: viewModel.maxOpacity, delay: viewModel.opacityAnimationDelay) {
+        Scale(configuration: animationConfiguration, minScale: viewModel.minScale, maxScale: viewModel.maxScale, delay: viewModel.scaleAnimationDelay) {
           Circle()
             .fill(Color(cgColor: viewModel.color.cgColor))
             .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
@@ -82,7 +82,7 @@ fileprivate struct UpdateAnimation: ViewModifier {
 fileprivate struct Rotation<Content>: View where Content: View {
   let configuration: AnimationConfiguration
   let centerOffset: CGPoint
-  let animationDelay: Double
+  let delay: Double
   let content: ContentBuilder<Content>
 
   @State private var isRotating = false
@@ -97,7 +97,7 @@ fileprivate struct Rotation<Content>: View where Content: View {
         .degrees(isRotating ? 360 : 0),
         anchor: UnitPoint(x: centerOffset.x, y: centerOffset.y)
       )
-      .animation(animation(duration: configuration.rotationAnimationDuration, delay: animationDelay), value: isRotating)
+      .animation(animation(duration: configuration.rotationAnimationDuration, delay: delay), value: isRotating)
       .onAppear {
         isRotating = true
       }
@@ -105,7 +105,7 @@ fileprivate struct Rotation<Content>: View where Content: View {
         UpdateAnimation(
           enabled: configuration.animateRotation,
           duration: configuration.rotationAnimationDuration,
-          delay: animationDelay,
+          delay: delay,
           isAnimated: $isRotating,
           animationBuilder: animation
         )
@@ -117,10 +117,11 @@ fileprivate struct Opacity<Content>: View where Content: View {
   let configuration: AnimationConfiguration
   let minOpacity: Double
   let maxOpacity: Double
+  let delay: Double
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: true)
+    return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
   }
 
   @State private var isAnimating = false
@@ -129,7 +130,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
     content()
       .opacity(isAnimating ? minOpacity : maxOpacity)
       .onAppear {
-        withAnimation(animation(duration: configuration.opacityAnimationDuration, delay: 0)) {
+        withAnimation(animation(duration: configuration.opacityAnimationDuration, delay: delay)) {
           isAnimating = true
         }
       }
@@ -137,7 +138,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
         UpdateAnimation(
           enabled: configuration.animateOpacity,
           duration: configuration.opacityAnimationDuration,
-          delay: 0,
+          delay: delay,
           isAnimated: $isAnimating,
           animationBuilder: animation
         )
@@ -149,10 +150,11 @@ fileprivate struct Scale<Content>: View where Content: View {
   let configuration: AnimationConfiguration
   let minScale: Double
   let maxScale: Double
+  let delay: Double
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: true)
+    return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
   }
 
   @State private var isAnimating = false
@@ -161,7 +163,7 @@ fileprivate struct Scale<Content>: View where Content: View {
     content()
       .scaleEffect(isAnimating ? minScale : maxScale)
       .onAppear {
-        withAnimation(animation(duration: configuration.scaleAnimationDuration, delay: 0)) {
+        withAnimation(animation(duration: configuration.scaleAnimationDuration, delay: delay)) {
           isAnimating = true
         }
       }
@@ -169,7 +171,7 @@ fileprivate struct Scale<Content>: View where Content: View {
         UpdateAnimation(
           enabled: configuration.animateScale,
           duration: configuration.scaleAnimationDuration,
-          delay: 0,
+          delay: delay,
           isAnimated: $isAnimating,
           animationBuilder: animation
         )
