@@ -39,7 +39,7 @@ struct RangeSliderView: View {
                 minHandlePressed = true
 
                 let x = gesture.startLocation.x + gesture.translation.width
-                let newLowerBound = min(max(0, convertToValueInRange(from: x, in: geometry.size.width)), value.wrappedValue.upperBound)
+                let newLowerBound = min(max(range.lowerBound, convertToValueInRange(from: x, in: geometry.size.width)), value.wrappedValue.upperBound)
                 value.wrappedValue = newLowerBound...value.wrappedValue.upperBound
               }
               .onEnded { _ in
