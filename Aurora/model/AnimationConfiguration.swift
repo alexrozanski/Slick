@@ -18,7 +18,9 @@ internal class AnimationConfiguration {
       rotationAnimationDuration: 10.0,
       scaleAnimationDuration: 10.0,
       opacityAnimationDuration: 10.0,
-      rotationAnimationDelayRange: 0...1
+      rotationAnimationDelayRange: 0...1,
+      scaleAnimationDelayRange: 0...1,
+      opacityAnimationDelayRange: 0...1
     )
   }
 
@@ -29,6 +31,8 @@ internal class AnimationConfiguration {
   let scaleAnimationDuration: Double
   let opacityAnimationDuration: Double
   let rotationAnimationDelayRange: ClosedRange<Double>
+  let scaleAnimationDelayRange: ClosedRange<Double>
+  let opacityAnimationDelayRange: ClosedRange<Double>
 
   init(
     animateRotation: Bool,
@@ -37,7 +41,9 @@ internal class AnimationConfiguration {
     rotationAnimationDuration: Double,
     scaleAnimationDuration: Double,
     opacityAnimationDuration: Double,
-    rotationAnimationDelayRange: ClosedRange<Double>
+    rotationAnimationDelayRange: ClosedRange<Double>,
+    scaleAnimationDelayRange: ClosedRange<Double>,
+    opacityAnimationDelayRange: ClosedRange<Double>
   ) {
     self.animateRotation = animateRotation
     self.animateScale = animateScale
@@ -46,6 +52,8 @@ internal class AnimationConfiguration {
     self.scaleAnimationDuration = scaleAnimationDuration
     self.opacityAnimationDuration = opacityAnimationDuration
     self.rotationAnimationDelayRange = rotationAnimationDelayRange
+    self.scaleAnimationDelayRange = scaleAnimationDelayRange
+    self.opacityAnimationDelayRange = opacityAnimationDelayRange
   }
 }
 
@@ -74,7 +82,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -86,7 +96,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -98,7 +110,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -110,7 +124,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: newRotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -122,7 +138,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: newScaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -134,7 +152,9 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: newOpacityAnimationDuration,
-      rotationAnimationDelayRange: rotationAnimationDelayRange
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
     )
   }
 
@@ -146,7 +166,37 @@ extension AnimationConfiguration {
       rotationAnimationDuration: rotationAnimationDuration,
       scaleAnimationDuration: scaleAnimationDuration,
       opacityAnimationDuration: opacityAnimationDuration,
-      rotationAnimationDelayRange: newRotationAnimationDelayRange
+      rotationAnimationDelayRange: newRotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
+    )
+  }
+
+  func withScaleAnimationDelayRange(_ newScaleAnimationDelayRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: newScaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange
+    )
+  }
+
+  func withOpacityAnimationDelayRange(_ newOpacityAnimationDelayRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: newOpacityAnimationDelayRange
     )
   }
 }

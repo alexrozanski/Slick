@@ -131,6 +131,10 @@ public struct AuroraDebugSettingsView: View {
       get: { animationConfiguration.scaleAnimationDuration },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
     )
+    let scaleAnimationDelay = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.scaleAnimationDelayRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayRange($0) }
+    )
     let animateOpacity = Binding<Bool>(
       get: { animationConfiguration.animateOpacity },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateOpacity($0) }
@@ -138,6 +142,10 @@ public struct AuroraDebugSettingsView: View {
     let opacityAnimationDuration = Binding<Double>(
       get: { animationConfiguration.opacityAnimationDuration },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
+    )
+    let opacityAnimationDelay = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.opacityAnimationDelayRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayRange($0) }
     )
 
     VStack {
@@ -168,6 +176,11 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: scaleAnimationDuration,
         range: (0...20)
       )
+      RangeSliderRow(
+        label: "Delay",
+        valueBinding: scaleAnimationDelay,
+        range: 0...1
+      )
       LabelledRow {
         Text("Animate Opacity")
       } content: {
@@ -178,6 +191,11 @@ public struct AuroraDebugSettingsView: View {
         mode: .continuous,
         valueBinding: opacityAnimationDuration,
         range: (0...20)
+      )
+      RangeSliderRow(
+        label: "Delay",
+        valueBinding: opacityAnimationDelay,
+        range: 0...1
       )
     }
   }

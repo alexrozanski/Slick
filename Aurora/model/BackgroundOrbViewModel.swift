@@ -15,8 +15,10 @@ internal struct BackgroundOrbViewModel: Equatable {
   let rotationCenterOffset: CGPoint
   let minScale: Double
   let maxScale: Double
+  let scaleAnimationDelay: Double
   let minOpacity: Double
   let maxOpacity: Double
+  let opacityAnimationDelay: Double
 
   init(angle: Double, color: NSColor, animationConfiguration: AnimationConfiguration) {
     self.angle = angle
@@ -25,8 +27,10 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.rotationCenterOffset = CGPoint(x: Double.random(in: 0.45...0.495), y: Double.random(in: 0.45...0.495))
     self.minScale = Double.random(in: 0.9...0.95)
     self.maxScale = Double.random(in: 1.05...1.1)
+    self.scaleAnimationDelay = Double.random(in: animationConfiguration.scaleAnimationDelayRange)
     self.minOpacity = Double.random(in: 0.4...0.49)
     self.maxOpacity = Double.random(in: 0.51...0.8)
+    self.opacityAnimationDelay = Double.random(in: animationConfiguration.opacityAnimationDelayRange)
   }
 
   init(backgroundColor: ImageColorExtractor.BackgroundColor, animationConfiguration: AnimationConfiguration) {
@@ -43,7 +47,9 @@ extension BackgroundOrbViewModel: Hashable {
     hasher.combine(rotationCenterOffset.y)
     hasher.combine(minScale)
     hasher.combine(maxScale)
+    hasher.combine(scaleAnimationDelay)
     hasher.combine(minOpacity)
     hasher.combine(maxOpacity)
+    hasher.combine(opacityAnimationDelay)
   }
 }
