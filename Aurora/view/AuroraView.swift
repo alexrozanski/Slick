@@ -47,6 +47,12 @@ public struct AuroraView<Image>: View where Image: View {
         .onReceive(viewModel.$debugInfo, perform: { debugInfo in
           internalDataHolder.debugInfo = debugInfo
         })
+        .onAppear {
+          viewModel.animationConfiguration = animationConfiguration
+        }
+        .onChange(of: animationConfiguration) { newAnimationConfiguration in
+          viewModel.animationConfiguration = newAnimationConfiguration
+        }
         .background(
           BackgroundView(
             viewModel: viewModel,

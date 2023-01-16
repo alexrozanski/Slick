@@ -9,10 +9,17 @@ import Combine
 import Cocoa
 
 internal class AuroraViewModel: ObservableObject {
+  var animationConfiguration: AnimationConfiguration? {
+    didSet {
+      animationConfigurationSubject.send(animationConfiguration)
+    }
+  }
+
   private let imageColorExtractor = ImageColorExtractor()
 
   private let imageSubject: CurrentValueSubject<NSImage?, Never>
-  private let configSubject: CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>
+  private let extractionConfigurationSubject: CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>
+  private let animationConfigurationSubject: CurrentValueSubject<AnimationConfiguration?, Never>
 
   private var subscriptions = Set<AnyCancellable>()
 
@@ -21,10 +28,11 @@ internal class AuroraViewModel: ObservableObject {
 
   init(initialImage: NSImage?) {
     imageSubject = CurrentValueSubject<NSImage?, Never>(initialImage)
-    configSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>(.default())
+    extractionConfigurationSubject = CurrentValueSubject<ImageColorExtractor.ExtractionConfig, Never>(.default())
+    animationConfigurationSubject = CurrentValueSubject<AnimationConfiguration?, Never>(nil)
 
     let colorsAndDebugInfo = imageSubject
-      .combineLatest(configSubject)
+      .combineLatest(extractionConfigurationSubject)
       .compactMap { (image, config) in
         guard let image = image else { return nil }
         return (image, config)
@@ -43,7 +51,17 @@ internal class AuroraViewModel: ObservableObject {
       .share()
 
     colorsAndDebugInfo
-      .map { (colors, _) in colors.map { BackgroundOrbViewModel(backgroundColor: $0) } }
+      .combineLatest(animationConfigurationSubject)
+      .compactMap { values -> (([ImageColorExtractor.BackgroundColor], DebugInfo?), AnimationConfiguration)? in
+        let (colorsAndDebugInfo, animationConfiguration) = values
+        guard let animationConfiguration else { return nil }
+        return (colorsAndDebugInfo, animationConfiguration)
+      }
+      .map { values in
+        let (colorsAndDebugInfo, animationConfiguration) = values
+        let (colors, _) = colorsAndDebugInfo
+        return colors.map { BackgroundOrbViewModel(backgroundColor: $0, animationConfiguration: animationConfiguration) }
+      }
       .assign(to: \.backgroundOrbs, on: self)
       .store(in: &subscriptions)
 
@@ -58,7 +76,7 @@ internal class AuroraViewModel: ObservableObject {
   }
 
   func setConfig(_ config: ImageColorExtractor.ExtractionConfig) {
-    configSubject.send(config)
+    extractionConfigurationSubject.send(config)
   }
 }
 
