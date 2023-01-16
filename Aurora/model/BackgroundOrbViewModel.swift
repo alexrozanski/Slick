@@ -41,14 +41,14 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.animateScale = animationConfiguration.animateScale
     self.scaleAnimationDuration = animationConfiguration.scaleAnimationDuration
     self.scaleAnimationDelay = Double.random(in: animationConfiguration.scaleAnimationDelayRange)
-    self.minScale = Double.random(in: 0.9...0.95)
-    self.maxScale = Double.random(in: 1.05...1.1)
+    self.minScale = Double.random(in: animationConfiguration.minScaleRange)
+    self.maxScale = Double.random(in: animationConfiguration.maxScaleRange)
 
     self.animateOpacity = animationConfiguration.animateOpacity
     self.opacityAnimationDuration = animationConfiguration.opacityAnimationDuration
     self.opacityAnimationDelay = Double.random(in: animationConfiguration.opacityAnimationDelayRange)
-    self.minOpacity = Double.random(in: 0.4...0.49)
-    self.maxOpacity = Double.random(in: 0.51...0.8)
+    self.minOpacity = Double.random(in: animationConfiguration.minOpacityRange)
+    self.maxOpacity = Double.random(in: animationConfiguration.maxOpacityRange)
   }
 
   init(backgroundColor: ImageColorExtractor.BackgroundColor, animationConfiguration: AnimationConfiguration) {

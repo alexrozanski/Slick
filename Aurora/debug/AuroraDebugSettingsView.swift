@@ -111,6 +111,14 @@ public struct AuroraDebugSettingsView: View {
   }
 
   @ViewBuilder var animationSettings: some View {
+    VStack(spacing: 32) {
+      rotationAnimationSettings
+      scaleAnimationSettings
+      opacityAnimationSettings
+    }
+  }
+
+  @ViewBuilder var rotationAnimationSettings: some View {
     let animateRotation = Binding<Bool>(
       get: { animationConfiguration.animateRotation },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateRotation($0) }
@@ -122,30 +130,6 @@ public struct AuroraDebugSettingsView: View {
     let rotationAnimationDelay = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.rotationAnimationDelayRange },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayRange($0) }
-    )
-    let animateScale = Binding<Bool>(
-      get: { animationConfiguration.animateScale },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateScale($0) }
-    )
-    let scaleAnimationDuration = Binding<Double>(
-      get: { animationConfiguration.scaleAnimationDuration },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
-    )
-    let scaleAnimationDelay = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.scaleAnimationDelayRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayRange($0) }
-    )
-    let animateOpacity = Binding<Bool>(
-      get: { animationConfiguration.animateOpacity },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateOpacity($0) }
-    )
-    let opacityAnimationDuration = Binding<Double>(
-      get: { animationConfiguration.opacityAnimationDuration },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
-    )
-    let opacityAnimationDelay = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.opacityAnimationDelayRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayRange($0) }
     )
 
     VStack {
@@ -165,11 +149,47 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: rotationAnimationDelay,
         range: 0...1
       )
+    }
+  }
+
+  @ViewBuilder var scaleAnimationSettings: some View {
+    let animateScale = Binding<Bool>(
+      get: { animationConfiguration.animateScale },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateScale($0) }
+    )
+    let minScale = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.minScaleRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMinScaleRange($0) }
+    )
+    let maxScale = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.maxScaleRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMaxScaleRange($0) }
+    )
+    let scaleAnimationDuration = Binding<Double>(
+      get: { animationConfiguration.scaleAnimationDuration },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
+    )
+    let scaleAnimationDelay = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.scaleAnimationDelayRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayRange($0) }
+    )
+
+    VStack {
       LabelledRow {
         Text("Animate Scale")
       } content: {
         Toggle("", isOn: animateScale)
       }
+      RangeSliderRow(
+        label: "Min Scale",
+        valueBinding: minScale,
+        range: 0.5...0.99
+      )
+      RangeSliderRow(
+        label: "Max Scale",
+        valueBinding: maxScale,
+        range: 1.01...1.5
+      )
       SliderRow(
         label: "Duration",
         mode: .continuous,
@@ -181,11 +201,47 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: scaleAnimationDelay,
         range: 0...1
       )
+    }
+  }
+
+  @ViewBuilder var opacityAnimationSettings: some View {
+    let animateOpacity = Binding<Bool>(
+      get: { animationConfiguration.animateOpacity },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateOpacity($0) }
+    )
+    let minOpacity = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.minOpacityRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMinOpacityRange($0) }
+    )
+    let maxOpacity = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.maxOpacityRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMaxOpacityRange($0) }
+    )
+    let opacityAnimationDuration = Binding<Double>(
+      get: { animationConfiguration.opacityAnimationDuration },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
+    )
+    let opacityAnimationDelay = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.opacityAnimationDelayRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayRange($0) }
+    )
+
+    VStack {
       LabelledRow {
         Text("Animate Opacity")
       } content: {
         Toggle("", isOn: animateOpacity)
       }
+      RangeSliderRow(
+        label: "Min Opacity",
+        valueBinding: minOpacity,
+        range: 0...0.49
+      )
+      RangeSliderRow(
+        label: "Max Opacity",
+        valueBinding: maxOpacity,
+        range: 0.51...1
+      )
       SliderRow(
         label: "Duration",
         mode: .continuous,

@@ -20,7 +20,11 @@ internal class AnimationConfiguration {
       opacityAnimationDuration: 10.0,
       rotationAnimationDelayRange: 0...1,
       scaleAnimationDelayRange: 0...1,
-      opacityAnimationDelayRange: 0...1
+      opacityAnimationDelayRange: 0...1,
+      minScaleRange: 0.9...0.95,
+      maxScaleRange: 1.05...1.1,
+      minOpacityRange: 0.4...0.49,
+      maxOpacityRange: 0.51...0.8
     )
   }
 
@@ -33,6 +37,10 @@ internal class AnimationConfiguration {
   let rotationAnimationDelayRange: ClosedRange<Double>
   let scaleAnimationDelayRange: ClosedRange<Double>
   let opacityAnimationDelayRange: ClosedRange<Double>
+  let minScaleRange: ClosedRange<Double>
+  let maxScaleRange: ClosedRange<Double>
+  let minOpacityRange: ClosedRange<Double>
+  let maxOpacityRange: ClosedRange<Double>
 
   init(
     animateRotation: Bool,
@@ -43,7 +51,11 @@ internal class AnimationConfiguration {
     opacityAnimationDuration: Double,
     rotationAnimationDelayRange: ClosedRange<Double>,
     scaleAnimationDelayRange: ClosedRange<Double>,
-    opacityAnimationDelayRange: ClosedRange<Double>
+    opacityAnimationDelayRange: ClosedRange<Double>,
+    minScaleRange: ClosedRange<Double>,
+    maxScaleRange: ClosedRange<Double>,
+    minOpacityRange: ClosedRange<Double>,
+    maxOpacityRange: ClosedRange<Double>
   ) {
     self.animateRotation = animateRotation
     self.animateScale = animateScale
@@ -54,6 +66,10 @@ internal class AnimationConfiguration {
     self.rotationAnimationDelayRange = rotationAnimationDelayRange
     self.scaleAnimationDelayRange = scaleAnimationDelayRange
     self.opacityAnimationDelayRange = opacityAnimationDelayRange
+    self.minScaleRange = minScaleRange
+    self.maxScaleRange = maxScaleRange
+    self.minOpacityRange = minOpacityRange
+    self.maxOpacityRange = maxOpacityRange
   }
 }
 
@@ -69,7 +85,11 @@ extension AnimationConfiguration: Equatable {
     lhs.opacityAnimationDuration == rhs.opacityAnimationDuration &&
     lhs.rotationAnimationDelayRange == rhs.rotationAnimationDelayRange &&
     lhs.scaleAnimationDelayRange == rhs.scaleAnimationDelayRange &&
-    lhs.opacityAnimationDelayRange == rhs.opacityAnimationDelayRange
+    lhs.opacityAnimationDelayRange == rhs.opacityAnimationDelayRange &&
+    lhs.minScaleRange == rhs.minScaleRange &&
+    lhs.maxScaleRange == rhs.maxScaleRange &&
+    lhs.minOpacityRange == rhs.minOpacityRange &&
+    lhs.maxOpacityRange == rhs.maxOpacityRange
   }
 }
 
@@ -86,7 +106,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -100,7 +124,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -114,7 +142,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -128,7 +160,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -142,7 +178,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -156,7 +196,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: newOpacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -170,7 +214,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: newRotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -184,7 +232,11 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: newScaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
     )
   }
 
@@ -198,7 +250,83 @@ extension AnimationConfiguration {
       opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: newOpacityAnimationDelayRange
+      opacityAnimationDelayRange: newOpacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
+    )
+  }
+
+  func withMinScaleRange(_ newMinScaleRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: newMinScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
+    )
+  }
+
+  func withMaxScaleRange(_ newMaxScaleRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: newMaxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: maxOpacityRange
+    )
+  }
+
+  func withMinOpacityRange(_ newMinOpacityRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: newMinOpacityRange,
+      maxOpacityRange: maxOpacityRange
+    )
+  }
+
+  func withMaxOpacityRange(_ newMaxOpacityRange: ClosedRange<Double>) -> AnimationConfiguration {
+    return AnimationConfiguration(
+      animateRotation: animateRotation,
+      animateScale: animateScale,
+      animateOpacity: animateOpacity,
+      rotationAnimationDuration: rotationAnimationDuration,
+      scaleAnimationDuration: scaleAnimationDuration,
+      opacityAnimationDuration: opacityAnimationDuration,
+      rotationAnimationDelayRange: rotationAnimationDelayRange,
+      scaleAnimationDelayRange: scaleAnimationDelayRange,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
+      minScaleRange: minScaleRange,
+      maxScaleRange: maxScaleRange,
+      minOpacityRange: minOpacityRange,
+      maxOpacityRange: newMaxOpacityRange
     )
   }
 }
