@@ -41,6 +41,8 @@ fileprivate struct UpdateAnimation: ViewModifier {
         var transaction = Transaction()
         transaction.disablesAnimations = true
         withTransaction(transaction) {
+          guard enabled else { return }
+
           // Changing the animation with the new duration requires a property change, so
           // flip `isAnimated` quickly.
           withAnimation(.linear(duration: 0)) { isAnimated = false }
@@ -51,6 +53,8 @@ fileprivate struct UpdateAnimation: ViewModifier {
         var transaction = Transaction()
         transaction.disablesAnimations = true
         withTransaction(transaction) {
+          guard enabled else { return }
+
           // Changing the animation with the new duration requires a property change, so
           // flip `isAnimated` quickly.
           withAnimation(.linear(duration: 0)) { isAnimated = false }
