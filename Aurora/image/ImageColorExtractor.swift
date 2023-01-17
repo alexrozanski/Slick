@@ -41,6 +41,8 @@ internal class ImageColorExtractor {
     // Expressed in 0 <= degrees <= 360
     let angle: Double
     let color: NSColor
+    // Expressed in (x, y) where 0 <= x and y <= 1.0
+    let focusPoint: CGPoint
   }
 
   struct ExtractionDebugInfo {
@@ -88,10 +90,13 @@ internal class ImageColorExtractor {
           outSampleCenterPoint: &sampleCenterPoint,
           config: config
         )
-        let topColors = buckets.topColors(with: config)
-        backgroundColors.append(BackgroundColor(angle: angle, color: topColors.first ?? .black))
 
         if let sampledImage = clippedImage, let edgeCoordinates = sampleCenterPoint {
+          let topColors = buckets.topColors(with: config)
+          let imageSize = image.size
+          backgroundColors.append(
+            BackgroundColor(angle: angle, color: topColors.first ?? .black, focusPoint: CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height))
+          )
           debugInfo.append(
             ExtractionDebugInfo.Point(
               angle: angle,

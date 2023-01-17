@@ -5,7 +5,7 @@
 //  Created by Alex Rozanski on 06/01/2023.
 //
 
-import Cocoa
+import SwiftUI
 
 internal struct BackgroundOrbViewModel: Equatable {
   // Expressed in 0 <= degrees <= 360
@@ -22,6 +22,7 @@ internal struct BackgroundOrbViewModel: Equatable {
   let scaleAnimationDelay: Double
   let minScale: Double
   let maxScale: Double
+  let scaleAnchor: UnitPoint
 
   let animateOpacity: Bool
   let opacityAnimationDuration: Double
@@ -29,7 +30,7 @@ internal struct BackgroundOrbViewModel: Equatable {
   let minOpacity: Double
   let maxOpacity: Double
 
-  init(angle: Double, color: NSColor, animationConfiguration: AnimationConfiguration) {
+  init(angle: Double, color: NSColor, focusPoint: UnitPoint, animationConfiguration: AnimationConfiguration) {
     self.angle = angle
     self.color = color
 
@@ -43,6 +44,7 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.scaleAnimationDelay = Double.random(in: animationConfiguration.scaleAnimationDelayRange)
     self.minScale = Double.random(in: animationConfiguration.minScaleRange)
     self.maxScale = Double.random(in: animationConfiguration.maxScaleRange)
+    self.scaleAnchor = focusPoint
 
     self.animateOpacity = animationConfiguration.animateOpacity
     self.opacityAnimationDuration = animationConfiguration.opacityAnimationDuration
@@ -52,7 +54,12 @@ internal struct BackgroundOrbViewModel: Equatable {
   }
 
   init(backgroundColor: ImageColorExtractor.BackgroundColor, animationConfiguration: AnimationConfiguration) {
-    self.init(angle: backgroundColor.angle, color: backgroundColor.color, animationConfiguration: animationConfiguration)
+    self.init(
+      angle: backgroundColor.angle,
+      color: backgroundColor.color,
+      focusPoint: UnitPoint(x: min(backgroundColor.focusPoint.x, 1), y: min(backgroundColor.focusPoint.y, 1)),
+      animationConfiguration: animationConfiguration
+    )
   }
 }
 
@@ -72,6 +79,7 @@ extension BackgroundOrbViewModel: Hashable {
     hasher.combine(scaleAnimationDelay)
     hasher.combine(minScale)
     hasher.combine(maxScale)
+    hasher.combine(scaleAnchor)
 
     hasher.combine(animateOpacity)
     hasher.combine(opacityAnimationDuration)

@@ -152,7 +152,7 @@ fileprivate struct Scale<Content>: View where Content: View {
 
   var body: some View {
     content()
-      .scaleEffect(isAnimating ? viewModel.minScale : viewModel.maxScale)
+      .scaleEffect(isAnimating ? viewModel.minScale : viewModel.maxScale, anchor: viewModel.scaleAnchor)
       .onAppear {
         withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
           isAnimating = true
