@@ -15,7 +15,7 @@ internal class Appearance {
   static func `default`() -> Appearance {
     return Appearance(
       blurColors: true,
-      opacity: 0.6,
+      opacity: 1.0,
       blurRadius: 48.3
     )
   }

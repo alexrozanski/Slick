@@ -18,6 +18,7 @@ struct BackgroundOrb: View {
           Circle()
             .fill(Color(cgColor: viewModel.color.cgColor))
             .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
+            .opacity(appearance.opacity)
             .transition(.opacity.animation(.easeIn(duration: 0.25)))
         }
       }
