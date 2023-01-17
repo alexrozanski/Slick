@@ -26,11 +26,12 @@ internal struct BackgroundView: View {
   @ViewBuilder private var orbs: some View {
     if let backgroundOrbs = viewModel.backgroundOrbs, showColors {
       GeometryReader { geometry in
+        let orbSize = orbSize(for: geometry.size, appearance: appearance)
         ZStack {
           ForEach(backgroundOrbs, id: \.angle) { backgroundOrb in
             BackgroundOrb(viewModel: backgroundOrb, appearance: appearance)
-              .frame(width: orbSize(for: geometry.size).width, height: orbSize(for: geometry.size).height)
-              .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle))
+              .frame(width: orbSize.width, height: orbSize.height)
+              .offset(orbCenterOffset(for: geometry.size, angle: backgroundOrb.angle, appearance: appearance))
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -39,13 +40,15 @@ internal struct BackgroundView: View {
   }
 }
 
-private func orbSize(for viewSize: CGSize) -> CGSize {
-  let sideLength = min(viewSize.width, viewSize.height) * 0.65
+private func orbSize(for viewSize: CGSize, appearance: Appearance) -> CGSize {
+  let sideLength = min(viewSize.width, viewSize.height) * appearance.orbScaleFactor
   return CGSize(width: sideLength, height: sideLength)
 }
 
-private func orbCenterOffset(for size: CGSize, angle: Double) -> CGSize {
-  let referenceSize = CGSize(width: size.width * 0.6, height: size.height * 0.6)
+private func orbCenterOffset(for size: CGSize, angle: Double, appearance: Appearance) -> CGSize {
+  // Position the orbs around an imaginary rectangle that's centered in the center of the image but has
+  // a size that is some fraction of the size of the image.
+  let referenceSize = CGSize(width: size.width * appearance.orbSpacingFactor, height: size.height * appearance.orbSpacingFactor)
   let coords = edgeCoordinates(for: angle, inRectWithSize: referenceSize)
   return CGSize(
     width: coords.x - referenceSize.width / 2.0,

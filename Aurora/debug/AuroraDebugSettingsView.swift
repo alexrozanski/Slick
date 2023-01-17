@@ -88,6 +88,14 @@ public struct AuroraDebugSettingsView: View {
       get: { appearance.blurRadius },
       set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurRadius($0) }
     )
+    let orbScaleFactor = Binding<Double>(
+      get: { appearance.orbScaleFactor },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbScaleFactor($0) }
+    )
+    let orbSpacingFactor = Binding<Double>(
+      get: { appearance.orbSpacingFactor },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbSpacingFactor($0) }
+    )
 
     VStack {
       LabelledRow {
@@ -106,6 +114,18 @@ public struct AuroraDebugSettingsView: View {
         mode: .continuous,
         valueBinding: blurRadius,
         range: (0...200)
+      )
+      SliderRow(
+        label: "Orb Scale",
+        mode: .continuous,
+        valueBinding: orbScaleFactor,
+        range: (0.1...1)
+      )
+      SliderRow(
+        label: "Orb Spacing",
+        mode: .continuous,
+        valueBinding: orbSpacingFactor,
+        range: (0.1...1)
       )
     }
   }
