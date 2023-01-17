@@ -13,16 +13,6 @@ internal struct DebugCornerView: View {
   let colors: [NSColor]?
   let focusPoint: UnitPoint
 
-  init(label: String, sampledImage: NSImage?, colors: [NSColor]?, focusPoint: UnitPoint) {
-    self.label = label
-    self.sampledImage = sampledImage
-    self.colors = colors
-    self.focusPoint = focusPoint
-
-    print(label)
-    print(focusPoint)
-  }
-
   var body: some View {
     VStack {
       Text(label).fontWeight(.semibold)
