@@ -88,6 +88,10 @@ public struct AuroraDebugSettingsView: View {
       get: { appearance.blurRadius },
       set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurRadius($0) }
     )
+    let orbRoundness = Binding<Double>(
+      get: { appearance.orbRoundness },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbRoundness($0) }
+    )
     let orbScaleFactor = Binding<Double>(
       get: { appearance.orbScaleFactor },
       set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbScaleFactor($0) }
@@ -114,6 +118,12 @@ public struct AuroraDebugSettingsView: View {
         mode: .continuous,
         valueBinding: blurRadius,
         range: (0...200)
+      )
+      SliderRow(
+        label: "Orb Roundness",
+        mode: .continuous,
+        valueBinding: orbRoundness,
+        range: (0...1)
       )
       SliderRow(
         label: "Orb Scale",

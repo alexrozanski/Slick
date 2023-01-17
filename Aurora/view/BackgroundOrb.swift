@@ -15,11 +15,14 @@ struct BackgroundOrb: View {
     Opacity(viewModel: viewModel) {
       Scale(viewModel: viewModel) {
         Rotation(viewModel: viewModel) {
-          Circle()
-            .fill(Color(cgColor: viewModel.color.cgColor))
-            .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-            .opacity(appearance.opacity)
-            .transition(.opacity.animation(.easeIn(duration: 0.25)))
+          GeometryReader { geometry in
+            Rectangle()
+              .fill(Color(cgColor: viewModel.color.cgColor))
+              .cornerRadius((geometry.size.width / 2) * appearance.orbRoundness)
+              .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
+              .opacity(appearance.opacity)
+              .transition(.opacity.animation(.easeIn(duration: 0.25)))
+          }
         }
       }
     }

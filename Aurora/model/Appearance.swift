@@ -15,8 +15,9 @@ internal class Appearance {
   static func `default`() -> Appearance {
     return Appearance(
       blurColors: true,
-      opacity: 1.0,
+      opacity: 1,
       blurRadius: 55.1,
+      orbRoundness: 1,
       orbScaleFactor: 0.4,
       orbSpacingFactor: 0.6
     )
@@ -25,6 +26,7 @@ internal class Appearance {
   let blurColors: Bool
   let opacity: Double
   let blurRadius: Double
+  let orbRoundness: Double
   let orbScaleFactor: Double
   let orbSpacingFactor: Double
 
@@ -32,12 +34,14 @@ internal class Appearance {
     blurColors: Bool,
     opacity: Double,
     blurRadius: Double,
+    orbRoundness: Double,
     orbScaleFactor: Double,
     orbSpacingFactor: Double
   ) {
     self.blurColors = blurColors
     self.opacity = opacity
     self.blurRadius = blurRadius
+    self.orbRoundness = orbRoundness
     self.orbScaleFactor = orbScaleFactor
     self.orbSpacingFactor = orbSpacingFactor
   }
@@ -50,6 +54,7 @@ extension Appearance: Equatable {
     return lhs.blurColors == rhs.blurColors &&
     lhs.opacity == rhs.opacity &&
     lhs.blurRadius == rhs.blurRadius &&
+    lhs.orbRoundness == rhs.orbRoundness &&
     lhs.orbScaleFactor == rhs.orbScaleFactor &&
     lhs.orbSpacingFactor == rhs.orbSpacingFactor
   }
@@ -63,6 +68,7 @@ extension Appearance {
       blurColors: newBlurColors,
       opacity: opacity,
       blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
       orbSpacingFactor: orbSpacingFactor
     )
@@ -73,6 +79,7 @@ extension Appearance {
       blurColors: blurColors,
       opacity: newOpacity,
       blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
       orbSpacingFactor: orbSpacingFactor
     )
@@ -83,6 +90,18 @@ extension Appearance {
       blurColors: blurColors,
       opacity: opacity,
       blurRadius: newBlurRadius,
+      orbRoundness: orbRoundness,
+      orbScaleFactor: orbScaleFactor,
+      orbSpacingFactor: orbSpacingFactor
+    )
+  }
+
+  func withOrbRoundness(_ newOrbRoundness: Double) -> Appearance {
+    return Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      orbRoundness: newOrbRoundness,
       orbScaleFactor: orbScaleFactor,
       orbSpacingFactor: orbSpacingFactor
     )
@@ -93,6 +112,7 @@ extension Appearance {
       blurColors: blurColors,
       opacity: opacity,
       blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
       orbScaleFactor: newOrbScaleFactor,
       orbSpacingFactor: orbSpacingFactor
     )
@@ -103,6 +123,7 @@ extension Appearance {
       blurColors: blurColors,
       opacity: opacity,
       blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
       orbSpacingFactor: newOrbSpacingFactor
     )
