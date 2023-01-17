@@ -26,7 +26,7 @@ internal class ImageColorExtractor {
       static let bright = ColorPrioritization(rawValue: 1 << 1)
     }
 
-    // The number of areas around the image to sample to determine colors. More sample points will give background colors that are more
+    // The number of areas around the image to sample to determine colors. More sample points will give colors that are more
     // true to the edges of the image.
     let samplePoints: Int
     // The size of the grid to split the RGB color space into when clustering colors.
@@ -37,8 +37,9 @@ internal class ImageColorExtractor {
     let colorPrioritization: ColorPrioritization
   }
 
-  struct BackgroundColor {
-    // Expressed in 0 <= degrees <= 360
+  struct ExtractedColor {
+    // Expressed in 0 <= degrees <= 360. Defines the position around the image where the color was extracted from. 0deg is the top
+    // left of the image and then sweeps round clockwise.
     let angle: Double
     let color: NSColor
     // Expressed in (x, y) where 0 <= x and y <= 1.0
@@ -59,7 +60,7 @@ internal class ImageColorExtractor {
   func extractColors(
     from image: NSImage,
     config: ExtractionConfig = .default(),
-    completion: @escaping ([BackgroundColor]) -> Void,
+    completion: @escaping ([ExtractedColor]) -> Void,
     completionQueue: DispatchQueue = .main
   ) {
     extractColors(from: image, config: config, completion: { colors, _ in
@@ -71,11 +72,11 @@ internal class ImageColorExtractor {
   func extractColors(
     from image: NSImage,
     config: ExtractionConfig = .default(),
-    completion: @escaping ([BackgroundColor], ExtractionDebugInfo) -> Void,
+    completion: @escaping ([ExtractedColor], ExtractionDebugInfo) -> Void,
     completionQueue: DispatchQueue = .main
   ) {
     DispatchQueue.global(qos: .userInitiated).async {
-      var backgroundColors = [BackgroundColor]()
+      var extractedColors = [ExtractedColor]()
       var debugInfo = [ExtractionDebugInfo.Point]()
 
       let interval = 360.0 / Double(config.samplePoints)
@@ -94,8 +95,8 @@ internal class ImageColorExtractor {
         if let sampledImage = clippedImage, let edgeCoordinates = sampleCenterPoint {
           let topColors = buckets.topColors(with: config)
           let imageSize = image.size
-          backgroundColors.append(
-            BackgroundColor(angle: angle, color: topColors.first ?? .black, focusPoint: CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height))
+          extractedColors.append(
+            ExtractedColor(angle: angle, color: topColors.first ?? .black, focusPoint: CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height))
           )
           debugInfo.append(
             ExtractionDebugInfo.Point(
@@ -109,7 +110,7 @@ internal class ImageColorExtractor {
       }
 
       completionQueue.async {
-        completion(backgroundColors, ExtractionDebugInfo(points: debugInfo))
+        completion(extractedColors, ExtractionDebugInfo(points: debugInfo))
       }
     }
   }

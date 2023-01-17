@@ -38,7 +38,7 @@ internal class AuroraViewModel: ObservableObject {
         return (image, config)
       }
       .map { (image, config) in
-        Future<([ImageColorExtractor.BackgroundColor], DebugInfo?), Never> { promise in
+        Future<([ImageColorExtractor.ExtractedColor], DebugInfo?), Never> { promise in
           self.imageColorExtractor.extractColors(from: image, config: config, completion: { colors, debugInfo in
             var wrappedColors = colors
             // Wrap the first colour around as backgroundColors is applied to an angular gradient.
@@ -52,7 +52,7 @@ internal class AuroraViewModel: ObservableObject {
 
     colorsAndDebugInfo
       .combineLatest(animationConfigurationSubject)
-      .compactMap { values -> (([ImageColorExtractor.BackgroundColor], DebugInfo?), AnimationConfiguration)? in
+      .compactMap { values -> (([ImageColorExtractor.ExtractedColor], DebugInfo?), AnimationConfiguration)? in
         let (colorsAndDebugInfo, animationConfiguration) = values
         guard let animationConfiguration else { return nil }
         return (colorsAndDebugInfo, animationConfiguration)

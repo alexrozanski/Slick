@@ -62,7 +62,7 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.maxOpacity = Double.random(in: animationConfiguration.maxOpacityRange)
   }
 
-  init(backgroundColor: ImageColorExtractor.BackgroundColor, animationConfiguration: AnimationConfiguration) {
+  init(backgroundColor: ImageColorExtractor.ExtractedColor, animationConfiguration: AnimationConfiguration) {
     self.init(
       angle: backgroundColor.angle,
       color: backgroundColor.color,
