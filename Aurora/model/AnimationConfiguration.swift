@@ -13,61 +13,65 @@ internal class AnimationConfiguration {
   static func `default`() -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: true,
-      animateScale: true,
-      animateOpacity: true,
       rotationAnimationDuration: 10.0,
-      scaleAnimationDuration: 10.0,
-      opacityAnimationDuration: 10.0,
       rotationAnimationDelayRange: 0...1,
+      animateScale: true,
+      scaleAnimationDuration: 10.0,
       scaleAnimationDelayRange: 0...1,
-      opacityAnimationDelayRange: 0...1,
       minScaleRange: 0.9...0.95,
       maxScaleRange: 1.05...1.1,
+      animateOpacity: true,
+      opacityAnimationDuration: 10.0,
+      opacityAnimationDelayRange: 0...1,
       minOpacityRange: 0.4...0.49,
       maxOpacityRange: 0.51...0.8
     )
   }
 
   let animateRotation: Bool
-  let animateScale: Bool
-  let animateOpacity: Bool
   let rotationAnimationDuration: Double
-  let scaleAnimationDuration: Double
-  let opacityAnimationDuration: Double
   let rotationAnimationDelayRange: ClosedRange<Double>
+
+  let animateScale: Bool
+  let scaleAnimationDuration: Double
   let scaleAnimationDelayRange: ClosedRange<Double>
-  let opacityAnimationDelayRange: ClosedRange<Double>
   let minScaleRange: ClosedRange<Double>
   let maxScaleRange: ClosedRange<Double>
+
+  let animateOpacity: Bool
+  let opacityAnimationDuration: Double
+  let opacityAnimationDelayRange: ClosedRange<Double>
   let minOpacityRange: ClosedRange<Double>
   let maxOpacityRange: ClosedRange<Double>
 
   init(
     animateRotation: Bool,
-    animateScale: Bool,
-    animateOpacity: Bool,
     rotationAnimationDuration: Double,
-    scaleAnimationDuration: Double,
-    opacityAnimationDuration: Double,
     rotationAnimationDelayRange: ClosedRange<Double>,
+    animateScale: Bool,
+    scaleAnimationDuration: Double,
     scaleAnimationDelayRange: ClosedRange<Double>,
-    opacityAnimationDelayRange: ClosedRange<Double>,
     minScaleRange: ClosedRange<Double>,
     maxScaleRange: ClosedRange<Double>,
+    animateOpacity: Bool,
+    opacityAnimationDuration: Double,
+    opacityAnimationDelayRange: ClosedRange<Double>,
     minOpacityRange: ClosedRange<Double>,
     maxOpacityRange: ClosedRange<Double>
   ) {
     self.animateRotation = animateRotation
-    self.animateScale = animateScale
-    self.animateOpacity = animateOpacity
     self.rotationAnimationDuration = rotationAnimationDuration
-    self.scaleAnimationDuration = scaleAnimationDuration
-    self.opacityAnimationDuration = opacityAnimationDuration
     self.rotationAnimationDelayRange = rotationAnimationDelayRange
+
+    self.animateScale = animateScale
+    self.scaleAnimationDuration = scaleAnimationDuration
     self.scaleAnimationDelayRange = scaleAnimationDelayRange
-    self.opacityAnimationDelayRange = opacityAnimationDelayRange
     self.minScaleRange = minScaleRange
     self.maxScaleRange = maxScaleRange
+
+    self.animateOpacity = animateOpacity
+    self.opacityAnimationDuration = opacityAnimationDuration
+    self.opacityAnimationDelayRange = opacityAnimationDelayRange
     self.minOpacityRange = minOpacityRange
     self.maxOpacityRange = maxOpacityRange
   }
@@ -78,16 +82,16 @@ internal class AnimationConfiguration {
 extension AnimationConfiguration: Equatable {
   static func == (lhs: AnimationConfiguration, rhs: AnimationConfiguration) -> Bool {
     return lhs.animateRotation == rhs.animateRotation &&
-    lhs.animateScale == rhs.animateScale &&
-    lhs.animateOpacity == rhs.animateOpacity &&
     lhs.rotationAnimationDuration == rhs.rotationAnimationDuration &&
-    lhs.scaleAnimationDuration == rhs.scaleAnimationDuration &&
-    lhs.opacityAnimationDuration == rhs.opacityAnimationDuration &&
     lhs.rotationAnimationDelayRange == rhs.rotationAnimationDelayRange &&
+    lhs.animateScale == rhs.animateScale &&
+    lhs.scaleAnimationDuration == rhs.scaleAnimationDuration &&
     lhs.scaleAnimationDelayRange == rhs.scaleAnimationDelayRange &&
-    lhs.opacityAnimationDelayRange == rhs.opacityAnimationDelayRange &&
     lhs.minScaleRange == rhs.minScaleRange &&
     lhs.maxScaleRange == rhs.maxScaleRange &&
+    lhs.animateOpacity == rhs.animateOpacity &&
+    lhs.opacityAnimationDuration == rhs.opacityAnimationDuration &&
+    lhs.opacityAnimationDelayRange == rhs.opacityAnimationDelayRange &&
     lhs.minOpacityRange == rhs.minOpacityRange &&
     lhs.maxOpacityRange == rhs.maxOpacityRange
   }
@@ -99,16 +103,16 @@ extension AnimationConfiguration {
   func withAnimateRotation(_ newAnimateRotation: Bool) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: newAnimateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -117,16 +121,16 @@ extension AnimationConfiguration {
   func withAnimateScale(_ newAnimateScale: Bool) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: newAnimateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: newAnimateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -135,16 +139,16 @@ extension AnimationConfiguration {
   func withAnimateOpacity(_ newAnimateOpacity: Bool) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: newAnimateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: newAnimateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -153,16 +157,16 @@ extension AnimationConfiguration {
   func withRotationAnimationDuration(_ newRotationAnimationDuration: Double) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: newRotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -171,16 +175,16 @@ extension AnimationConfiguration {
   func withScaleAnimationDuration(_ newScaleAnimationDuration: Double) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: newScaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: newScaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -189,16 +193,16 @@ extension AnimationConfiguration {
   func withOpacityAnimationDuration(_ newOpacityAnimationDuration: Double) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: newOpacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: newOpacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -207,16 +211,16 @@ extension AnimationConfiguration {
   func withRotationAnimationDelayRange(_ newRotationAnimationDelayRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: newRotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -225,16 +229,16 @@ extension AnimationConfiguration {
   func withScaleAnimationDelayRange(_ newScaleAnimationDelayRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: newScaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -243,16 +247,16 @@ extension AnimationConfiguration {
   func withOpacityAnimationDelayRange(_ newOpacityAnimationDelayRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: newOpacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: newOpacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -261,16 +265,16 @@ extension AnimationConfiguration {
   func withMinScaleRange(_ newMinScaleRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: newMinScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -279,16 +283,16 @@ extension AnimationConfiguration {
   func withMaxScaleRange(_ newMaxScaleRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: newMaxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -297,16 +301,16 @@ extension AnimationConfiguration {
   func withMinOpacityRange(_ newMinOpacityRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: newMinOpacityRange,
       maxOpacityRange: maxOpacityRange
     )
@@ -315,16 +319,16 @@ extension AnimationConfiguration {
   func withMaxOpacityRange(_ newMaxOpacityRange: ClosedRange<Double>) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
-      animateScale: animateScale,
-      animateOpacity: animateOpacity,
       rotationAnimationDuration: rotationAnimationDuration,
-      scaleAnimationDuration: scaleAnimationDuration,
-      opacityAnimationDuration: opacityAnimationDuration,
       rotationAnimationDelayRange: rotationAnimationDelayRange,
+      animateScale: animateScale,
+      scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayRange: scaleAnimationDelayRange,
-      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minScaleRange: minScaleRange,
       maxScaleRange: maxScaleRange,
+      animateOpacity: animateOpacity,
+      opacityAnimationDuration: opacityAnimationDuration,
+      opacityAnimationDelayRange: opacityAnimationDelayRange,
       minOpacityRange: minOpacityRange,
       maxOpacityRange: newMaxOpacityRange
     )
