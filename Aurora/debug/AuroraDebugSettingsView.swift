@@ -131,6 +131,10 @@ public struct AuroraDebugSettingsView: View {
       get: { animationConfiguration.rotationAnimationDelayRange },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayRange($0) }
     )
+    let rotationCenterOffset = Binding<ClosedRange<Double>>(
+      get: { animationConfiguration.rotationCenterOffsetRange },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationCenterOffsetRange($0) }
+    )
 
     VStack {
       LabelledRow {
@@ -148,6 +152,11 @@ public struct AuroraDebugSettingsView: View {
         label: "Delay",
         valueBinding: rotationAnimationDelay,
         range: 0...1
+      )
+      RangeSliderRow(
+        label: "Center Offset",
+        valueBinding: rotationCenterOffset,
+        range: 0...0.1
       )
     }
   }
@@ -180,16 +189,6 @@ public struct AuroraDebugSettingsView: View {
       } content: {
         Toggle("", isOn: animateScale)
       }
-      RangeSliderRow(
-        label: "Min Scale",
-        valueBinding: minScale,
-        range: 0.5...0.99
-      )
-      RangeSliderRow(
-        label: "Max Scale",
-        valueBinding: maxScale,
-        range: 1.01...1.5
-      )
       SliderRow(
         label: "Duration",
         mode: .continuous,
@@ -200,6 +199,16 @@ public struct AuroraDebugSettingsView: View {
         label: "Delay",
         valueBinding: scaleAnimationDelay,
         range: 0...1
+      )
+      RangeSliderRow(
+        label: "Min Scale",
+        valueBinding: minScale,
+        range: 0.5...0.99
+      )
+      RangeSliderRow(
+        label: "Max Scale",
+        valueBinding: maxScale,
+        range: 1.01...1.5
       )
     }
   }
@@ -232,16 +241,6 @@ public struct AuroraDebugSettingsView: View {
       } content: {
         Toggle("", isOn: animateOpacity)
       }
-      RangeSliderRow(
-        label: "Min Opacity",
-        valueBinding: minOpacity,
-        range: 0...0.49
-      )
-      RangeSliderRow(
-        label: "Max Opacity",
-        valueBinding: maxOpacity,
-        range: 0.51...1
-      )
       SliderRow(
         label: "Duration",
         mode: .continuous,
@@ -252,6 +251,16 @@ public struct AuroraDebugSettingsView: View {
         label: "Delay",
         valueBinding: opacityAnimationDelay,
         range: 0...1
+      )
+      RangeSliderRow(
+        label: "Min Opacity",
+        valueBinding: minOpacity,
+        range: 0...0.49
+      )
+      RangeSliderRow(
+        label: "Max Opacity",
+        valueBinding: maxOpacity,
+        range: 0.51...1
       )
     }
   }

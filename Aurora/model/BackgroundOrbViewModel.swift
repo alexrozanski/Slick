@@ -38,7 +38,10 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.rotationAnimationDuration = animationConfiguration.rotationAnimationDuration
     self.rotationAnimationDelay = Double.random(in: animationConfiguration.rotationAnimationDelayRange)
 
-    let offsetFromCenter = CGPoint(x: Double.random(in: 0.01...0.05), y: Double.random(in: 0.01...0.05))
+    let offsetFromCenter = CGPoint(
+      x: Double.random(in: animationConfiguration.rotationCenterOffsetRange),
+      y: Double.random(in: animationConfiguration.rotationCenterOffsetRange)
+    )
     // Since the focus point's coordinates are in 0...1, translate these to be in -0.5...0.5 and use this to get a sign to multiply
     // the offset by, so we rotate towards the focus point of the orb.
     let offsetMultiplier = CGPoint(x: (focusPoint.x - 0.5).sign == .minus ? -1 : 1, y: (focusPoint.y - 0.5).sign == .minus ? -1 : 1)
