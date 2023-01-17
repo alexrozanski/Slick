@@ -23,7 +23,8 @@ public struct AuroraDebugView: View {
                   DebugCornerView(
                     label: position.label,
                     sampledImage: position.image,
-                    colors: position.colors
+                    colors: position.colors,
+                    focusPoint: position.focusPoint
                   )
                 } else {
                   Spacer()

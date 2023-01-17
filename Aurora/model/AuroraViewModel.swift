@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Cocoa
+import SwiftUI
 
 internal class AuroraViewModel: ObservableObject {
   var animationConfiguration: AnimationConfiguration? {
@@ -91,7 +91,8 @@ fileprivate extension DebugInfo {
             angle: $0.angle,
             image: $0.sampledImage,
             colors: $0.topColors,
-            edgeCoordinates: $0.edgeCoordinates
+            edgeCoordinates: $0.edgeCoordinates,
+            focusPoint: UnitPoint(x: $0.focusPoint.x, y: $0.focusPoint.y)
           )
         }
     )

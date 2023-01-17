@@ -13,6 +13,7 @@ internal class DebugInfo: ObservableObject {
     let image: NSImage
     let colors: [NSColor]
     let edgeCoordinates: CGPoint
+    let focusPoint: UnitPoint
   }
 
   // Returns a grid of positions indexed by y-values and x-values.

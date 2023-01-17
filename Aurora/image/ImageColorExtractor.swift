@@ -52,6 +52,8 @@ internal class ImageColorExtractor {
       let sampledImage: NSImage
       let topColors: [NSColor]
       let edgeCoordinates: CGPoint
+      // Expressed in (x, y) where 0 <= x and y <= 1.0
+      let focusPoint: CGPoint
     }
 
     let points: [Point]
@@ -95,15 +97,18 @@ internal class ImageColorExtractor {
         if let sampledImage = clippedImage, let edgeCoordinates = sampleCenterPoint {
           let topColors = buckets.topColors(with: config)
           let imageSize = image.size
+          let focusPoint = CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height)
+
           extractedColors.append(
-            ExtractedColor(angle: angle, color: topColors.first ?? .black, focusPoint: CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height))
+            ExtractedColor(angle: angle, color: topColors.first ?? .black, focusPoint: focusPoint)
           )
           debugInfo.append(
             ExtractionDebugInfo.Point(
               angle: angle,
               sampledImage: sampledImage,
               topColors: Array(topColors[0...min(topColors.count - 1, 4)].uniqued()),
-              edgeCoordinates: edgeCoordinates
+              edgeCoordinates: edgeCoordinates,
+              focusPoint: focusPoint
             )
           )
         }
@@ -165,7 +170,7 @@ internal class ImageColorExtractor {
       }
     }
 
-    outImage = sampleImage.flatMap { annotatedSampleImage($0, markerPoint: focusPoint) }
+    outImage = sampleImage
     outSampleCenterPoint = sampleCenterPoint
 
     return buckets.flatMap { $0 }.flatMap { $0 }
@@ -219,39 +224,6 @@ private func sampleRect(for centerPoint: CGPoint, in image: NSImage, sampleSideL
   let sampleRect = NSRect(origin: origin, size: CGSize(width: sideLength, height: sideLength))
   outCenterPoint = CGPoint(x: centerPoint.x - sampleRect.minX, y: centerPoint.y - sampleRect.minY)
   return sampleRect
-}
-
-let annotationMarkerRadius = Double(5)
-private func annotatedSampleImage(_ sampleImage: NSImage, markerPoint: CGPoint) -> NSImage? {
-  let sampleImageSize = sampleImage.size
-  return NSImage(
-    size: CGSize(width: sampleImageSize.width + 2 * annotationMarkerRadius, height: sampleImageSize.height + 2 * annotationMarkerRadius),
-    flipped: false
-  ) { rect in
-    guard let context = NSGraphicsContext.current?.cgContext else { return false }
-    context.saveGState()
-    defer {
-      context.restoreGState()
-    }
-
-    sampleImage.draw(at: CGPoint(x: annotationMarkerRadius, y: annotationMarkerRadius), from: .zero, operation: .sourceOver, fraction: 1.0)
-
-    // Flip y coordinates.
-    let circleRect = NSRect(
-      x: markerPoint.x,
-      y: sampleImageSize.height - markerPoint.y,
-      width: annotationMarkerRadius * 2,
-      height: annotationMarkerRadius * 2
-    )
-    NSColor.white.setFill()
-    NSColor.black.withAlphaComponent(0.2).setStroke()
-    // Inset by (0.5, 0.5) so that stroke falls on the edge of the bounding rect
-    let path = NSBezierPath(ovalIn: circleRect.insetBy(dx: 0.5, dy: 0.5))
-    path.fill()
-    path.stroke()
-
-    return true
-  }
 }
 
 // MARK: - Mutations
