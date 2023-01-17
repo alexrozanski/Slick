@@ -12,9 +12,9 @@ struct BackgroundOrb: View {
   let appearance: Appearance
 
   var body: some View {
-    Rotation(viewModel: viewModel) {
-      Opacity(viewModel: viewModel) {
-        Scale(viewModel: viewModel) {
+    Opacity(viewModel: viewModel) {
+      Scale(viewModel: viewModel) {
+        Rotation(viewModel: viewModel) {
           Circle()
             .fill(Color(cgColor: viewModel.color.cgColor))
             .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)

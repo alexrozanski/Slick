@@ -37,7 +37,13 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.animateRotation = animationConfiguration.animateRotation
     self.rotationAnimationDuration = animationConfiguration.rotationAnimationDuration
     self.rotationAnimationDelay = Double.random(in: animationConfiguration.rotationAnimationDelayRange)
-    self.rotationCenterOffset = CGPoint(x: Double.random(in: 0.45...0.495), y: Double.random(in: 0.45...0.495))
+
+    let offsetFromCenter = CGPoint(x: Double.random(in: 0.01...0.05), y: Double.random(in: 0.01...0.05))
+    // Since the focus point's coordinates are in 0...1, translate these to be in -0.5...0.5 and use this to get a sign to multiply
+    // the offset by, so we rotate towards the focus point of the orb.
+    let offsetMultiplier = CGPoint(x: (focusPoint.x - 0.5).sign == .minus ? -1 : 1, y: (focusPoint.y - 0.5).sign == .minus ? -1 : 1)
+
+    self.rotationCenterOffset = CGPoint(x: 0.5 + offsetFromCenter.x * offsetMultiplier.x, y: 0.5 + offsetFromCenter.y  * offsetMultiplier.y)
 
     self.animateScale = animationConfiguration.animateScale
     self.scaleAnimationDuration = animationConfiguration.scaleAnimationDuration
