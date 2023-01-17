@@ -13,9 +13,9 @@ internal class AnimationConfiguration {
   static func `default`() -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: true,
-      rotationAnimationDuration: 10.0,
+      rotationAnimationDuration: 4.4,
       rotationAnimationDelayRange: 0...1,
-      rotationCenterOffsetRange: 0.01...0.05,
+      rotationCenterOffsetRange: 0.01...0.06,
       animateScale: true,
       scaleAnimationDuration: 10.0,
       scaleAnimationDelayRange: 0...1,
@@ -24,8 +24,8 @@ internal class AnimationConfiguration {
       animateOpacity: true,
       opacityAnimationDuration: 10.0,
       opacityAnimationDelayRange: 0...1,
-      minOpacityRange: 0.4...0.49,
-      maxOpacityRange: 0.51...0.8
+      minOpacityRange: 0.4...0.47,
+      maxOpacityRange: 0.66...0.95
     )
   }
 
