@@ -14,8 +14,8 @@ struct BackgroundOrb: View {
   var body: some View {
     Opacity(viewModel: viewModel) {
       Scale(viewModel: viewModel) {
-        Rotation(viewModel: viewModel) {
-          GeometryReader { geometry in
+        GeometryReader { geometry in
+          Rotation(viewModel: viewModel, size: geometry.size) {
             Rectangle()
               .fill(Color(cgColor: viewModel.color.cgColor))
               .cornerRadius((geometry.size.width / 2) * appearance.orbRoundness)
@@ -36,33 +36,16 @@ fileprivate struct UpdateAnimation: ViewModifier {
   let duration: Double
   let delay: Double
   @Binding var isAnimated: Bool
+
   let animationBuilder: (_ duration: Double, _ delay: Double) -> Animation
 
   func body(content: Content) -> some View {
     content
       .onChange(of: duration) { newDuration in
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-          guard enabled else { return }
-
-          // Changing the animation with the new duration requires a property change, so
-          // flip `isAnimated` quickly.
-          withAnimation(.linear(duration: 0)) { isAnimated = false }
-          withAnimation(animationBuilder(newDuration, delay).delay(0.1)) { isAnimated = true }
-        }
+        updateAnimation(enabled: enabled, duration: newDuration, delay: delay)
       }
       .onChange(of: delay) { newDelay in
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-          guard enabled else { return }
-
-          // Changing the animation with the new duration requires a property change, so
-          // flip `isAnimated` quickly.
-          withAnimation(.linear(duration: 0)) { isAnimated = false }
-          withAnimation(animationBuilder(duration, newDelay).delay(0.1)) { isAnimated = true }
-        }
+        updateAnimation(enabled: enabled, duration: duration, delay: newDelay)
       }
       .onChange(of: enabled) { newValue in
         var transaction = Transaction()
@@ -70,7 +53,7 @@ fileprivate struct UpdateAnimation: ViewModifier {
         withTransaction(transaction) {
           if newValue {
             withAnimation(animationBuilder(duration, delay)) {
-              isAnimated = newValue
+              isAnimated = true
             }
           } else {
             withAnimation(.linear(duration: 0)) {
@@ -80,37 +63,110 @@ fileprivate struct UpdateAnimation: ViewModifier {
         }
       }
   }
+
+  private func updateAnimation(enabled: Bool, duration: Double, delay: Double) {
+    var transaction = Transaction()
+    transaction.disablesAnimations = true
+    withTransaction(transaction) {
+      guard enabled else { return }
+
+      // Changing the animation with the new duration requires a property change, so
+      // flip `isAnimated` quickly.
+      withAnimation(.linear(duration: 0)) { isAnimated = false }
+      withAnimation(animationBuilder(duration, delay).delay(0.1)) { isAnimated = true }
+    }
+  }
 }
 
-fileprivate struct Rotation<Content>: View where Content: View {
+fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
   let viewModel: BackgroundOrbViewModel
+  let size: CGSize
   let content: ContentBuilder<Content>
 
-  @State private var isRotating = false
+  private let animationKey = "pathAnimation"
 
-  private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: false).delay(delay)
+  class Coordinator {
+    struct AnimationProperties: Equatable {
+      let duration: Double
+      let delay: Double
+    }
+
+    var hostingController: NSHostingController<Content>?
+    var animationProperties: AnimationProperties
+
+    init(animationProperties: AnimationProperties) {
+      self.animationProperties = animationProperties
+    }
   }
 
-  var body: some View {
-    content()
-      .rotationEffect(
-        .degrees(isRotating ? 360 : 0),
-        anchor: UnitPoint(x: viewModel.rotationCenterOffset.x, y: viewModel.rotationCenterOffset.y)
-      )
-      .animation(animation(duration: viewModel.rotationAnimationDuration, delay: viewModel.rotationAnimationDelay), value: isRotating)
-      .onAppear {
-        isRotating = true
-      }
-      .modifier(
-        UpdateAnimation(
-          enabled: viewModel.animateRotation,
-          duration: viewModel.rotationAnimationDuration,
-          delay: viewModel.rotationAnimationDelay,
-          isAnimated: $isRotating,
-          animationBuilder: animation
-        )
-      )
+  func makeCoordinator() -> Coordinator {
+    // Read and set the animation properties in makeNSView() as these may not be correct yet.
+    return Coordinator(animationProperties: .init(duration: 0, delay: 0))
+  }
+
+  func makeNSView(context: Context) -> NSView {
+    let view = NSView(frame: NSRect(origin: .zero, size: size))
+    view.translatesAutoresizingMaskIntoConstraints = false
+
+    let hostingController = NSHostingController(rootView: content())
+    hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(hostingController.view)
+    NSLayoutConstraint.activate([
+      hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+      hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+      hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+    ])
+
+    context.coordinator.hostingController = hostingController
+    context.coordinator.animationProperties = currentAnimationProperties()
+
+    view.wantsLayer = true
+    view.layer?.masksToBounds = false
+
+    replaceAnimation(with: context.coordinator.animationProperties, in: view)
+
+    return view
+  }
+
+  func updateNSView(_ nsView: NSView, context: Context) {
+    context.coordinator.hostingController?.rootView = content()
+
+    let newAnimationProperties = currentAnimationProperties()
+    if newAnimationProperties != context.coordinator.animationProperties {
+      context.coordinator.animationProperties = newAnimationProperties
+      replaceAnimation(with: newAnimationProperties, in: nsView)
+    }
+  }
+
+  private func replaceAnimation(with properties: Rotation<Content>.Coordinator.AnimationProperties, in nsView: NSView) {
+    nsView.layer?.removeAnimation(forKey: animationKey)
+
+    let circlePathRadius = Double(10)
+    let path = CGPath(
+      ellipseIn: CGRect(
+        origin: CGPoint(x: -circlePathRadius, y: -0.5 * circlePathRadius),
+        size: CGSize(width: circlePathRadius, height: circlePathRadius)),
+      transform: nil
+    )
+
+    // It's easier to use CA to move along this path rather than rebuild this in SwiftUI.
+    let animation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.position))
+    animation.duration = properties.duration
+    animation.repeatCount = .greatestFiniteMagnitude
+    animation.path = path
+    animation.isRemovedOnCompletion = false
+    animation.fillMode = .forwards
+    animation.timingFunction = CAMediaTimingFunction(name: .linear)
+    // Prevent delay between repeats
+    animation.calculationMode = .paced
+    animation.beginTime = CACurrentMediaTime() + properties.delay
+
+    nsView.layer?.add(animation, forKey: animationKey)
+  }
+
+  private func currentAnimationProperties() -> Rotation<Content>.Coordinator.AnimationProperties {
+    return .init(duration: viewModel.rotationAnimationDuration, delay: viewModel.rotationAnimationDelay)
   }
 }
 
@@ -119,17 +175,17 @@ fileprivate struct Opacity<Content>: View where Content: View {
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
+    return .linear(duration: duration).repeatForever(autoreverses: true).delay(3 * abs(cos(viewModel.angle * .pi / 180)))
   }
 
-  @State private var isAnimating = false
+  @State private var isAnimated = false
 
   var body: some View {
     content()
-      .opacity(isAnimating ? viewModel.minOpacity : viewModel.maxOpacity)
+      .opacity(isAnimated ? viewModel.minOpacity : viewModel.maxOpacity)
       .onAppear {
         withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
-          isAnimating = true
+          isAnimated = true
         }
       }
       .modifier(
@@ -137,7 +193,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
           enabled: viewModel.animateOpacity,
           duration: viewModel.opacityAnimationDuration,
           delay: viewModel.opacityAnimationDelay,
-          isAnimated: $isAnimating,
+          isAnimated: $isAnimated,
           animationBuilder: animation
         )
       )
@@ -152,14 +208,14 @@ fileprivate struct Scale<Content>: View where Content: View {
     return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
   }
 
-  @State private var isAnimating = false
+  @State private var isAnimated = false
 
   var body: some View {
     content()
-      .scaleEffect(isAnimating ? viewModel.minScale : viewModel.maxScale, anchor: viewModel.scaleAnchor)
+      .scaleEffect(isAnimated ? viewModel.minScale : viewModel.maxScale, anchor: viewModel.scaleAnchor)
       .onAppear {
         withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
-          isAnimating = true
+          isAnimated = true
         }
       }
       .modifier(
@@ -167,7 +223,7 @@ fileprivate struct Scale<Content>: View where Content: View {
           enabled: viewModel.animateScale,
           duration: viewModel.scaleAnimationDuration,
           delay: viewModel.scaleAnimationDelay,
-          isAnimated: $isAnimating,
+          isAnimated: $isAnimated,
           animationBuilder: animation
         )
       )
