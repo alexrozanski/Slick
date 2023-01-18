@@ -36,7 +36,7 @@ internal struct BackgroundOrbViewModel: Equatable {
 
     self.animateRotation = animationConfiguration.animateRotation
     self.rotationAnimationDuration = animationConfiguration.rotationAnimationDuration
-    self.rotationAnimationDelay = Double.random(in: animationConfiguration.rotationAnimationDelayRange)
+    self.rotationAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.rotationAnimationDuration, delayOffset: animationConfiguration.rotationAnimationDelayOffset)
 
     let offsetFromCenter = CGPoint(
       x: Double.random(in: animationConfiguration.rotationCenterOffsetRange),
@@ -50,14 +50,14 @@ internal struct BackgroundOrbViewModel: Equatable {
 
     self.animateScale = animationConfiguration.animateScale
     self.scaleAnimationDuration = animationConfiguration.scaleAnimationDuration
-    self.scaleAnimationDelay = Double.random(in: animationConfiguration.scaleAnimationDelayRange)
+    self.scaleAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.scaleAnimationDuration, delayOffset: animationConfiguration.scaleAnimationDelayOffset)
     self.minScale = Double.random(in: animationConfiguration.minScaleRange)
     self.maxScale = Double.random(in: animationConfiguration.maxScaleRange)
     self.scaleAnchor = focusPoint
 
     self.animateOpacity = animationConfiguration.animateOpacity
     self.opacityAnimationDuration = animationConfiguration.opacityAnimationDuration
-    self.opacityAnimationDelay = Double.random(in: animationConfiguration.opacityAnimationDelayRange)
+    self.opacityAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.opacityAnimationDuration, delayOffset: animationConfiguration.opacityAnimationDelayOffset)
     self.minOpacity = Double.random(in: animationConfiguration.minOpacityRange)
     self.maxOpacity = Double.random(in: animationConfiguration.maxOpacityRange)
   }
@@ -70,6 +70,10 @@ internal struct BackgroundOrbViewModel: Equatable {
       animationConfiguration: animationConfiguration
     )
   }
+}
+
+private func makeDelay(for angle: Double, animationDuration: Double, delayOffset: ClosedRange<Double>) -> Double {
+  return animationDuration * abs(cos((angle + Double.random(in: delayOffset)) * .pi / 180))
 }
 
 extension BackgroundOrbViewModel: Hashable {

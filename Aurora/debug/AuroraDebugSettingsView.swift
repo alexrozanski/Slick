@@ -158,8 +158,8 @@ public struct AuroraDebugSettingsView: View {
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.rotationAnimationDelayRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayRange($0) }
+      get: { animationConfiguration.rotationAnimationDelayOffset },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayOffset($0) }
     )
     let centerOffset = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.rotationCenterOffsetRange },
@@ -181,7 +181,7 @@ public struct AuroraDebugSettingsView: View {
       RangeSliderRow(
         label: "Delay",
         valueBinding: delay,
-        range: 0...1
+        range: -50...50
       )
       RangeSliderRow(
         label: "Center Offset",
@@ -201,8 +201,8 @@ public struct AuroraDebugSettingsView: View {
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.scaleAnimationDelayRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayRange($0) }
+      get: { animationConfiguration.scaleAnimationDelayOffset },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayOffset($0) }
     )
     let minScale = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.minScaleRange },
@@ -228,7 +228,7 @@ public struct AuroraDebugSettingsView: View {
       RangeSliderRow(
         label: "Delay",
         valueBinding: delay,
-        range: 0...1
+        range: -50...50
       )
       RangeSliderRow(
         label: "Min Scale",
@@ -253,8 +253,8 @@ public struct AuroraDebugSettingsView: View {
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.opacityAnimationDelayRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayRange($0) }
+      get: { animationConfiguration.opacityAnimationDelayOffset },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayOffset($0) }
     )
     let minOpacity = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.minOpacityRange },
@@ -280,7 +280,7 @@ public struct AuroraDebugSettingsView: View {
       RangeSliderRow(
         label: "Delay",
         valueBinding: delay,
-        range: 0...1
+        range: -50...50
       )
       RangeSliderRow(
         label: "Min Opacity",
@@ -349,7 +349,7 @@ fileprivate struct RangeSliderRow: View {
           Text(valueBinding.wrappedValue.upperBound, format: .number.precision(.fractionLength(2)))
           Text(")")
         }
-        .frame(width: 80, alignment: .leading)
+        .frame(width: 100, alignment: .leading)
       }
     }
   }
@@ -377,7 +377,7 @@ fileprivate struct SliderRow: View {
         Slider(value: valueBinding, in: range)
       }
       Text(valueBinding.wrappedValue, format: .number.precision(.fractionLength(1)))
-        .frame(width: 80, alignment: .leading)
+        .frame(width: 100, alignment: .leading)
     }
   }
 }

@@ -175,14 +175,14 @@ fileprivate struct Opacity<Content>: View where Content: View {
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: true).delay(3 * abs(cos(viewModel.angle * .pi / 180)))
+    return .linear(duration: duration).repeatForever(autoreverses: true).delay(viewModel.opacityAnimationDelay)
   }
 
   @State private var isAnimated = false
 
   var body: some View {
     content()
-      .opacity(isAnimated ? viewModel.minOpacity : viewModel.maxOpacity)
+      .opacity(isAnimated ? viewModel.maxOpacity : viewModel.minOpacity)
       .onAppear {
         withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
           isAnimated = true
