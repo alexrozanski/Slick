@@ -22,10 +22,10 @@ internal class AnimationConfiguration {
       minScaleRange: 0.9...0.95,
       maxScaleRange: 1.05...1.1,
       animateOpacity: true,
-      opacityAnimationDuration: 10.0,
+      opacityAnimationDuration: 7.3,
       opacityAnimationDelayOffset: -30...30,
-      minOpacityRange: 0.4...0.47,
-      maxOpacityRange: 0.66...0.95
+      minOpacityRange: 0.19...0.25,
+      maxOpacityRange: 0.85...0.91
     )
   }
 

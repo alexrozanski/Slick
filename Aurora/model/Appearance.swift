@@ -16,9 +16,9 @@ internal class Appearance {
     return Appearance(
       blurColors: true,
       opacity: 1,
-      blurRadius: 55.1,
-      orbRoundness: 1,
-      orbScaleFactor: 0.4,
+      blurRadius: 52.1,
+      orbRoundness: 0.5,
+      orbScaleFactor: 0.6,
       orbSpacingFactor: 0.6
     )
   }
