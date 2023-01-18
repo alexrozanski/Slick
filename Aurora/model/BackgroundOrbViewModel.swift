@@ -72,6 +72,10 @@ internal struct BackgroundOrbViewModel: Equatable {
   }
 }
 
+// Parameterise the delay based on the orb's position in the background (defined by its 'angle'). Add some random
+// noise to offset this angle in `delayOffset`, otherwise the phasing of the animations looks too regular because of
+// symmetric values in abs(cos()). Scale this to `animationDuration` so that all animations are delayed to within a
+// full cycle of the animation.
 private func makeDelay(for angle: Double, animationDuration: Double, delayOffset: ClosedRange<Double>) -> Double {
   return animationDuration * abs(cos((angle + Double.random(in: delayOffset)) * .pi / 180))
 }
