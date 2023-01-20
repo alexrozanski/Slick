@@ -15,7 +15,7 @@ internal class AnimationConfiguration {
       animateRotation: true,
       rotationAnimationDuration: 4.4,
       rotationAnimationDelayOffset: -30...30,
-      rotationCenterOffsetRange: 0.01...0.06,
+      rotationPathRadius: 20.6,
       animateScale: true,
       scaleAnimationDuration: 10.0,
       scaleAnimationDelayOffset: -30...30,
@@ -32,7 +32,7 @@ internal class AnimationConfiguration {
   let animateRotation: Bool
   let rotationAnimationDuration: Double
   let rotationAnimationDelayOffset: ClosedRange<Double>
-  let rotationCenterOffsetRange: ClosedRange<Double>
+  let rotationPathRadius: Double
 
   let animateScale: Bool
   let scaleAnimationDuration: Double
@@ -50,7 +50,7 @@ internal class AnimationConfiguration {
     animateRotation: Bool,
     rotationAnimationDuration: Double,
     rotationAnimationDelayOffset: ClosedRange<Double>,
-    rotationCenterOffsetRange: ClosedRange<Double>,
+    rotationPathRadius: Double,
     animateScale: Bool,
     scaleAnimationDuration: Double,
     scaleAnimationDelayOffset: ClosedRange<Double>,
@@ -65,7 +65,7 @@ internal class AnimationConfiguration {
     self.animateRotation = animateRotation
     self.rotationAnimationDuration = rotationAnimationDuration
     self.rotationAnimationDelayOffset = rotationAnimationDelayOffset
-    self.rotationCenterOffsetRange = rotationCenterOffsetRange
+    self.rotationPathRadius = rotationPathRadius
 
     self.animateScale = animateScale
     self.scaleAnimationDuration = scaleAnimationDuration
@@ -88,7 +88,7 @@ extension AnimationConfiguration: Equatable {
     return lhs.animateRotation == rhs.animateRotation &&
     lhs.rotationAnimationDuration == rhs.rotationAnimationDuration &&
     lhs.rotationAnimationDelayOffset == rhs.rotationAnimationDelayOffset &&
-    lhs.rotationCenterOffsetRange == rhs.rotationCenterOffsetRange &&
+    lhs.rotationPathRadius == rhs.rotationPathRadius &&
     lhs.animateScale == rhs.animateScale &&
     lhs.scaleAnimationDuration == rhs.scaleAnimationDuration &&
     lhs.scaleAnimationDelayOffset == rhs.scaleAnimationDelayOffset &&
@@ -110,7 +110,7 @@ extension AnimationConfiguration {
       animateRotation: newAnimateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -129,7 +129,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: newRotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -148,7 +148,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: newRotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -162,12 +162,12 @@ extension AnimationConfiguration {
     )
   }
 
-  func withRotationCenterOffsetRange(_ newRotationCenterOffsetRange: ClosedRange<Double>) -> AnimationConfiguration {
+  func withRotationPathRadius(_ newRotationPathRadius: Double) -> AnimationConfiguration {
     return AnimationConfiguration(
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: newRotationCenterOffsetRange,
+      rotationPathRadius: newRotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -190,7 +190,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: newAnimateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -209,7 +209,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: newScaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -228,7 +228,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: newScaleAnimationDelayOffset,
@@ -247,7 +247,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -266,7 +266,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -289,7 +289,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -308,7 +308,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -327,7 +327,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -346,7 +346,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,
@@ -365,7 +365,7 @@ extension AnimationConfiguration {
       animateRotation: animateRotation,
       rotationAnimationDuration: rotationAnimationDuration,
       rotationAnimationDelayOffset: rotationAnimationDelayOffset,
-      rotationCenterOffsetRange: rotationCenterOffsetRange,
+      rotationPathRadius: rotationPathRadius,
       animateScale: animateScale,
       scaleAnimationDuration: scaleAnimationDuration,
       scaleAnimationDelayOffset: scaleAnimationDelayOffset,

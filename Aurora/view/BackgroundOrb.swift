@@ -12,18 +12,40 @@ struct BackgroundOrb: View {
   let appearance: Appearance
 
   var body: some View {
-    Opacity(viewModel: viewModel) {
-      Scale(viewModel: viewModel) {
-        GeometryReader { geometry in
-          Rotation(viewModel: viewModel, size: geometry.size) {
-            Rectangle()
-              .fill(Color(cgColor: viewModel.color.cgColor))
-              .cornerRadius((geometry.size.width / 2) * appearance.orbRoundness)
-              .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-              .opacity(appearance.opacity)
-              .transition(.opacity.animation(.easeIn(duration: 0.25)))
+    ZStack {
+      Opacity(viewModel: viewModel) {
+        Scale(viewModel: viewModel) {
+          GeometryReader { geometry in
+            Rotation(viewModel: viewModel, size: geometry.size) {
+              ZStack {
+                Rectangle()
+                  .fill(Color(cgColor: viewModel.color.cgColor))
+                  .cornerRadius((geometry.size.width / 2) * appearance.orbRoundness)
+                  .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
+                  .opacity(appearance.opacity)
+                  .transition(.opacity.animation(.easeIn(duration: 0.25)))
+                if appearance.showDebugOverlays {
+                  Circle()
+                    .fill(.yellow)
+                    .frame(width: 5, height: 5)
+                }
+              }
+            }
           }
         }
+      }
+      if appearance.showDebugOverlays {
+        Circle()
+          .fill(.red)
+          .frame(width: 5, height: 5)
+        Circle()
+          .stroke(.blue)
+          .frame(width: viewModel.rotationPathRadius * 2, height: viewModel.rotationPathRadius * 2)
+          .offset(CGSize(width: viewModel.rotationCenterOffset.width, height: viewModel.rotationCenterOffset.height))
+        Circle()
+          .fill(.blue)
+          .frame(width: 5, height: 5)
+          .offset(CGSize(width: viewModel.rotationCenterOffset.width, height: viewModel.rotationCenterOffset.height))
       }
     }
   }
@@ -53,7 +75,7 @@ fileprivate struct UpdateAnimation: ViewModifier {
         withTransaction(transaction) {
           if newValue {
             withAnimation(animationBuilder(duration, delay)) {
-              isAnimated = true
+              isAnimated = newValue
             }
           } else {
             withAnimation(.linear(duration: 0)) {
@@ -87,8 +109,11 @@ fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
 
   class Coordinator {
     struct AnimationProperties: Equatable {
+      let enabled: Bool
       let duration: Double
       let delay: Double
+      let pathRadius: Double
+      let centerOffset: CGSize
     }
 
     var hostingController: NSHostingController<Content>?
@@ -101,7 +126,7 @@ fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
 
   func makeCoordinator() -> Coordinator {
     // Read and set the animation properties in makeNSView() as these may not be correct yet.
-    return Coordinator(animationProperties: .init(duration: 0, delay: 0))
+    return Coordinator(animationProperties: .init(enabled: true, duration: 0, delay: 0, pathRadius: 0, centerOffset: .zero))
   }
 
   func makeNSView(context: Context) -> NSView {
@@ -142,13 +167,18 @@ fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
   private func replaceAnimation(with properties: Rotation<Content>.Coordinator.AnimationProperties, in nsView: NSView) {
     nsView.layer?.removeAnimation(forKey: animationKey)
 
-    let circlePathRadius = Double(10)
-    let path = CGPath(
-      ellipseIn: CGRect(
-        origin: CGPoint(x: -circlePathRadius, y: -0.5 * circlePathRadius),
-        size: CGSize(width: circlePathRadius, height: circlePathRadius)),
-      transform: nil
-    )
+    guard properties.enabled else { return }
+
+    let initialPath = CGMutablePath()
+    initialPath.addArc(center: .zero, radius: properties.pathRadius, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
+
+    let angle = Double(90)
+    let angleInRadians = angle * (.pi / 180)
+    let rotation = CGAffineTransform(rotationAngle: angleInRadians)
+    let translation = CGAffineTransform(translationX: properties.centerOffset.width, y: -properties.centerOffset.height)
+
+    var transform = rotation.concatenating(translation)
+    let path = initialPath.copy(using: &transform)
 
     // It's easier to use CA to move along this path rather than rebuild this in SwiftUI.
     let animation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.position))
@@ -166,7 +196,13 @@ fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
   }
 
   private func currentAnimationProperties() -> Rotation<Content>.Coordinator.AnimationProperties {
-    return .init(duration: viewModel.rotationAnimationDuration, delay: viewModel.rotationAnimationDelay)
+    return .init(
+      enabled: viewModel.animateRotation,
+      duration: viewModel.rotationAnimationDuration,
+      delay: viewModel.rotationAnimationDelay,
+      pathRadius: viewModel.rotationPathRadius,
+      centerOffset: viewModel.rotationCenterOffset
+    )
   }
 }
 

@@ -15,7 +15,8 @@ internal struct BackgroundOrbViewModel: Equatable {
   let animateRotation: Bool
   let rotationAnimationDuration: Double
   let rotationAnimationDelay: Double
-  let rotationCenterOffset: CGPoint
+  let rotationPathRadius: Double
+  let rotationCenterOffset: CGSize
 
   let animateScale: Bool
   let scaleAnimationDuration: Double
@@ -36,17 +37,14 @@ internal struct BackgroundOrbViewModel: Equatable {
 
     self.animateRotation = animationConfiguration.animateRotation
     self.rotationAnimationDuration = animationConfiguration.rotationAnimationDuration
-    self.rotationAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.rotationAnimationDuration, delayOffset: animationConfiguration.rotationAnimationDelayOffset)
+    self.rotationAnimationDelay = 2 * sin(angle / 4 * .pi / 180) // makeDelay(for: angle, animationDuration: animationConfiguration.rotationAnimationDuration, delayOffset: animationConfiguration.rotationAnimationDelayOffset)
 
-    let offsetFromCenter = CGPoint(
-      x: Double.random(in: animationConfiguration.rotationCenterOffsetRange),
-      y: Double.random(in: animationConfiguration.rotationCenterOffsetRange)
-    )
     // Since the focus point's coordinates are in 0...1, translate these to be in -0.5...0.5 and use this to get a sign to multiply
     // the offset by, so we rotate towards the focus point of the orb.
-    let offsetMultiplier = CGPoint(x: (focusPoint.x - 0.5).sign == .minus ? -1 : 1, y: (focusPoint.y - 0.5).sign == .minus ? -1 : 1)
+    let offsetMultiplier = CGSize(width: 2 * (focusPoint.x - 0.5), height: 2 * (focusPoint.y - 0.5))
 
-    self.rotationCenterOffset = CGPoint(x: 0.5 + offsetFromCenter.x * offsetMultiplier.x, y: 0.5 + offsetFromCenter.y  * offsetMultiplier.y)
+    self.rotationPathRadius = animationConfiguration.rotationPathRadius
+    self.rotationCenterOffset = CGSize(width: animationConfiguration.rotationPathRadius * offsetMultiplier.width, height: animationConfiguration.rotationPathRadius * offsetMultiplier.height)
 
     self.animateScale = animationConfiguration.animateScale
     self.scaleAnimationDuration = animationConfiguration.scaleAnimationDuration
@@ -88,8 +86,9 @@ extension BackgroundOrbViewModel: Hashable {
     hasher.combine(animateRotation)
     hasher.combine(rotationAnimationDuration)
     hasher.combine(rotationAnimationDelay)
-    hasher.combine(rotationCenterOffset.x)
-    hasher.combine(rotationCenterOffset.y)
+    hasher.combine(rotationPathRadius)
+    hasher.combine(rotationCenterOffset.width)
+    hasher.combine(rotationCenterOffset.height)
 
     hasher.combine(animateScale)
     hasher.combine(scaleAnimationDuration)

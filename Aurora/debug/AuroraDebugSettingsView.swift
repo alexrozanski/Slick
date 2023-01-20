@@ -26,10 +26,18 @@ public struct AuroraDebugSettingsView: View {
         .fontWeight(.semibold)
         .padding(.top, 12)
       appearanceSettings
-      Text("Animation")
+      Text("Animation: Rotation")
         .fontWeight(.semibold)
         .padding(.top, 12)
-      animationSettings
+      rotationAnimationSettings
+      Text("Animation: Scale")
+        .fontWeight(.semibold)
+        .padding(.top, 12)
+      scaleAnimationSettings
+      Text("Animation: Opacity")
+        .fontWeight(.semibold)
+        .padding(.top, 12)
+      opacityAnimationSettings
 
     }
     .environment(\.labelWidth, labelWidth)
@@ -100,6 +108,14 @@ public struct AuroraDebugSettingsView: View {
       get: { appearance.orbSpacingFactor },
       set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbSpacingFactor($0) }
     )
+    let showImage = Binding<Bool>(
+      get: { appearance.showImage },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withShowImage($0) }
+    )
+    let showDebugOverlays = Binding<Bool>(
+      get: { appearance.showDebugOverlays },
+      set: { internalDataHolder.appearance = internalDataHolder.appearance.withShowDebugOverlays($0) }
+    )
 
     VStack {
       LabelledRow {
@@ -137,14 +153,16 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: orbSpacingFactor,
         range: (0.1...1)
       )
-    }
-  }
-
-  @ViewBuilder var animationSettings: some View {
-    VStack(spacing: 32) {
-      rotationAnimationSettings
-      scaleAnimationSettings
-      opacityAnimationSettings
+      LabelledRow {
+        Text("Show Image")
+      } content: {
+        Toggle("", isOn: showImage)
+      }
+      LabelledRow {
+        Text("Debug Overlays")
+      } content: {
+        Toggle("", isOn: showDebugOverlays)
+      }
     }
   }
 
@@ -161,9 +179,9 @@ public struct AuroraDebugSettingsView: View {
       get: { animationConfiguration.rotationAnimationDelayOffset },
       set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayOffset($0) }
     )
-    let centerOffset = Binding<ClosedRange<Double>>(
-      get: { animationConfiguration.rotationCenterOffsetRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationCenterOffsetRange($0) }
+    let pathRadius = Binding<Double>(
+      get: { animationConfiguration.rotationPathRadius },
+      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationPathRadius($0) }
     )
 
     VStack {
@@ -183,10 +201,11 @@ public struct AuroraDebugSettingsView: View {
         valueBinding: delay,
         range: -50...50
       )
-      RangeSliderRow(
-        label: "Center Offset",
-        valueBinding: centerOffset,
-        range: 0...0.1
+      SliderRow(
+        label: "Path Radius",
+        mode: .continuous,
+        valueBinding: pathRadius,
+        range: 10...50
       )
     }
   }
@@ -376,7 +395,7 @@ fileprivate struct SliderRow: View {
       case .continuous:
         Slider(value: valueBinding, in: range)
       }
-      Text(valueBinding.wrappedValue, format: .number.precision(.fractionLength(1)))
+      Text(valueBinding.wrappedValue, format: .number.precision(.fractionLength(2)))
         .frame(width: 100, alignment: .leading)
     }
   }

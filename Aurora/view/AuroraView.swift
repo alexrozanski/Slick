@@ -38,6 +38,7 @@ public struct AuroraView<Image>: View where Image: View {
   @MainActor public var body: some View {
     if let image = image {
       imageView(image)
+        .opacity(appearance.showImage ? 1 : 0)
         .onChange(of: image) { newImage in
           viewModel.setImage(newImage)
         }

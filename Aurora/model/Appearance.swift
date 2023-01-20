@@ -19,7 +19,9 @@ internal class Appearance {
       blurRadius: 52.1,
       orbRoundness: 0.5,
       orbScaleFactor: 0.6,
-      orbSpacingFactor: 0.6
+      orbSpacingFactor: 0.5,
+      showImage: true,
+      showDebugOverlays: false
     )
   }
 
@@ -29,6 +31,8 @@ internal class Appearance {
   let orbRoundness: Double
   let orbScaleFactor: Double
   let orbSpacingFactor: Double
+  let showImage: Bool
+  let showDebugOverlays: Bool
 
   init(
     blurColors: Bool,
@@ -36,7 +40,9 @@ internal class Appearance {
     blurRadius: Double,
     orbRoundness: Double,
     orbScaleFactor: Double,
-    orbSpacingFactor: Double
+    orbSpacingFactor: Double,
+    showImage: Bool,
+    showDebugOverlays: Bool
   ) {
     self.blurColors = blurColors
     self.opacity = opacity
@@ -44,6 +50,8 @@ internal class Appearance {
     self.orbRoundness = orbRoundness
     self.orbScaleFactor = orbScaleFactor
     self.orbSpacingFactor = orbSpacingFactor
+    self.showImage = showImage
+    self.showDebugOverlays = showDebugOverlays
   }
 }
 
@@ -56,7 +64,9 @@ extension Appearance: Equatable {
     lhs.blurRadius == rhs.blurRadius &&
     lhs.orbRoundness == rhs.orbRoundness &&
     lhs.orbScaleFactor == rhs.orbScaleFactor &&
-    lhs.orbSpacingFactor == rhs.orbSpacingFactor
+    lhs.orbSpacingFactor == rhs.orbSpacingFactor &&
+    lhs.showImage == rhs.showImage &&
+    lhs.showDebugOverlays == rhs.showDebugOverlays
   }
 }
 
@@ -70,7 +80,9 @@ extension Appearance {
       blurRadius: blurRadius,
       orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
-      orbSpacingFactor: orbSpacingFactor
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
     )
   }
 
@@ -81,7 +93,9 @@ extension Appearance {
       blurRadius: blurRadius,
       orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
-      orbSpacingFactor: orbSpacingFactor
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
     )
   }
 
@@ -92,7 +106,9 @@ extension Appearance {
       blurRadius: newBlurRadius,
       orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
-      orbSpacingFactor: orbSpacingFactor
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
     )
   }
 
@@ -103,7 +119,9 @@ extension Appearance {
       blurRadius: blurRadius,
       orbRoundness: newOrbRoundness,
       orbScaleFactor: orbScaleFactor,
-      orbSpacingFactor: orbSpacingFactor
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
     )
   }
 
@@ -114,7 +132,9 @@ extension Appearance {
       blurRadius: blurRadius,
       orbRoundness: orbRoundness,
       orbScaleFactor: newOrbScaleFactor,
-      orbSpacingFactor: orbSpacingFactor
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
     )
   }
 
@@ -125,7 +145,35 @@ extension Appearance {
       blurRadius: blurRadius,
       orbRoundness: orbRoundness,
       orbScaleFactor: orbScaleFactor,
-      orbSpacingFactor: newOrbSpacingFactor
+      orbSpacingFactor: newOrbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: showDebugOverlays
+    )
+  }
+
+  func withShowImage(_ newShowImage: Bool) -> Appearance {
+    return Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
+      orbScaleFactor: orbScaleFactor,
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: newShowImage,
+      showDebugOverlays: showDebugOverlays
+    )
+  }
+
+  func withShowDebugOverlays(_ newShowDebugOverlays: Bool) -> Appearance {
+    return Appearance(
+      blurColors: blurColors,
+      opacity: opacity,
+      blurRadius: blurRadius,
+      orbRoundness: orbRoundness,
+      orbScaleFactor: orbScaleFactor,
+      orbSpacingFactor: orbSpacingFactor,
+      showImage: showImage,
+      showDebugOverlays: newShowDebugOverlays
     )
   }
 }
