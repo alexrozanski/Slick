@@ -172,9 +172,9 @@ fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
     let initialPath = CGMutablePath()
     initialPath.addArc(center: .zero, radius: properties.pathRadius, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
 
-    let angle = Double(90)
-    let angleInRadians = angle * (.pi / 180)
-    let rotation = CGAffineTransform(rotationAngle: angleInRadians)
+    // Adjust `angle` so it sweeps anticlockwise, then offset to match the path's angle.
+    let adjustedAngle = (360 - viewModel.angle) - 405
+    let rotation = CGAffineTransform(rotationAngle: adjustedAngle * (.pi / 180))
     let translation = CGAffineTransform(translationX: properties.centerOffset.width, y: -properties.centerOffset.height)
 
     var transform = rotation.concatenating(translation)
