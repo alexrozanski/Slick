@@ -53,53 +53,6 @@ struct BackgroundOrb: View {
 
 fileprivate typealias ContentBuilder<Content> = () -> Content
 
-fileprivate struct UpdateAnimation: ViewModifier {
-  let enabled: Bool
-  let duration: Double
-  let delay: Double
-  @Binding var isAnimated: Bool
-
-  let animationBuilder: (_ duration: Double, _ delay: Double) -> Animation
-
-  func body(content: Content) -> some View {
-    content
-      .onChange(of: duration) { newDuration in
-        updateAnimation(enabled: enabled, duration: newDuration, delay: delay)
-      }
-      .onChange(of: delay) { newDelay in
-        updateAnimation(enabled: enabled, duration: duration, delay: newDelay)
-      }
-      .onChange(of: enabled) { newValue in
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-          if newValue {
-            withAnimation(animationBuilder(duration, delay)) {
-              isAnimated = newValue
-            }
-          } else {
-            withAnimation(.linear(duration: 0)) {
-              isAnimated = false
-            }
-          }
-        }
-      }
-  }
-
-  private func updateAnimation(enabled: Bool, duration: Double, delay: Double) {
-    var transaction = Transaction()
-    transaction.disablesAnimations = true
-    withTransaction(transaction) {
-      guard enabled else { return }
-
-      // Changing the animation with the new duration requires a property change, so
-      // flip `isAnimated` quickly.
-      withAnimation(.linear(duration: 0)) { isAnimated = false }
-      withAnimation(animationBuilder(duration, delay).delay(0.1)) { isAnimated = true }
-    }
-  }
-}
-
 fileprivate struct Rotation<Content>: NSViewRepresentable where Content: View {
   let viewModel: BackgroundOrbViewModel
   let size: CGSize
@@ -214,14 +167,14 @@ fileprivate struct Opacity<Content>: View where Content: View {
     return .linear(duration: duration).repeatForever(autoreverses: true).delay(viewModel.opacityAnimationDelay)
   }
 
-  @State private var isAnimated = false
+  @State private var animationStep = Double(0)
 
   var body: some View {
     content()
-      .opacity(isAnimated ? viewModel.maxOpacity : viewModel.minOpacity)
+      .opacity(animationStep * (viewModel.maxOpacity - viewModel.minOpacity) + viewModel.minOpacity)
       .onAppear {
         withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
-          isAnimated = true
+          animationStep = 1
         }
       }
       .modifier(
@@ -229,7 +182,7 @@ fileprivate struct Opacity<Content>: View where Content: View {
           enabled: viewModel.animateOpacity,
           duration: viewModel.opacityAnimationDuration,
           delay: viewModel.opacityAnimationDelay,
-          isAnimated: $isAnimated,
+          step: $animationStep,
           animationBuilder: animation
         )
       )
@@ -244,14 +197,14 @@ fileprivate struct Scale<Content>: View where Content: View {
     return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
   }
 
-  @State private var isAnimated = false
+  @State private var animationStep = Double(0)
 
   var body: some View {
     content()
-      .scaleEffect(isAnimated ? viewModel.minScale : viewModel.maxScale, anchor: viewModel.scaleAnchor)
+      .scaleEffect(animationStep * (viewModel.maxScale - viewModel.minScale) + viewModel.minScale, anchor: viewModel.scaleAnchor)
       .onAppear {
         withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
-          isAnimated = true
+          animationStep = 1
         }
       }
       .modifier(
@@ -259,7 +212,7 @@ fileprivate struct Scale<Content>: View where Content: View {
           enabled: viewModel.animateScale,
           duration: viewModel.scaleAnimationDuration,
           delay: viewModel.scaleAnimationDelay,
-          isAnimated: $isAnimated,
+          step: $animationStep,
           animationBuilder: animation
         )
       )

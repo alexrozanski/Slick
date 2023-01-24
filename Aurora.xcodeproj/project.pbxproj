@@ -32,6 +32,7 @@
 		823CBB9A2973594B00CA5CDD /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB992973594B00CA5CDD /* Appearance.swift */; };
 		823CBB9C2973596400CA5CDD /* AnimationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */; };
 		823CBBA629749EDD00CA5CDD /* RangeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */; };
+		823CBBA829807E6300CA5CDD /* UpdateAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CBBA729807E6300CA5CDD /* UpdateAnimation.swift */; };
 		82947D912968D3BB00BBA872 /* AuroraSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */; };
 		82947D932968D3BB00BBA872 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82947D922968D3BB00BBA872 /* ContentView.swift */; };
 		82947D952968D3BC00BBA872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82947D942968D3BC00BBA872 /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		823CBB992973594B00CA5CDD /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		823CBB9B2973596400CA5CDD /* AnimationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConfiguration.swift; sourceTree = "<group>"; };
 		823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderView.swift; sourceTree = "<group>"; };
+		823CBBA729807E6300CA5CDD /* UpdateAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAnimation.swift; sourceTree = "<group>"; };
 		82947D8E2968D3BB00BBA872 /* Aurora Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82947D902968D3BB00BBA872 /* AuroraSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSampleApp.swift; sourceTree = "<group>"; };
 		82947D922968D3BB00BBA872 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				821933AB295DF8B500B47BFB /* AuroraView.swift */,
 				821933F22964C55B00B47BFB /* BackgroundView.swift */,
 				823CBB97296B81E100CA5CDD /* BackgroundOrb.swift */,
+				823CBBA729807E6300CA5CDD /* UpdateAnimation.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				823CBB9A2973594B00CA5CDD /* Appearance.swift in Sources */,
 				821933AC295DF8B500B47BFB /* AuroraView.swift in Sources */,
 				821933D1295DFFD200B47BFB /* Bucket.swift in Sources */,
+				823CBBA829807E6300CA5CDD /* UpdateAnimation.swift in Sources */,
 				82947DAD2968F87100BBA872 /* BackgroundOrbViewModel.swift in Sources */,
 				823CBB9C2973596400CA5CDD /* AnimationConfiguration.swift in Sources */,
 				821933CA295DFE2100B47BFB /* NSImage+Bitmap.swift in Sources */,
