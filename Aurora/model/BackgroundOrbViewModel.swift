@@ -21,6 +21,7 @@ internal struct BackgroundOrbViewModel: Equatable {
   let animateScale: Bool
   let scaleAnimationDuration: Double
   let scaleAnimationDelay: Double
+  let scaleAnimationStartingStep: Double
   let minScale: Double
   let maxScale: Double
   let scaleAnchor: UnitPoint
@@ -28,6 +29,7 @@ internal struct BackgroundOrbViewModel: Equatable {
   let animateOpacity: Bool
   let opacityAnimationDuration: Double
   let opacityAnimationDelay: Double
+  let opacityAnimationStartingStep: Double
   let minOpacity: Double
   let maxOpacity: Double
 
@@ -46,6 +48,7 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.animateScale = animationConfiguration.animateScale
     self.scaleAnimationDuration = animationConfiguration.scaleAnimationDuration
     self.scaleAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.scaleAnimationDuration, delayOffset: animationConfiguration.scaleAnimationDelayOffset)
+    self.scaleAnimationStartingStep = Double.random(in: 0...1)
     self.minScale = Double.random(in: animationConfiguration.minScaleRange)
     self.maxScale = Double.random(in: animationConfiguration.maxScaleRange)
     self.scaleAnchor = focusPoint
@@ -53,6 +56,7 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.animateOpacity = animationConfiguration.animateOpacity
     self.opacityAnimationDuration = animationConfiguration.opacityAnimationDuration
     self.opacityAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.opacityAnimationDuration, delayOffset: animationConfiguration.opacityAnimationDelayOffset)
+    self.opacityAnimationStartingStep = Double.random(in: 0...1)
     self.minOpacity = Double.random(in: animationConfiguration.minOpacityRange)
     self.maxOpacity = Double.random(in: animationConfiguration.maxOpacityRange)
   }

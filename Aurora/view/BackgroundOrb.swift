@@ -164,28 +164,30 @@ fileprivate struct Opacity<Content>: View where Content: View {
   let content: ContentBuilder<Content>
 
   private func animation(duration: Double, delay: Double) -> Animation {
-    return .linear(duration: duration).repeatForever(autoreverses: true).delay(viewModel.opacityAnimationDelay)
+    return .linear(duration: duration).repeatForever(autoreverses: false).delay(viewModel.opacityAnimationDelay)
   }
 
-  @State private var animationStep = Double(0)
+  @State private var step = Double(0)
 
   var body: some View {
-    content()
-      .opacity(animationStep * (viewModel.maxOpacity - viewModel.minOpacity) + viewModel.minOpacity)
-      .onAppear {
-        withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
-          animationStep = 1
+    StepAnimatedView(step: step, startingStep: viewModel.opacityAnimationStartingStep, behavior: .oscillating) { animatedStep in
+      content()
+        .opacity(animatedStep * (viewModel.maxOpacity - viewModel.minOpacity) + viewModel.minOpacity)
+        .onAppear {
+          withAnimation(animation(duration: viewModel.opacityAnimationDuration, delay: viewModel.opacityAnimationDelay)) {
+            step = 1
+          }
         }
-      }
-      .modifier(
-        UpdateAnimation(
-          enabled: viewModel.animateOpacity,
-          duration: viewModel.opacityAnimationDuration,
-          delay: viewModel.opacityAnimationDelay,
-          step: $animationStep,
-          animationBuilder: animation
+        .modifier(
+          UpdateAnimation(
+            enabled: viewModel.animateOpacity,
+            duration: viewModel.opacityAnimationDuration,
+            delay: viewModel.opacityAnimationDelay,
+            step: $step,
+            animationBuilder: animation
+          )
         )
-      )
+    }
   }
 }
 
@@ -197,24 +199,29 @@ fileprivate struct Scale<Content>: View where Content: View {
     return .linear(duration: duration).repeatForever(autoreverses: true).delay(delay)
   }
 
-  @State private var animationStep = Double(0)
+  @State private var step = Double(0)
 
   var body: some View {
-    content()
-      .scaleEffect(animationStep * (viewModel.maxScale - viewModel.minScale) + viewModel.minScale, anchor: viewModel.scaleAnchor)
-      .onAppear {
-        withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
-          animationStep = 1
-        }
-      }
-      .modifier(
-        UpdateAnimation(
-          enabled: viewModel.animateScale,
-          duration: viewModel.scaleAnimationDuration,
-          delay: viewModel.scaleAnimationDelay,
-          step: $animationStep,
-          animationBuilder: animation
+    StepAnimatedView(step: step, startingStep: viewModel.scaleAnimationStartingStep, behavior: .oscillating) { animatedStep in
+      content()
+        .scaleEffect(
+          animatedStep * (viewModel.maxScale - viewModel.minScale) + viewModel.minScale,
+          anchor: viewModel.scaleAnchor
         )
-      )
+        .onAppear {
+          withAnimation(animation(duration: viewModel.scaleAnimationDuration, delay: viewModel.scaleAnimationDelay)) {
+            step = 1
+          }
+        }
+        .modifier(
+          UpdateAnimation(
+            enabled: viewModel.animateScale,
+            duration: viewModel.scaleAnimationDuration,
+            delay: viewModel.scaleAnimationDelay,
+            step: $step,
+            animationBuilder: animation
+          )
+        )
+    }
   }
 }
