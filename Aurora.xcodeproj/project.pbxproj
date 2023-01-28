@@ -23,7 +23,7 @@
 		821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DD295E1DD800B47BFB /* DebugCornerView.swift */; };
 		821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */; };
 		821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */; };
-		821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* InternalDataHolder.swift */; };
+		821933ED295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift */; };
 		821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F02964BAE900B47BFB /* NSColor+Hex.swift */; };
 		821933F32964C55B00B47BFB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F22964C55B00B47BFB /* BackgroundView.swift */; };
 		821933F52964C57B00B47BFB /* AuroraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F42964C57B00B47BFB /* AuroraViewModel.swift */; };
@@ -88,7 +88,7 @@
 		821933E1295E207600B47BFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		821933E2295E237200B47BFB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugSettingsView.swift; sourceTree = "<group>"; };
-		821933EC295FD9F400B47BFB /* InternalDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDataHolder.swift; sourceTree = "<group>"; };
+		821933EC295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfigurationHolder.swift; sourceTree = "<group>"; };
 		821933F02964BAE900B47BFB /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
 		821933F22964C55B00B47BFB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		821933F42964C57B00B47BFB /* AuroraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraViewModel.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				821933C8295DFE1500B47BFB /* extension */,
 				821933F62964CB7B00B47BFB /* geometry */,
 				821933CB295DFF5600B47BFB /* image */,
-				821933EB295FD9E500B47BFB /* internal */,
+				821933EB295FD9E500B47BFB /* environment */,
 				82947DAB2968F86300BBA872 /* model */,
 				821933C7295DFDE900B47BFB /* view */,
 			);
@@ -243,12 +243,12 @@
 			path = debug;
 			sourceTree = "<group>";
 		};
-		821933EB295FD9E500B47BFB /* internal */ = {
+		821933EB295FD9E500B47BFB /* environment */ = {
 			isa = PBXGroup;
 			children = (
-				821933EC295FD9F400B47BFB /* InternalDataHolder.swift */,
+				821933EC295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift */,
 			);
-			path = internal;
+			path = environment;
 			sourceTree = "<group>";
 		};
 		821933F62964CB7B00B47BFB /* geometry */ = {
@@ -495,7 +495,7 @@
 				821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */,
 				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
 				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
-				821933ED295FD9F400B47BFB /* InternalDataHolder.swift in Sources */,
+				821933ED295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift in Sources */,
 				823CBBAA2985CD5000CA5CDD /* StepAnimatedView.swift in Sources */,
 				821933F82964CB8E00B47BFB /* EdgeCoordinates.swift in Sources */,
 				821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */,

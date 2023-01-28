@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct AuroraDebugSettingsView: View {
-  @Environment(\.internalDataHolder) var internalDataHolder
+  @Environment(\.environmentConfigurationHolder) var environmentConfigurationHolder
   @Environment(\.extractionConfig) var extractionConfig
   @Environment(\.auroraAppearance) var appearance
   @Environment(\.auroraAnimationConfiguration) var animationConfiguration
@@ -50,15 +50,15 @@ public struct AuroraDebugSettingsView: View {
   @ViewBuilder var imageExtractionSettings: some View {
     let samplePoints = Binding<Double>(
       get: { Double(extractionConfig.samplePoints) },
-      set: { internalDataHolder.extractionConfig = internalDataHolder.extractionConfig.withSamplePoints(Int($0)) }
+      set: { environmentConfigurationHolder.extractionConfig = environmentConfigurationHolder.extractionConfig.withSamplePoints(Int($0)) }
     )
     let gridSize = Binding<Double>(
       get: { Double(extractionConfig.gridSize) },
-      set: { internalDataHolder.extractionConfig = internalDataHolder.extractionConfig.withGridSize(Int($0)) }
+      set: { environmentConfigurationHolder.extractionConfig = environmentConfigurationHolder.extractionConfig.withGridSize(Int($0)) }
     )
     let sampleImageSideLength = Binding<Double>(
       get: { Double(extractionConfig.sampleImageSideLength) },
-      set: { internalDataHolder.extractionConfig = internalDataHolder.extractionConfig.withSampleImageSideLength(Int($0)) }
+      set: { environmentConfigurationHolder.extractionConfig = environmentConfigurationHolder.extractionConfig.withSampleImageSideLength(Int($0)) }
     )
 
     VStack {
@@ -86,35 +86,35 @@ public struct AuroraDebugSettingsView: View {
   @ViewBuilder var appearanceSettings: some View {
     let blurColors = Binding<Bool>(
       get: { appearance.blurColors },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurColors($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withBlurColors($0) }
     )
     let opacity = Binding<Double>(
       get: { appearance.opacity },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOpacity($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withOpacity($0) }
     )
     let blurRadius = Binding<Double>(
       get: { appearance.blurRadius },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withBlurRadius($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withBlurRadius($0) }
     )
     let orbRoundness = Binding<Double>(
       get: { appearance.orbRoundness },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbRoundness($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withOrbRoundness($0) }
     )
     let orbScaleFactor = Binding<Double>(
       get: { appearance.orbScaleFactor },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbScaleFactor($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withOrbScaleFactor($0) }
     )
     let orbSpacingFactor = Binding<Double>(
       get: { appearance.orbSpacingFactor },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withOrbSpacingFactor($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withOrbSpacingFactor($0) }
     )
     let showImage = Binding<Bool>(
       get: { appearance.showImage },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withShowImage($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withShowImage($0) }
     )
     let showDebugOverlays = Binding<Bool>(
       get: { appearance.showDebugOverlays },
-      set: { internalDataHolder.appearance = internalDataHolder.appearance.withShowDebugOverlays($0) }
+      set: { environmentConfigurationHolder.appearance = environmentConfigurationHolder.appearance.withShowDebugOverlays($0) }
     )
 
     VStack {
@@ -169,19 +169,19 @@ public struct AuroraDebugSettingsView: View {
   @ViewBuilder var rotationAnimationSettings: some View {
     let animate = Binding<Bool>(
       get: { animationConfiguration.animateRotation },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateRotation($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withAnimateRotation($0) }
     )
     let duration = Binding<Double>(
       get: { animationConfiguration.rotationAnimationDuration },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDuration($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withRotationAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.rotationAnimationDelayOffset },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationAnimationDelayOffset($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withRotationAnimationDelayOffset($0) }
     )
     let pathRadius = Binding<Double>(
       get: { animationConfiguration.rotationPathRadius },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withRotationPathRadius($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withRotationPathRadius($0) }
     )
 
     VStack {
@@ -213,23 +213,23 @@ public struct AuroraDebugSettingsView: View {
   @ViewBuilder var scaleAnimationSettings: some View {
     let animate = Binding<Bool>(
       get: { animationConfiguration.animateScale },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateScale($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withAnimateScale($0) }
     )
     let duration = Binding<Double>(
       get: { animationConfiguration.scaleAnimationDuration },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDuration($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withScaleAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.scaleAnimationDelayOffset },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withScaleAnimationDelayOffset($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withScaleAnimationDelayOffset($0) }
     )
     let minScale = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.minScaleRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMinScaleRange($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withMinScaleRange($0) }
     )
     let maxScale = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.maxScaleRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMaxScaleRange($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withMaxScaleRange($0) }
     )
 
     VStack {
@@ -265,23 +265,23 @@ public struct AuroraDebugSettingsView: View {
   @ViewBuilder var opacityAnimationSettings: some View {
     let animate = Binding<Bool>(
       get: { animationConfiguration.animateOpacity },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withAnimateOpacity($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withAnimateOpacity($0) }
     )
     let duration = Binding<Double>(
       get: { animationConfiguration.opacityAnimationDuration },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDuration($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withOpacityAnimationDuration($0) }
     )
     let delay = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.opacityAnimationDelayOffset },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withOpacityAnimationDelayOffset($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withOpacityAnimationDelayOffset($0) }
     )
     let minOpacity = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.minOpacityRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMinOpacityRange($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withMinOpacityRange($0) }
     )
     let maxOpacity = Binding<ClosedRange<Double>>(
       get: { animationConfiguration.maxOpacityRange },
-      set: { internalDataHolder.animationConfiguration = internalDataHolder.animationConfiguration.withMaxOpacityRange($0) }
+      set: { environmentConfigurationHolder.animationConfiguration = environmentConfigurationHolder.animationConfiguration.withMaxOpacityRange($0) }
     )
 
     VStack {

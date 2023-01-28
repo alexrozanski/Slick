@@ -17,8 +17,8 @@ public struct AuroraView<Image>: View where Image: View {
 
   @StateObject private var viewModel: AuroraViewModel
 
-  // Use this for writes to properties of objects on internalDataHolder.
-  @Environment(\.internalDataHolder) private var internalDataHolder
+  // Use this for writes to properties of objects on environmentConfigurationHolder.
+  @Environment(\.environmentConfigurationHolder) private var environmentConfigurationHolder
 
   // Use these for reads as they will be reactive.
   @Environment(\.extractionConfig) private var extractionConfig
@@ -42,11 +42,11 @@ public struct AuroraView<Image>: View where Image: View {
         .onChange(of: image) { newImage in
           viewModel.setImage(newImage)
         }
-        .onReceive(internalDataHolder.$extractionConfig, perform: { newConfig in
+        .onReceive(environmentConfigurationHolder.$extractionConfig, perform: { newConfig in
           viewModel.setConfig(newConfig)
         })
         .onReceive(viewModel.$debugInfo, perform: { debugInfo in
-          internalDataHolder.debugInfo = debugInfo
+          environmentConfigurationHolder.debugInfo = debugInfo
         })
         .onAppear {
           viewModel.animationConfiguration = animationConfiguration

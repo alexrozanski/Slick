@@ -1,5 +1,5 @@
 //
-//  InternalDataHolder.swift
+//  EnvironmentConfigurationHolder.swift
 //  Aurora
 //
 //  Created by Alex Rozanski on 30/12/2022.
@@ -10,15 +10,15 @@ import Combine
 
 // Holds a internal data which can be injected into the environment at the top and used to propagate
 // data upwards from below and shared amongst internal components.
-internal class InternalDataHolder: ObservableObject {
+internal class EnvironmentConfigurationHolder: ObservableObject {
   @Published var debugInfo: DebugInfo?
   @Published var extractionConfig: ImageColorExtractor.ExtractionConfig = .default()
   @Published var appearance: Appearance = .default()
   @Published var animationConfiguration: AnimationConfiguration = .default()
 }
 
-internal struct InternalDataHolderKey: EnvironmentKey {
-  static var defaultValue = InternalDataHolder()
+internal struct EnvironmentConfigurationHolderKey: EnvironmentKey {
+  static var defaultValue = EnvironmentConfigurationHolder()
 }
 
 internal struct DebugInfoKey: EnvironmentKey {
@@ -38,9 +38,9 @@ internal struct AuroraAnimationConfigurationKey: EnvironmentKey {
 }
 
 internal extension EnvironmentValues {
-  var internalDataHolder: InternalDataHolder {
-    get { self[InternalDataHolderKey.self] }
-    set { self[InternalDataHolderKey.self] = newValue }
+  var environmentConfigurationHolder: EnvironmentConfigurationHolder {
+    get { self[EnvironmentConfigurationHolderKey.self] }
+    set { self[EnvironmentConfigurationHolderKey.self] = newValue }
   }
 
   var debugInfo: DebugInfo? {
