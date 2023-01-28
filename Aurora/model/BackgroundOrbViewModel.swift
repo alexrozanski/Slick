@@ -56,7 +56,11 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.animateOpacity = animationConfiguration.animateOpacity
     self.opacityAnimationDuration = animationConfiguration.opacityAnimationDuration
     self.opacityAnimationDelay = makeDelay(for: angle, animationDuration: animationConfiguration.opacityAnimationDuration, delayOffset: animationConfiguration.opacityAnimationDelayOffset)
-    self.opacityAnimationStartingStep = Double.random(in: 0...1)
+
+    // Bias starting opacity towards 1.0 for brighter colours as this gives a nicer starting appearance.
+    let startingOpacityStep = min(exp(Double(color.brightnessComponent)) - 1, 1)
+    self.opacityAnimationStartingStep = max(min(startingOpacityStep + Double.random(in: -0.2...0.2), 1), 0)
+
     self.minOpacity = Double.random(in: animationConfiguration.minOpacityRange)
     self.maxOpacity = Double.random(in: animationConfiguration.maxOpacityRange)
   }
