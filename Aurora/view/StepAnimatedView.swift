@@ -39,11 +39,16 @@ internal struct StepAnimatedView<Content>: View, Animatable where Content: View 
       // be within 0...1.
       let currentStep = (step + startingStep).truncatingRemainder(dividingBy: 1.0)
       // Since we start anywhere from 0...1 and want to cycle from an output value of 0...1 smoothly
-      // repeatedly, map our `currentStep` value onto `sin(step * .pi)` which will cycle from 0...1
-      // smoothly no matter where we start (since it is symmetrical on the x-axis from 0...pi). Since
-      // this is a sin() curve it will add some additional smoothing to the animation but this should
-      // be fine.
-      let animatedStep = sin(currentStep * .pi)
+      // repeatedly, map our `currentStep` value onto `y = 0.5 - |x - 0.5|` which will cycle from 0...1
+      // smoothly no matter where we start (since it is symmetrical about the y-axis from 0...1):
+      //
+      //    ^
+      // 0.5|  ^
+      //    | / \
+      //    |/   \
+      //----+--+--+>
+      //    | 0.5 1
+      let animatedStep = 0.5 - abs(currentStep - 0.5)
       content(animatedStep)
     }
   }
