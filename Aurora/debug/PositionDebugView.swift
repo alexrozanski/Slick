@@ -1,5 +1,5 @@
 //
-//  DebugCornerView.swift
+//  PositionDebugView.swift
 //  Aurora
 //
 //  Created by Alex Rozanski on 29/12/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-internal struct DebugCornerView: View {
+internal struct PositionDebugView: View {
   let label: String
   let sampledImage: NSImage?
   let colors: [NSColor]?
@@ -31,7 +31,7 @@ internal struct DebugCornerView: View {
         .aspectRatio(1, contentMode: .fit)
         .frame(maxWidth: sampledImage.size.width / screenScale(), maxHeight: sampledImage.size.height / screenScale())
       }
-      DebugCornerColorsView(colors: colors)
+      PositionDebugColorsView(colors: colors)
     }
   }
 }

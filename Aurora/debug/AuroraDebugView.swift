@@ -20,7 +20,7 @@ public struct AuroraDebugView: View {
             GridRow {
               ForEach(Array(row.enumerated()), id: \.offset) { index, position in
                 if let position {
-                  DebugCornerView(
+                  PositionDebugView(
                     label: position.label,
                     sampledImage: position.image,
                     colors: position.colors,

@@ -20,8 +20,8 @@
 		821933D6295E0E8B00B47BFB /* AuroraDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */; };
 		821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D7295E0F9600B47BFB /* DebugInfo.swift */; };
 		821933DA295E101C00B47BFB /* AuroraDebugContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933D9295E101C00B47BFB /* AuroraDebugContainerView.swift */; };
-		821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DD295E1DD800B47BFB /* DebugCornerView.swift */; };
-		821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */; };
+		821933DE295E1DD800B47BFB /* PositionDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DD295E1DD800B47BFB /* PositionDebugView.swift */; };
+		821933E0295E1EA300B47BFB /* PositionDebugColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933DF295E1EA300B47BFB /* PositionDebugColorsView.swift */; };
 		821933EA295FD64A00B47BFB /* AuroraDebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */; };
 		821933ED295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933EC295FD9F400B47BFB /* EnvironmentConfigurationHolder.swift */; };
 		821933F12964BAE900B47BFB /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821933F02964BAE900B47BFB /* NSColor+Hex.swift */; };
@@ -83,8 +83,8 @@
 		821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugView.swift; sourceTree = "<group>"; };
 		821933D7295E0F9600B47BFB /* DebugInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfo.swift; sourceTree = "<group>"; };
 		821933D9295E101C00B47BFB /* AuroraDebugContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugContainerView.swift; sourceTree = "<group>"; };
-		821933DD295E1DD800B47BFB /* DebugCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerView.swift; sourceTree = "<group>"; };
-		821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCornerColorsView.swift; sourceTree = "<group>"; };
+		821933DD295E1DD800B47BFB /* PositionDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDebugView.swift; sourceTree = "<group>"; };
+		821933DF295E1EA300B47BFB /* PositionDebugColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDebugColorsView.swift; sourceTree = "<group>"; };
 		821933E1295E207600B47BFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		821933E2295E237200B47BFB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDebugSettingsView.swift; sourceTree = "<group>"; };
@@ -236,8 +236,8 @@
 				821933E9295FD64A00B47BFB /* AuroraDebugSettingsView.swift */,
 				821933D5295E0E8B00B47BFB /* AuroraDebugView.swift */,
 				821933D7295E0F9600B47BFB /* DebugInfo.swift */,
-				821933DD295E1DD800B47BFB /* DebugCornerView.swift */,
-				821933DF295E1EA300B47BFB /* DebugCornerColorsView.swift */,
+				821933DD295E1DD800B47BFB /* PositionDebugView.swift */,
+				821933DF295E1EA300B47BFB /* PositionDebugColorsView.swift */,
 				823CBBA529749EDD00CA5CDD /* RangeSliderView.swift */,
 			);
 			path = debug;
@@ -490,8 +490,8 @@
 				821933DA295E101C00B47BFB /* AuroraDebugContainerView.swift in Sources */,
 				823CBB98296B81E100CA5CDD /* BackgroundOrb.swift in Sources */,
 				823CBBA629749EDD00CA5CDD /* RangeSliderView.swift in Sources */,
-				821933E0295E1EA300B47BFB /* DebugCornerColorsView.swift in Sources */,
-				821933DE295E1DD800B47BFB /* DebugCornerView.swift in Sources */,
+				821933E0295E1EA300B47BFB /* PositionDebugColorsView.swift in Sources */,
+				821933DE295E1DD800B47BFB /* PositionDebugView.swift in Sources */,
 				821933D8295E0F9600B47BFB /* DebugInfo.swift in Sources */,
 				821933CF295DFFBC00B47BFB /* Pixel.swift in Sources */,
 				821933D3295DFFEF00B47BFB /* Array+AverageColor.swift in Sources */,
