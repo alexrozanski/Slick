@@ -11,6 +11,7 @@ internal struct BackgroundOrbViewModel: Equatable {
   // Expressed in 0 <= degrees <= 360
   let angle: Double
   let color: NSColor
+  let harmonyColor: NSColor?
 
   let animateRotation: Bool
   let rotationAnimationDuration: Double
@@ -33,9 +34,10 @@ internal struct BackgroundOrbViewModel: Equatable {
   let minOpacity: Double
   let maxOpacity: Double
 
-  init(angle: Double, color: NSColor, focusPoint: UnitPoint, animationConfiguration: AnimationConfiguration) {
+  init(angle: Double, color: NSColor, harmonyColor: NSColor?, focusPoint: UnitPoint, animationConfiguration: AnimationConfiguration) {
     self.angle = angle
     self.color = color
+    self.harmonyColor = harmonyColor
 
     self.animateRotation = animationConfiguration.animateRotation
     self.rotationAnimationDuration = animationConfiguration.rotationAnimationDuration
@@ -69,6 +71,7 @@ internal struct BackgroundOrbViewModel: Equatable {
     self.init(
       angle: backgroundColor.angle,
       color: backgroundColor.color,
+      harmonyColor: backgroundColor.harmonyColor,
       focusPoint: UnitPoint(x: min(backgroundColor.focusPoint.x, 1), y: min(backgroundColor.focusPoint.y, 1)),
       animationConfiguration: animationConfiguration
     )

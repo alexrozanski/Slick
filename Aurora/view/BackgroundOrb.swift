@@ -18,12 +18,11 @@ struct BackgroundOrb: View {
           GeometryReader { geometry in
             Rotation(viewModel: viewModel, size: geometry.size) {
               ZStack {
-                Rectangle()
-                  .fill(Color(cgColor: viewModel.color.cgColor))
-                  .cornerRadius((geometry.size.width / 2) * appearance.orbRoundness)
-                  .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
-                  .opacity(appearance.opacity)
-                  .transition(.opacity.animation(.easeIn(duration: 0.25)))
+                Orb(
+                  viewModel: viewModel,
+                  appearance: appearance,
+                  size: geometry.size
+                )
                 if appearance.showDebugOverlays {
                   Circle()
                     .fill(.yellow)
@@ -223,5 +222,46 @@ fileprivate struct Scale<Content>: View where Content: View {
           )
         )
     }
+  }
+}
+
+fileprivate struct Orb: View {
+  let viewModel: BackgroundOrbViewModel
+  let appearance: Appearance
+  let size: CGSize
+
+  @State var color: NSColor
+
+  init(viewModel: BackgroundOrbViewModel, appearance: Appearance, size: CGSize) {
+    self.viewModel = viewModel
+    self.appearance = appearance
+    self.size = size
+    _color = State(initialValue: viewModel.color)
+  }
+
+  var body: some View {
+    Rectangle()
+      .fill(Color(cgColor: color.cgColor))
+      .cornerRadius((size.width / 2) * appearance.orbRoundness)
+      .blur(radius: appearance.blurColors ? appearance.blurRadius : 0)
+      .opacity(appearance.opacity)
+      .transition(.opacity.animation(.easeIn(duration: 0.25)))
+      .onChange(of: viewModel) { newViewModel in
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) {
+          color = newViewModel.color
+          guard let harmonyColor = newViewModel.harmonyColor else { return }
+          withAnimation(.linear(duration: 10).repeatForever(autoreverses: true)) {
+            color = harmonyColor
+          }
+        }
+      }
+      .onAppear {
+        guard let harmonyColor = viewModel.harmonyColor else { return }
+        withAnimation(.linear(duration: 10).repeatForever(autoreverses: true)) {
+          color = harmonyColor
+        }
+      }
   }
 }
