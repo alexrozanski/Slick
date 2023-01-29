@@ -14,18 +14,7 @@ internal struct PositionDebugColorsView: View {
     if let colors = colors {
       HStack {
         ForEach(colors, id: \.self) { color in
-          Circle()
-            .fill(Color(cgColor: color.cgColor))
-            .frame(width: 20, height: 20)
-            .contextMenu {
-              Text(color.hexString)
-              Divider()
-              Button("Copy color") {
-                let pasteboard = NSPasteboard.general
-                pasteboard.prepareForNewContents(with: [])
-                pasteboard.setString(color.hexString, forType: .string)
-              }
-            }
+          PositionDebugColorView(color: color)
         }
       }
     }
