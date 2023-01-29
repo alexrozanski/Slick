@@ -42,6 +42,8 @@ internal class ImageColorExtractor {
     // left of the image and then sweeps round clockwise.
     let angle: Double
     let color: NSColor
+    // An alternative, lesser represented colour that acts as a harmonious colour to `color`.
+    let harmonyColor: NSColor?
     // Expressed in (x, y) where 0 <= x and y <= 1.0
     let focusPoint: CGPoint
   }
@@ -100,7 +102,12 @@ internal class ImageColorExtractor {
           let focusPoint = CGPoint(x: edgeCoordinates.x / imageSize.width, y: edgeCoordinates.y / imageSize.height)
 
           extractedColors.append(
-            ExtractedColor(angle: angle, color: topColors.first ?? .black, focusPoint: focusPoint)
+            ExtractedColor(
+              angle: angle,
+              color: topColors.first ?? .black,
+              harmonyColor: topColors.count > 1 ? topColors[1] : nil,
+              focusPoint: focusPoint
+            )
           )
           debugInfo.append(
             ExtractionDebugInfo.Point(
